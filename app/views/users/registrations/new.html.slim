@@ -1,0 +1,31 @@
+h2
+  | Sign up
+= form_for(resource, url: registration_path(resource), data: { controller: "users" }, local: true) do |f|
+  = render "devise/shared/error_messages", resource: resource
+  .row
+    .field.col
+      = f.label :first_name
+      = f.text_field :first_name, data: {"users-target": "input"}, class: "form-control"
+      label data-user-target="error" style="color: red; display: none"
+        | Name missing
+    .field.col
+      = f.label :last_name
+      = f.text_field :last_name, data: {"users-target": "input"}, class: "form-control"
+  .field
+    = f.label :phone
+    = f.text_field :phone, data: {"users-target": "input"}, class: "form-control"
+  .field
+    = f.label :address
+    = f.text_field :address, data: {"users-target": "input"}, class: "form-control"
+  .field
+    = f.label :email
+    = f.email_field :email, data: {"users-target": "input"}, autofocus: true, autocomplete: "email", class: "form-control"
+  .field
+    = f.label :password
+    = f.password_field :password, data: {"users-target": "input"}, autocomplete: "new-password", class: "form-control"
+  .field
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation, data: {"users-target": "input"}, autocomplete: "new-password", class: "form-control"
+  .actions.row
+    .col = f.submit "Sign up", class: "btn btn-primary form-control", 'data-action' => "click->users#submit"
+    .col = link_to "Log in", new_user_session_path, class: "btn btn-outline-primary form-control"
