@@ -10,3 +10,7 @@ Style/Documentation:
   Enabled: false
 Metrics/MethodLength:
   Enabled: false
+Metrics/AbcSize:
+  Enabled: false
+Metrics/BlockLength:
+  Enabled: false

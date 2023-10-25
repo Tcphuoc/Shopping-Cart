@@ -20,9 +20,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       t.datetime :remember_created_at
 
       ## Activation
-      t.boolean  :activated
-      t.string   :activation_token
-      t.datetime :activation_sent_at
+      t.datetime :confirmed_at
+      t.string   :confirmation_token
+      t.datetime :confirmation_sent_at
+      t.string   :unconfirmed_email
 
       t.timestamps null: false
     end
