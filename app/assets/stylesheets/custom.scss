@@ -1,3 +1,10 @@
+/* Color */
+$blue: #0d6efd;
+$white: #ffffff;
+$black: #212529;
+$gray: #adb5bd;
+$red: #f21b3f;
+
 /* Universal */
 body{
   min-height: 100vh;
@@ -6,7 +13,7 @@ body{
 }
 
 footer{
-  color: white;
+  color: $white;
   margin-top: auto;
 }
 
@@ -17,19 +24,23 @@ footer{
 /* Form */
 form{
   div#error_explanation{
-    color: red;
+    color: $red;
   }
   input {
     margin-bottom: 5px;
-  }
-  p.forget-password{
-    display: block;
-    text-align: right;
-    a{
-      text-decoration: none;
-      &:hover{
-        text-decoration: underline;
-      }
+    &[type="submit"]{
+      margin-top: 10px;
     }
+  }
+  a.info{
+    display: block;
+    text-align: center;
+    color: $gray;
+    &:hover{
+      color: $blue;
+    }
+  }
+  a.forget-password{
+    text-align: right;
   }
 }

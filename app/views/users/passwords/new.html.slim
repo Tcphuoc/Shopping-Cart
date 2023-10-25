@@ -1,0 +1,13 @@
+.row.justify-content-md-center
+  .col-md-4
+    h2
+      | Forgot your password?
+    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+      = render "devise/shared/error_messages", resource: resource
+      .field
+        = f.label :email
+        br
+        = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
+      .actions
+        = f.submit "Send instructions", class: "form-control btn btn-primary"
+        = link_to "Log in", sign_in_path, class: "form-control btn btn-outline-primary"

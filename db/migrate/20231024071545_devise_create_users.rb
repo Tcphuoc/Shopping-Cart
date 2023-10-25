@@ -23,7 +23,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       t.datetime :confirmed_at
       t.string   :confirmation_token
       t.datetime :confirmation_sent_at
-      t.string   :unconfirmed_email
 
       t.timestamps null: false
     end
