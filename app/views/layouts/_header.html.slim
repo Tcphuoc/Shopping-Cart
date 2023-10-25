@@ -1,0 +1,29 @@
+header.navbar.navbar-expand-lg
+  .container-fluid
+    a.navbar-brand.h1[href="/"]
+      | Shopping
+    button.btn.btn-outline-light.d-lg-none[type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResponsive" aria-controls="offcanvasResponsive"]
+      span.navbar-toggler-icon
+
+    #offcanvasResponsive.offcanvas-lg.offcanvas-end[tabindex="-1" aria-labelledby="offcanvasResponsiveLabel"]
+      .offcanvas-header
+        h5#offcanvasResponsiveLabel.offcanvas-title Shopping 
+        button.btn-close[type="button" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasResponsive" aria-label="Close"]
+      .offcanvas-body
+        ul.nav.nav-underline.justify-content-end.navbar-nav
+          li.nav-item = link_to "Home", root_path, class: "nav-link"
+          li.nav-item.dropdown
+            a.nav-link.dropdown-toggle[data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"]
+              | Category
+            ul.dropdown-menu
+              li = link_to "Action", "#", class: "dropdown-item"
+              li = link_to "Another action", "#", class: "dropdown-item"
+              li = link_to "Something else here", "#", class: "dropdown-item"
+              li
+                hr.dropdown-divider
+              li = link_to "Separated link", "#", class: "dropdown-item"
+          li.nav-item = link_to "Cart", root_path, class: "nav-link"
+          - if current_user
+            li.nav-item = button_to "Log out", destroy_user_session_path, class: "nav-link", method: :delete
+          - else
+            li.nav-item = link_to "Sign up", new_user_registration_path, class: "nav-link"
