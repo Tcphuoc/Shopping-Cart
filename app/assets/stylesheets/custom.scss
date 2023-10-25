@@ -22,4 +22,14 @@ form{
   input {
     margin-bottom: 5px;
   }
+  p.forget-password{
+    display: block;
+    text-align: right;
+    a{
+      text-decoration: none;
+      &:hover{
+        text-decoration: underline;
+      }
+    }
+  }
 }
