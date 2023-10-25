@@ -5,7 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable
   validates :first_name, presence: true, length: { minimum: 2, maximum: 20 }
   validates :last_name, presence: true, length: { minimum: 2, maximum: 20 }
-  validates :phone, presence: true
+  REGEX_PHONE_NUMBER = /\A(0|84|\+84)(3|5|7|8|9)\d{8}\z/
+  validates :phone, presence: true, format: { with: REGEX_PHONE_NUMBER }
   validates :address, presence: true
   validates :email, presence: true
 end

@@ -1,6 +1,13 @@
 /* Universal */
+body{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 footer{
   color: white;
+  margin-top: auto;
 }
 
 .content{
