@@ -10,4 +10,4 @@
         = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
       .actions
         = f.submit "Send instructions", class: "form-control btn btn-primary"
-        = link_to "Log in", sign_in_path, class: "form-control btn btn-outline-primary"
+        = link_to "Log in", new_user_session_path, class: "form-control btn btn-outline-primary"
