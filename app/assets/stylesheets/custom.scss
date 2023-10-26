@@ -3,6 +3,7 @@ $blue: #0d6efd;
 $white: #ffffff;
 $black: #212529;
 $gray: #adb5bd;
+$light-gray: #e9ecef;
 $red: #f21b3f;
 
 /* Universal */
@@ -10,6 +11,9 @@ body{
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  p{
+    margin: 0;
+  } 
 }
 
 footer{
@@ -43,4 +47,28 @@ form{
   a.forget-password{
     text-align: right;
   }
+}
+
+/* Profile */
+aside{
+  section{
+    margin-bottom: 10px;
+  }
+  li.nav-item{
+    a, button{
+      color: $black;
+      &:hover{
+        color: $black;
+      }
+    }
+    &:hover{
+      background-color: $light-gray;
+      border-radius: 5px;
+    }
+  }
+}
+
+.gravatar {
+  float: left;
+  margin-right: 10px;
 }

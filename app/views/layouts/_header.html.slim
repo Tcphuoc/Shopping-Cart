@@ -28,7 +28,7 @@ header.navbar.navbar-expand-lg
               a.nav-link.dropdown-toggle[data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"]
                 | Account
               ul.dropdown-menu
-                li = link_to "Profile", "#", class: "dropdown-item"
+                li = link_to "Profile", edit_user_registration_path(@current_user), class: "dropdown-item"
                 li = link_to "Setting", "#", class: "dropdown-item"
                 li
                   hr.dropdown-divider
