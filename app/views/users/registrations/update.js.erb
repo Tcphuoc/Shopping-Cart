@@ -1,8 +1,0 @@
-<%= debugger%>
-<% if @user.valid? %>
-  # Redirect To path
-  window.location.replace('<%= edit_user_registration_path %>');
-<% else %>
-  # Show Errors
-  $('#js-error-block').html('<%= devise_error_messages! %>');
-<% end %>
