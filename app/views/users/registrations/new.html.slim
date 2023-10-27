@@ -28,6 +28,6 @@
       .field
         = f.label :password_confirmation
         = f.password_field :password_confirmation, data: {"users-target": "input"}, autocomplete: "new-password", class: "form-control"
-      .actions.row
-        .col = f.submit "Sign up", class: "btn btn-primary form-control", 'data-action' => "click->users#submit"
-        .col = link_to "Log in", sign_in_path, class: "btn btn-outline-primary form-control"
+      .actions
+        = f.submit "Sign up", class: "btn btn-primary form-control", 'data-action' => "click->users#submit"
+        = link_to "Already have an account?", new_user_session_path, class: "info"
