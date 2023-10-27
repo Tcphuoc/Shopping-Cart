@@ -30,7 +30,7 @@ form{
   div#error_explanation{
     color: $red;
   }
-  input {
+  input{
     margin-bottom: 5px;
     &[type="submit"]{
       margin-top: 10px;
