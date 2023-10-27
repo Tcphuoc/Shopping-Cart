@@ -5,14 +5,11 @@
     h2
       | Information
     = form_for(resource, as: resource_name, data: { controller: "users" }, url: registration_path(resource_name), html: { method: :put }, remote: true) do |f|
-      .aler.alert-danger style="display: none"
-        #js-error-block
+      = render "devise/shared/error_messages", resource: resource
       .row
         .field.col
           = f.label :first_name
           = f.text_field :first_name, data: {"users-target": "input"}, class: "form-control"
-          label data-user-target="error" style="color: red; display: none"
-            | Name missing
         .field.col
           = f.label :last_name
           = f.text_field :last_name, data: {"users-target": "input"}, class: "form-control"
@@ -33,5 +30,10 @@
       .field
         = f.label :password_confirmation
         = f.password_field :password_confirmation, autocomplete: "new-password", data: {"users-target": "input"}, class: "form-control"
+      .field 
+        = f.label :current_password
+          i 
+           | (we need your current password to confirm your changes)
+        = f.password_field :current_password, autocomplete: "current-password", data: {"users-target": "input"}, class: "form-control"
       .actions
         = f.submit "Update", class: "btn btn-primary", 'data-action' => "click->users#submit"
