@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   def gravatar_for(user, option = { size: 50 })
     size = option[:size]
