@@ -1,0 +1,12 @@
+.product
+  a href="/products/#{product.id}" class="link-product"
+    .card.text-center
+      - if product.image.attached?
+        = image_tag product.image.variant(:thumb)
+      - else
+        img src="https://www.bahmansport.com/media/com_store/images/empty.png" style="width: 100%; height: 14rem;"
+      .card-body
+        h5.card-title.name-product 
+          = product.name
+        p.card-text 
+          = display_price(product.price)

@@ -1,0 +1,13 @@
+.row
+  .col = image_tag @product.image.variant(:thumb_larger)
+  .col
+    h2 = @product.name
+    h2 = display_price(@product.price)
+    p = @product.description
+    = form_with(model: @cart, local: true) do |f|
+      = f.hidden_field :product_id, value: @product.id 
+      .row.mb-3
+        = f.label :quantity, class: "col-sm-2 col-form-label"
+        .col-sm-10 = f.number_field :quantity, in: 1..10, class: "form-control"
+        
+      = f.submit "Add to cart", class: "btn btn-dark form-control"

@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   get '/home', to: 'pages#home'
   get 'pages/about'
   root 'pages#home'
+  resources :products
+  resources :carts, only: [:index, :update]
+  resources :categories
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 end

@@ -1,6 +1,6 @@
 .row
   aside.col-md-3
-    = render 'users/shared/sidebar'
+    = render "users/shared/sidebar"
   .col-md-9
     h2
       | Information
@@ -36,4 +36,4 @@
            | (we need your current password to confirm your changes)
         = f.password_field :current_password, autocomplete: "current-password", data: {"users-target": "input"}, class: "form-control"
       .actions
-        = f.submit "Update", class: "btn btn-primary"
+        = f.submit "Update", class: "btn btn-dark"

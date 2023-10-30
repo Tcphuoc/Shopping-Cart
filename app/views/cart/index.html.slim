@@ -1,0 +1,18 @@
+h2 Your cart
+.row
+  .col-md-6
+    strong Product
+  .col-md-2
+    strong Quantity
+  .col-md-2
+    strong Subtotal
+hr
+- @cart.cart_items.each do |item|
+  = render "shared/cart_item", item: item, cart: @cart
+.row
+  .col-md-8.align-self-center
+    strong Total price:
+  .col-md-2.align-self-center
+    = display_price(@cart.total_price)
+  .col-md-2.align-self-center
+    = button_to "Payment", "#", class: "btn btn-dark"

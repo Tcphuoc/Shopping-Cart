@@ -1,0 +1,6 @@
+.row
+  h4 
+    = @category.name
+  - @category.products.each do |product|
+    .col-3.col-md-3
+      = render "shared/product", product: product

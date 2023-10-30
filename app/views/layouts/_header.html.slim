@@ -12,6 +12,6 @@ header.navbar.navbar-expand-lg
       .offcanvas-body
         ul.nav.nav-underline.justify-content-end.navbar-nav
           - if shop_signed_in?
-            = render 'shop/shared/header_shop'
+            = render "shop/shared/header_shop"
           - else
-            = render 'users/shared/header_user'
+            = render "users/shared/header_user"

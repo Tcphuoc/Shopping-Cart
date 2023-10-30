@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  include CartsHelper
   before_action :configure_sign_up_params, if: :devise_controller?
+  before_action :authenticate_user!
 
   protected
 
