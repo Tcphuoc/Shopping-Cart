@@ -22,6 +22,7 @@ footer{
 }
 
 .content{
+  padding-top: 20px;
   padding-bottom: 20px;
 }
 
@@ -91,6 +92,31 @@ a.link-category{
     .name-product{
       color: $black;
       text-transform: capitalize;
+    }
+  }
+}
+
+/* Edit product */
+table{
+  border-collapse: collapse;
+  width: 100%;
+  td, th{
+    border: 1px solid $light-gray;
+    text-align: left;
+    padding: 8px;
+  }
+  margin-bottom: 10px;
+}
+
+.edit-product{
+  h2{
+    display: inline;
+  }
+  a{
+    margin-bottom: 5px;
+    &.new-product{
+      float: right;
+      margin-bottom: 20px;
     }
   }
 }

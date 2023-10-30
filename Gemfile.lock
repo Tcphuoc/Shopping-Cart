@@ -82,12 +82,12 @@ GEM
       debug_inspector (>= 0.0.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
-    bootstrap-kaminari-views (0.0.5)
-      kaminari (>= 0.13)
-      rails (>= 3.1)
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)
+    bootstrap5-kaminari-views (0.0.1)
+      kaminari (>= 0.13)
+      rails (>= 3.1)
     builder (3.2.4)
     capybara (3.39.2)
       addressable
@@ -326,8 +326,8 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootsnap
-  bootstrap-kaminari-views
   bootstrap-sass
+  bootstrap5-kaminari-views
   capybara
   debug
   devise

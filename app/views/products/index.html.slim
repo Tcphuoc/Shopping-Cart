@@ -1,4 +1,23 @@
-.row
-  - @products.each do |product|
-    .col-3.col-md-3
-      = render "shared/product", product: product
+.edit-product
+  - if shop_signed_in?
+    h2 List Products
+    = link_to "New product", new_product_path, class: "btn btn-dark new-product", style: "float: right;"
+    table
+      tr
+        th ID
+        th Product name
+        th Description
+        th Category
+        th Price
+        th Stock
+        th Image
+        th Action
+      .row
+        - @products.each_with_index do |product, index|
+          = render "shared/edit_product", product: product, index: index
+    = paginate @products
+  - else
+    .row
+      - @products.each do |product|
+        .col-3.col-md-3
+          = render "shared/card_product", product: product
