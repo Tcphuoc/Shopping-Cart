@@ -1,0 +1,11 @@
+.edit-page
+  h2 List Categories
+  = link_to "New category", new_category_path, class: "btn btn-dark new-object"
+  table
+    tr
+      th ID
+      th Category name
+      th Products
+      th Action
+    - @categories.each_with_index do |category, index|
+      = render "shared/edit_category", category: category, index: index

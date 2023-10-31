@@ -96,25 +96,24 @@ a.link-category{
   }
 }
 
-/* Edit product */
-table{
-  border-collapse: collapse;
-  width: 100%;
-  td, th{
-    border: 1px solid $light-gray;
-    text-align: left;
-    padding: 8px;
+/* Edit page */
+.edit-page{
+  table{
+    border-collapse: collapse;
+    width: 100%;
+    td, th{
+      border: 1px solid $light-gray;
+      text-align: left;
+      padding: 8px;
+    }
+    margin-bottom: 10px;
   }
-  margin-bottom: 10px;
-}
-
-.edit-product{
   h2{
     display: inline;
   }
   a{
     margin-bottom: 5px;
-    &.new-product{
+    &.new-object{
       float: right;
       margin-bottom: 20px;
     }

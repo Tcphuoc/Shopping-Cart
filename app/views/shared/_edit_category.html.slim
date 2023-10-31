@@ -1,0 +1,9 @@
+tr
+  td = index + 1
+  td = category.name
+  td 
+    - category.products.each do |product|
+      p = product.name
+  td
+    = link_to "Edit", edit_category_path(category), class: "btn btn-outline-dark"
+    = button_to "Delete", category_path(category), method: :delete, class: "btn btn-outline-dark"
