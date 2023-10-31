@@ -1,9 +1,12 @@
+# frozen_string_literal: true
+
 class ProductsController < ApplicationController
   before_action :authenticate_shop!, only: [:new, :create, :edit, :update, :destroy]
   before_action :find_product, only: [:show, :edit, :update, :destroy]
 
   def index
     @products = Product.all.page(params[:page]).per(10)
+    @other_products = Product.all.page(params[:page]).per(12)
   end
 
   def new
@@ -49,10 +52,10 @@ class ProductsController < ApplicationController
   private
 
   def find_product
-    @product = Product.find(params[:id])
+    @product = Product.find_by(slug: params[:slug])
   end
 
   def product_params
-    params.require(:product).permit(:name, :description, :price, :stock, :image)
+    params.require(:product).permit(:name, :description, :price, :stock, :image, :slug)
   end
 end

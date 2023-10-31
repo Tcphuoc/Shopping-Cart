@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_28_124521) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_31_020833) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -61,6 +61,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_28_124521) do
     t.integer "shop_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
   end
 
   create_table "categories_products", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -69,6 +70,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_28_124521) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_categories_products_on_category_id"
+    t.index ["product_id", "category_id"], name: "index_categories_products_on_product_id_and_category_id", unique: true
     t.index ["product_id"], name: "index_categories_products_on_product_id"
   end
 
@@ -80,6 +82,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_28_124521) do
     t.integer "stock"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
   end
 
   create_table "shops", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

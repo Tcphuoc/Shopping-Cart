@@ -1,5 +1,5 @@
 h4 
-  = link_to category.name, category_path(category.id), class: "link-category"
+  = link_to category.name, category_path(category), class: "link-category"
 .row
   - category.products.first(4).each do |product|
     .col

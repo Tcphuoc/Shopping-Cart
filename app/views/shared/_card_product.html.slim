@@ -1,5 +1,5 @@
 .product
-  a href="/products/#{product.id}" class="link-product"
+  a href="/products/#{product.slug}" class="link-product"
     .card.text-center
       - if product.image.attached?
         = image_tag product.image.variant(:thumb)

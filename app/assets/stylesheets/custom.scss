@@ -13,7 +13,11 @@ body{
   flex-direction: column;
   p{
     margin: 0;
-  } 
+  }
+  h2{
+    display: inline-block;
+    margin-bottom: 20px;
+  }
 }
 
 footer{
@@ -107,9 +111,6 @@ a.link-category{
       padding: 8px;
     }
     margin-bottom: 10px;
-  }
-  h2{
-    display: inline;
   }
   a{
     margin-bottom: 5px;

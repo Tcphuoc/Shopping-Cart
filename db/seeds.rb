@@ -8,23 +8,83 @@
 Shop.create(first_name: 'Truong', last_name: 'Phuoc', phone: '0938543184',
                    address: '123 Ngo Gia Tu, phuong 2, quan 10, TP.HCM', email: 'tcphuoc@gmail.com', password: '12345678', password_confirmation: '12345678')
 
-tshirt_category = Category.create(name: "T-Shirt", shop_id: 1)
-sweater_category = Category.create(name: "Sweater", shop_id: 1)
+tshirt_category = Category.create(name: 'T-Shirt', shop_id: 1, slug: 'tshirt')
+sweater_category = Category.create(name: 'Sweater', shop_id: 1, slug: 'sweater')
+jeans_category = Category.create(name: 'Jeans', shop_id: 1, slug: 'jeans')
+pants_category = Category.create(name: 'Pants', shop_id: 1, slug: 'pants')
+polo_category = Category.create(name: 'Polo Shirt', shop_id: 1, slug: 'polo_shirt')
+short_category = Category.create(name: 'Short', shop_id: 1, slug: 'short')
+
+def create_product(param, name_image, category)
+  product = Product.new(param)
+  product.image.attach(
+    io: File.open(Rails.root.join("public/#{category.slug}/#{name_image}")),
+    filename: name_image
+  )
+  product.save
+  product.add_category(category)
+end
 
 6.times.each do |i|
-  tshirt = Product.new(name: "Shirt #{i+1}", description: "100% cotton T-shirt, pre-washed for a casual look. Contrasting color block design.", price: 100000, stock: 10+i, shop_id: 1)
-  tshirt.image.attach(
-    io: File.open(Rails.root.join("public/tshirt/tshirt_#{i+1}.jpg")),
-    filename: "tshirt_#{i+1}.jpg"
-  )
-  tshirt.save
-  tshirt.add_category(tshirt_category)
+  index = i + 1
 
-  sweater = Product.new(name: "Sweater #{i+1}", description: "Fine texture and stunning coloring. Designed with traditional sweatshirt details.", price: 200000, stock: 10+i, shop_id: 1)
-  sweater.image.attach(
-    io: File.open(Rails.root.join("public/sweater/sweater_#{i+1}.jpg")),
-    filename: "sweater_#{i+1}.jpg"
-  )
-  sweater.save
-  sweater.add_category(sweater_category)
+  tshirt_param = {
+    name: "Shirt #{index}",
+    description: '100% cotton T-shirt, pre-washed for a casual look. Contrasting color block design.',
+    price: 100000,
+    stock: 10+i,
+    shop_id: 1,
+    slug: "shirt_#{index}"
+  }
+  create_product(tshirt_param, "tshirt_#{index}.jpg", tshirt_category)
+
+  sweater_param = {
+    name: "Sweater #{index}",
+    description: 'Fine texture and stunning coloring. Designed with traditional sweatshirt details.',
+    price: 200000,
+    stock: 10+i,
+    shop_id: 1,
+    slug: "sweater_#{index}"
+  }
+  create_product(sweater_param, "sweater_#{index}.jpg", sweater_category)
+
+  jeans_param = {
+    name: "Jeans #{index}",
+    description: 'Incredible stretch for a comfortable, flattering fit. Buttons and stitching in chic tones for a sophisticated look.',
+    price: 350000,
+    stock: 10+i,
+    shop_id: 1,
+    slug: "jeans_#{index}"
+  }
+  create_product(jeans_param, "jeans_#{index}.jpg", jeans_category)
+
+  pants_param = {
+    name: "Pants #{index}",
+    description: 'Sleek and stretchy. Versatile pants for comfort at home or the office.',
+    price: 320000,
+    stock: 10+i,
+    shop_id: 1,
+    slug: "pants_#{index}"
+  }
+  create_product(pants_param, "pants_#{index}.jpg", pants_category)
+
+  polo_param = {
+    name: "Polo shirt #{index}",
+    description: 'A smooth and durable blend of cotton and recycled polyester. This wardrobe staple is always evolving.',
+    price: 250000,
+    stock: 10+i,
+    shop_id: 1,
+    slug: "polo_shirt_#{index}"
+  }
+  create_product(polo_param, "polo_#{index}.jpg", polo_category)
+
+  short_param = {
+    name: "Short #{index}",
+    description: 'Quick-drying fabric that allows ease of movement. Versatile pants for relaxing at home or wearing out and about.',
+    price: 210000,
+    stock: 10+i,
+    shop_id: 1,
+    slug: "short_#{index}"
+  }
+  create_product(short_param, "short_#{index}.jpg", short_category)
 end

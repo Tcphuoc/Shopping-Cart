@@ -6,6 +6,8 @@
       th ID
       th Category name
       th Products
+      th Slug
       th Action
     - @categories.each_with_index do |category, index|
       = render "shared/edit_category", category: category, index: index
+  = paginate @categories

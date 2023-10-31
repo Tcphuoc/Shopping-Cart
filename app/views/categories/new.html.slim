@@ -5,4 +5,9 @@ h2 Create new category
   = f.label :name
   = f.text_field :name, class: "form-control"
 
+  = f.label :slug
+  em 
+    |  (The name display in url)
+  = f.text_field :slug, class: "form-control"
+
   = f.submit "Create", class: "btn btn-dark form-control"

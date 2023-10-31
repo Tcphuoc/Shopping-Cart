@@ -17,7 +17,9 @@
           = render "shared/edit_product", product: product, index: index
     = paginate @products
   - else
+    h2 All Products
     .row
-      - @products.each do |product|
+      - @other_products.each do |product|
         .col-3.col-md-3
           = render "shared/card_product", product: product
+    = paginate @other_products

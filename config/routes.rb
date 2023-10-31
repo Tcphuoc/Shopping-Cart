@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   get '/home', to: 'pages#home'
   get 'pages/about'
   root 'pages#home'
-  resources :products
+  resources :products, param: :slug
   resources :carts, only: [:index, :update]
-  resources :categories
+  resources :categories, param: :slug
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Product < ApplicationRecord
   has_and_belongs_to_many :categories
   has_one_attached :image do |attachable|
@@ -12,6 +14,7 @@ class Product < ApplicationRecord
   validates :description, presence: true
   validates :stock, presence: true
   validates :price, presence: true
+  validates :slug, presence: true, uniqueness: true
 
   def add_category(category)
     categories << category

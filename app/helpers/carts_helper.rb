@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CartsHelper
   def find_cart
     return current_user.cart if current_user

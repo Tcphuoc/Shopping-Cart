@@ -17,6 +17,11 @@ h2 Edit product
     = box.label class:"form-check" do
       = box.check_box(class: "form-check-input", checked: @product.category?(box.object))
       = box.label class:"form-check-label"
+  
+  = f.label :slug
+  em 
+    |  (The name display in url)
+  = f.text_field :slug, class: "form-control"
 
   = f.label :image
   = f.file_field :image, class: "form-control"
