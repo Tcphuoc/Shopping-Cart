@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :categories, param: :slug
   resources :search, only: [:index]
   post :search, to: 'search#search'
+  resources :orders, only: [:index, :new, :create, :destroy]
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 end

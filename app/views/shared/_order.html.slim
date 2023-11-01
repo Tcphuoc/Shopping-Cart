@@ -1,0 +1,18 @@
+hr
+.row 
+  .col
+    = display_time order.created_at
+  .col
+    = display_date order.created_at
+  .col
+    - order.order_items.each do |item|
+      p = item.name
+  .col 
+    - if order.status == 1
+      p Processing
+    - elsif order.status == 2
+      p On delivery
+    - else
+      p Delivered
+  .col
+    = display_price order.total_price

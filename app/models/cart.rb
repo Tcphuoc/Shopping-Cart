@@ -23,6 +23,11 @@ class Cart < ApplicationRecord
     cart_items.delete(cart_item)
   end
 
+  def remove_all_items
+    cart_items.delete_all
+    update(total_price: 0)
+  end
+
   def include?(product_id)
     product_ids.include? product_id
   end

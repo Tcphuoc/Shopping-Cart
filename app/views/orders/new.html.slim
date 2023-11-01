@@ -1,0 +1,26 @@
+h2 Payment
+.row
+  .col-md-8
+    h4 Your products
+    - @cart.cart_items.each do |order_item|
+      = render 'shared/order_item', item: order_item
+    .row
+      .col-md-8.align-self-center
+        strong Total price:
+      .col-md-2.align-self-center
+        = display_price(@cart.total_price)
+  .col-md-4
+    h4 Your information
+    = form_with(model: @order, local: true) do |f|
+      = f.hidden_field :user_id, value: current_user.id
+      = f.hidden_field :shop_id, value: 1
+      = f.hidden_field :status, value: 1
+      = f.hidden_field :total_price, value: @cart.total_price
+
+      = f.label :address
+      = f.text_field :address, value: current_user.address, class: "form-control"
+
+      = f.label :phone
+      = f.text_field :phone, value: current_user.phone, class: "form-control"
+
+      = f.submit "Payment", class: "btn btn-dark form-control"

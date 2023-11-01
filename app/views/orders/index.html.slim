@@ -1,0 +1,35 @@
+- if shop_signed_in?
+  .edit-page
+    h2 List orders
+    table
+      tr 
+        th ID 
+        th Time
+        th Date
+        th Products
+        th Quantity
+        th Total price
+        th Action
+      .row
+        - current_shop.orders.each_with_index do |order, index|
+          = render 'shared/order_processing', order: order, index: index
+- elsif user_signed_in?
+  .row
+    aside.col-md-2
+      = render "users/shared/sidebar"
+    .col-md-10
+      h2
+        | List orders
+      .row
+        .col 
+          strong Time
+        .col 
+          strong Date
+        .col 
+          strong Products
+        .col 
+          strong Status 
+        .col 
+          strong Total price
+      - current_user.orders.each do |order|
+        = render "shared/order", order: order

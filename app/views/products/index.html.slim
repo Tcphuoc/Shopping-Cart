@@ -1,6 +1,6 @@
-.edit-page
-  - if shop_signed_in?
-    h2 List Products
+- if shop_signed_in?
+  .edit-page
+    h2 List products
     = link_to "New product", new_product_path, class: "btn btn-dark new-object"
     table
       tr
@@ -15,11 +15,11 @@
       .row
         - @products.each_with_index do |product, index|
           = render "shared/edit_product", product: product, index: index
-    = paginate @products
-  - else
-    h2 All Products
-    .row
-      - @other_products.each do |product|
-        .col-3.col-md-3
-          = render "shared/card_product", product: product
-    = paginate @other_products
+  = paginate @products
+- else
+  h2 All Products
+  .row
+    - @other_products.each do |product|
+      .col-3.col-md-3
+        = render "shared/card_product", product: product
+  = paginate @other_products
