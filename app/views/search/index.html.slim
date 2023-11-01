@@ -1,4 +1,6 @@
 h2 Search results
+- if @products.empty?
+  h5.text-danger Your search did not match any products. Please try again!
 .row
   - @products.each do |product|
     .col-3.col-md-3
