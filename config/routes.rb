@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :shop,
+             controllers: { sessions: 'shop/sessions', registrations: 'shop/registrations',
+                            passwords: 'shop/passwords' }
   devise_for :users,
              controllers: { sessions: 'users/sessions', registrations: 'users/registrations',
                             passwords: 'users/passwords' }

@@ -1,0 +1,14 @@
+section
+  = gravatar_for(@user)
+  p Account of
+  p #{@user.first_name + " " + @user.last_name}
+section
+  ul.nav.flex-column
+    li.nav-item
+      = link_to "Information", edit_user_registration_path(), class: "nav-link"
+    li.nav-item
+      = link_to "History order", "#", class: "nav-link"
+    li.nav-item
+      = link_to "Information", "#", class: "nav-link"
+    li.nav-item
+      = button_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link"

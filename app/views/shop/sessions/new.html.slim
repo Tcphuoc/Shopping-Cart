@@ -1,7 +1,7 @@
 .row.justify-content-md-center
   .col-md-6
     h2
-      | Log in
+      | Log in shop
     = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       .field
         = f.label :email
@@ -16,8 +16,6 @@
               = f.check_box :remember_me, class: "form-check-input"
               = f.label :remember_me, class: "form-check-label"
         - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
-          p.col = link_to "Forgot your password?", new_user_password_path, class: "info forget-password"
+          p.col = link_to "Forgot your password?", new_shop_password_path, class: "info forget-password"
       .actions
         = f.submit "Log in", class: "form-control btn btn-primary"
-        = link_to "Sign up", new_user_registration_path, class: "form-control btn btn-outline-primary"
-        = link_to "Log in account shop", new_shop_session_path, class: "info"

@@ -1,16 +1,1143 @@
 AllCops:
-  NewCops: enable
-Style/FrozenStringLiteralComment:
+  TargetRubyVersion: 2.6
+  Exclude:
+    - 'vendor/**/*'
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'bin/*'
+    - 'node_modules/**/*'
+    - 'spec/*'
+
+# inherit_from: .rubocop_todo.yml
+
+# Offense count: 3195
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles, UseHashRocketsWithSymbolValues.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/HashSyntax
+Style/HashSyntax:
+  Enabled: true
+
+# Offense count: 2158
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/StringLiterals
+Style/StringLiterals:
+  Enabled: true
+
+# Offense count: 1865
+# Configuration parameters: AllowURI, URISchemes.
+# http://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Metrics/LineLength
+Layout/LineLength:
+  Max: 120
+
+# Offense count: 1787
+# http://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Style/AsciiComments
+Style/AsciiComments:
   Enabled: false
-Style/EmptyMethod:
-  Enabled: false
-Bundler/OrderedGems:
-  Enabled: false
-Style/Documentation:
-  Enabled: false
-Metrics/MethodLength:
-  Enabled: false
+
+# Offense count: 1032
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces, SupportedStyles.
+# http://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Style/SpaceInsideHashLiteralBraces
+Layout/SpaceInsideHashLiteralBraces:
+  Enabled: true
+
+# Offense count: 629
+# Cop supports --auto-correct.
+# http://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Style/MultilineIfThen
+Style/MultilineIfThen:
+  Enabled: true
+
+# https://github.com/bbatsov/rubocop/issues/2504
+Layout/ExtraSpacing:
+  AllowForAlignment: true
+
+# Offense count: 317
+# Cop supports --auto-correct.
+# Configuration parameters: AllowMultipleReturnValues.
+# http://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Style/RedundantReturn
+Style/RedundantReturn:
+  Enabled: true
+
+# Offense count: 304
+# http://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Metrics/AbcSize
 Metrics/AbcSize:
   Enabled: false
-Metrics/BlockLength:
+  # Max: 475
+
+# Offense count: 299
+# Cop supports --auto-correct.
+# Configuration parameters: MultiSpaceAllowedForOperators.
+# http://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Style/SpaceAroundOperators
+Layout/SpaceAroundOperators:
+  Enabled: true
+
+# Offense count: 289
+# Configuration parameters: CountComments.
+# http://www.rubydoc.info/gems/rubocop/0.35.1/RuboCop/Cop/Metrics/MethodLength
+Metrics/MethodLength:
+  Exclude:
+    - 'db/migrate/*'
+  Max: 25
+
+# Offense count: 264
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# http://www.rubydoc.info/gems/rubocop/0.35.1/RuboCop/Cop/Style/VariableName
+Naming/VariableName:
+  Enabled: true
+
+# Offense count: 231
+# Cop supports --auto-correct.
+# http://www.rubydoc.info/gems/rubocop/0.30.1/RuboCop/Cop/Style/EmptyLinesAroundMethodBody
+Layout/EmptyLinesAroundMethodBody:
+  Enabled: true
+
+# Offense count: 193
+# Cop supports --auto-correct.
+# http://www.rubydoc.info/gems/rubocop/0.30.1/RuboCop/Cop/Style/NumericLiterals
+Style/NumericLiterals:
+  Exclude:
+    - 'db/schema.rb'
+  MinDigits: 5
+
+# Offense count: 165
+# Cop supports --auto-correct.
+# Configuration parameters: MaxLineLength.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/IfUnlessModifier
+Style/IfUnlessModifier:
+  Enabled: true
+
+# Offense count: 151
+# Cop supports --auto-correct.
+# Configuration parameters: IndentWhenRelativeTo, SupportedStyles, IndentOneStep.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/CaseIndentation
+Layout/CaseIndentation:
+  Enabled: true
+
+# Offense count: 148
+# Cop supports --auto-correct.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/EmptyLines
+Layout/EmptyLines:
+  Enabled: true
+
+# Offense count: 144
+# Cop supports --auto-correct.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/RedundantSelf
+Style/RedundantSelf:
+  Enabled: true
+
+# Offense count: 134
+# Configuration parameters: Exclude.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/Documentation
+Style/Documentation:
   Enabled: false
+
+# Offense count: 106
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/CyclomaticComplexity
+Metrics/CyclomaticComplexity:
+  Max: 20
+
+# Offense count: 106
+# http://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Metrics/PerceivedComplexity
+Metrics/PerceivedComplexity:
+  Max: 7
+
+# Offense count: 98
+# Cop supports --auto-correct.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/LeadingCommentSpace
+Layout/LeadingCommentSpace:
+  Enabled: true
+
+# Offense count: 86
+# Cop supports --auto-correct.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/NegatedIf
+Style/NegatedIf:
+  Enabled: true
+
+
+# Offense count: 59
+# Cop supports --auto-correct.
+# http://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Style/MethodCallParentheses
+Style/MethodCallWithoutArgsParentheses:
+  Enabled: true
+
+# Offense count: 58
+# Cop supports --auto-correct.
+# http://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Lint/UnusedMethodArgument
+Lint/UnusedMethodArgument:
+  Enabled: true
+
+# Offense count: 63
+# http://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Metrics/BlockNesting
+Metrics/BlockNesting:
+  Max: 3
+
+# Offense count: 54
+# Cop supports --auto-correct.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/SpaceAfterComma
+Layout/SpaceAfterComma:
+  Enabled: true
+
+
+# Offense count: 56
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/IndentationConsistency
+Layout/IndentationConsistency:
+  Enabled: true
+
+# Offense count: 54
+# Cop supports --auto-correct.
+# Configuration parameters: WordRegex.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/WordArray
+Style/WordArray:
+  MinSize: 0
+
+# Offense count: 55
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/AccessorMethodName
+Naming/AccessorMethodName:
+  Enabled: true
+
+# Offense count: 54
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# http://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Style/MultilineOperationIndentation
+Layout/MultilineOperationIndentation:
+  Enabled: true
+
+# Offense count: 49
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# http://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Style/EmptyLinesAroundBlockBody
+Layout/EmptyLinesAroundBlockBody:
+  Enabled: true
+
+# Offense count: 49
+# Cop supports --auto-correct.
+# http://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Lint/UnusedBlockArgument
+Lint/UnusedBlockArgument:
+  Enabled: true
+
+# Offense count: 43
+# Cop supports --auto-correct.
+# Configuration parameters: AllowAsExpressionSeparator.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/Semicolon
+Style/Semicolon:
+  Enabled: true
+
+# Offense count: 39
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Lint/UselessAssignment
+Lint/UselessAssignment:
+  Enabled: true
+
+# Offense count: 36
+# Configuration parameters: EnforcedStyle, MinBodyLength, SupportedStyles.
+# http://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Style/Next
+Style/Next:
+  Enabled: true
+
+# Offense count: 28
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/UnlessElse
+Style/UnlessElse:
+  Enabled: true
+
+# Offense count: 27
+# Cop supports --auto-correct.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/SpaceInsideParens
+Layout/SpaceInsideParens:
+  Enabled: true
+
+# Offense count: 26
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# http://www.rubydoc.info/gems/rubocop/0.30.0/RuboCop/Cop/Style/EmptyLinesAroundClassBody
+Layout/EmptyLinesAroundClassBody:
+  Enabled: true
+
+# Offense count: 24
+# Cop supports --auto-correct.
+# http://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Style/CommentIndentation
+Layout/CommentIndentation:
+  Enabled: true
+
+# Offense count: 19
+# Cop supports --auto-correct.
+# http://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Style/SpaceBeforeComma
+Layout/SpaceBeforeComma:
+  Enabled: true
+
+# Offense count: 19
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/CaseEquality
+Style/CaseEquality:
+  Enabled: true
+
+# Offense count: 18
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/ClassVars
+Style/ClassVars:
+  Enabled: true
+
+
+# Offense count: 16
+# Cop supports --auto-correct.
+# Configuration parameters: Width.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/IndentationWidth
+Layout/IndentationWidth:
+  Enabled: true
+
+
+# Offense count: 13
+# Cop supports --auto-correct.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/ColonMethodCall
+Style/ColonMethodCall:
+  Enabled: true
+
+# Offense count: 14
+# Cop supports --auto-correct.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/TrailingWhitespace
+Layout/TrailingWhitespace:
+  Enabled: true
+
+# Offense count: 13
+# Cop supports --auto-correct.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/SelfAssignment
+Style/SelfAssignment:
+  Enabled: true
+
+# Offense count: 13
+# Cop supports --auto-correct.
+# http://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Style/SpaceBeforeComment
+Layout/SpaceBeforeComment:
+  Enabled: true
+
+# Offense count: 7
+# Cop supports --auto-correct.
+# Configuration parameters: IgnoredMethods.
+# http://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Style/SymbolProc
+Style/SymbolProc:
+  Enabled: true
+
+# Offense count: 12
+# Configuration parameters: CountComments.
+# http://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Metrics/ClassLength
+Metrics/ClassLength:
+  Enabled: false
+
+# Offense count: 12
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# http://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Style/EmptyElse
+Style/EmptyElse:
+  Enabled: true
+
+# Offense count: 12
+# Cop supports --auto-correct.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/EmptyLiteral
+Style/EmptyLiteral:
+  Enabled: true
+
+# Offense count: 12
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# http://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Style/MethodName
+Naming/MethodName:
+  Enabled: true
+
+# Offense count: 11
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# http://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Style/FirstParameterIndentation
+Layout/FirstParameterIndentation:
+  Enabled: true
+
+# Offense count: 11
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/For
+Style/For:
+  Enabled: true
+
+# Offense count: 11
+# Cop supports --auto-correct.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/SpaceAfterColon
+Layout/SpaceAfterColon:
+  Enabled: true
+
+# Offense count: 9
+# Cop supports --auto-correct.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/PerlBackrefs
+Style/PerlBackrefs:
+  Enabled: true
+
+# Offense count: 9
+# Cop supports --auto-correct.
+# http://www.rubydoc.info/gems/rubocop/0.27.0/RuboCop/Cop/Style/RedundantBegin
+Style/RedundantBegin:
+  Enabled: true
+
+# Offense count: 6
+# Cop supports --auto-correct.
+# Configuration parameters: AllowSafeAssignment.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/ParenthesesAroundCondition
+Style/ParenthesesAroundCondition:
+  Enabled: true
+
+# Offense count: 6
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/ClassAndModuleChildren
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+
+# Offense count: 2
+# http://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Lint/UnderscorePrefixedVariableName
+Lint/UnderscorePrefixedVariableName:
+  Enabled: true
+
+# Offense count: 6
+# Configuration parameters: CountComments.
+# http://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Metrics/ModuleLength
+Metrics/ModuleLength:
+  Max: 100
+
+# Offense count: 8
+# Cop supports --auto-correct.
+# Configuration parameters: AllowAdjacentOneLineDefs.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/EmptyLineBetweenDefs
+Layout/EmptyLineBetweenDefs:
+  Enabled: false
+
+# Offense count: 6
+# Configuration parameters: NamePrefix, NamePrefixBlacklist.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/PredicateName
+Naming/PredicateName:
+  Enabled: true
+
+# Offense count: 5
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/SpaceBeforeBlockBraces
+Layout/SpaceBeforeBlockBraces:
+  Enabled: false
+
+# Offense count: 5
+# Cop supports --auto-correct.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/BlockComments
+Style/BlockComments:
+  Enabled: true
+
+# Offense count: 5
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/LambdaCall
+Style/LambdaCall:
+  Enabled: true
+
+# Offense count: 5
+# Cop supports --auto-correct.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/NilComparison
+Style/NilComparison:
+  Enabled: true
+
+# Offense count: 4
+# http://www.rubydoc.info/github/bbatsov/RuboCop/master/RuboCop/Cop/Lint/DuplicateMethods
+Lint/DuplicateMethods:
+  Enabled: true
+
+# Offense count: 3
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles, ProceduralMethods, FunctionalMethods, IgnoredMethods.
+# http://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Style/BlockDelimiters
+Style/BlockDelimiters:
+  Enabled: true
+
+# Offense count: 4
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# http://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Style/ClassCheck
+Style/ClassCheck:
+  Enabled: true
+
+# Offense count: 4
+# Cop supports --auto-correct.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/DefWithParentheses
+Style/DefWithParentheses:
+  Enabled: true
+
+# Offense count: 4
+# Cop supports --auto-correct.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/SpaceAfterSemicolon
+Layout/SpaceAfterSemicolon:
+  Enabled: true
+
+# Offense count: 2
+# Configuration parameters: CountKeywordArgs.
+# http://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Metrics/ParameterLists
+Metrics/ParameterLists:
+  Max: 5
+
+# Offense count: 3
+# Cop supports --auto-correct.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/EmptyLinesAroundAccessModifier
+Layout/EmptyLinesAroundAccessModifier:
+  Enabled: true
+
+# Offense count: 2
+# Configuration parameters: AllowSafeAssignment.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Lint/AssignmentInCondition
+Lint/AssignmentInCondition:
+  Enabled: false
+
+# Offense count: 2
+# Cop supports --auto-correct.
+Layout/BlockAlignment:
+  Enabled: true
+
+# Offense count: 2
+# Cop supports --auto-correct.
+# Configuration parameters: AlignWith, SupportedStyles, AutoCorrect.
+# http://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Lint/DefEndAlignment
+Layout/DefEndAlignment:
+  Enabled: true
+
+# Offense count: 2
+# Cop supports --auto-correct.
+# Configuration parameters: IncludeSemanticChanges.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/NonNilCheck
+Style/NonNilCheck:
+  Enabled: true
+
+# Offense count: 2
+# Cop supports --auto-correct.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/SpaceAfterControlKeyword
+Layout/SpaceAroundKeyword:
+  Enabled: true
+
+# Offense count: 2
+# Cop supports --auto-correct.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/SpaceAfterMethodName
+Layout/SpaceAfterMethodName:
+  Enabled: true
+
+# Offense count: 2
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+Layout/SpaceInsideStringInterpolation:
+  Enabled: true
+
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Lint/ConditionPosition
+Layout/ConditionPosition:
+  Enabled: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: AlignWith, SupportedStyles, AutoCorrect.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Lint/EndAlignment
+Layout/EndAlignment:
+  Enabled: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: AutoCorrect.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Lint/LiteralInInterpolation
+Lint/LiteralInInterpolation:
+  Enabled: true
+
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Lint/UselessAccessModifier
+Lint/UselessAccessModifier:
+  Enabled: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: Keywords.
+# http://www.rubydoc.info/github/bbatsov/rubocop/Rubocop/Cop/Style/CommentAnnotation
+Style/CommentAnnotation:
+  Enabled: true
+
+# Offense count: 1
+# Cop supports --auto-correct.
+Style/Lambda:
+  Enabled: true
+  # Exclude:
+  #   - 'lib/tasks/task_tags.rake'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+Style/MethodDefParentheses:
+  Enabled: true
+
+# Offense count: 1
+Style/MultilineTernaryOperator:
+  Enabled: true
+  # Exclude:
+  #   - 'app/controllers/admin/admin_controller.rb'
+
+# Offense count: 1
+Style/OptionalArguments:
+  Enabled: true
+  # Exclude:
+  #   - 'app/controllers/concerns/port_api.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+Style/Proc:
+  Enabled: true
+  # Exclude:
+  #   - 'config/initializers/omniauth.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles, AllowInnerSlashes.
+Style/RegexpLiteral:
+  Enabled: true
+  # Exclude:
+  #   - 'app/helpers/application_helper.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+Style/SignalException:
+  Enabled: true
+  # Exclude:
+  #   - 'lib/tasks/task_picture.rake'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+Style/SpecialGlobalVars:
+  Enabled: true
+  # Exclude:
+  #   - 'lib/tasks/task_tags.rake'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+Style/StringLiteralsInInterpolation:
+  Enabled: true
+
+Bundler/OrderedGems:
+  Enabled: true
+
+Lint/SafeNavigationChain:
+  Enabled: true
+
+Lint/AmbiguousBlockAssociation:
+  Enabled: false
+
+Style/IdenticalConditionalBranches:
+  Enabled: true
+
+Layout/SpaceInLambdaLiteral:
+  Enabled: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: compact, expanded
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+
+# Configuration parameters: MinBodyLength.
+Style/GuardClause:
+  Enabled: false
+
+
+# Cop supports --auto-correct.
+Style/MultilineIfModifier:
+  Enabled: false
+
+
+
+# Cop supports --auto-correct.
+# Configuration parameters: AutoCorrect, EnforcedStyle, SupportedStyles.
+# SupportedStyles: predicate, comparison
+Style/NumericPredicate:
+  Exclude:
+    - 'spec/**/*'
+    - 'db/**/*'
+
+# Cop supports --auto-correct.
+# Configuration parameters: PreferredDelimiters.
+Style/PercentLiteralDelimiters:
+  Enabled: false
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles, EnforcedStyleForEmptyBraces, SupportedStylesForEmptyBraces, SpaceBeforeBlockParameters.
+# SupportedStyles: space, no_space
+# SupportedStylesForEmptyBraces: space, no_space
+Layout/SpaceInsideBlockBraces:
+  Enabled: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: percent, brackets
+Style/SymbolArray:
+  Enabled: false
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles, AllowSafeAssignment.
+# SupportedStyles: require_parentheses, require_no_parentheses, require_parentheses_when_complex
+Style/TernaryParentheses:
+  EnforcedStyle: require_parentheses
+  SupportedStyles:
+    - require_parentheses
+    - require_no_parentheses
+
+# if のあとに and return を書きたいので
+Style/AndOr:
+  Enabled: false
+
+# Configuration parameters: CountComments, ExcludedMethods.
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'lib/tasks/**/*'
+    - 'app/decorators/**/*'
+    - 'app/views/**/*'
+    - 'app/models/concerns/**/*'
+    - 'app/controllers/concerns/**/*'
+
+
+# The following cops are added between 0.48.1 and 0.65.0.
+# The configurations are default.
+# If you want to use a cop by default, remove a configuration for the cop from here.
+# If you want to disable a cop, change `Enabled` to false.
+
+
+
+# Supports --auto-correct
+Bundler/InsecureProtocolSource:
+  Description: The source `:gemcutter`, `:rubygems` and `:rubyforge` are deprecated
+    because HTTP requests are insecure. Please change your source to 'https://rubygems.org'
+    if possible, or 'http://rubygems.org' if not.
+  Enabled: true
+  VersionAdded: '0.50'
+  Include:
+    - "**/*.gemfile"
+    - "**/Gemfile"
+    - "**/gems.rb"
+
+Gemspec/DuplicatedAssignment:
+  Description: An attribute assignment method calls should be listed only once in a
+    gemspec.
+  Enabled: true
+  VersionAdded: '0.52'
+  Include:
+    - "**/*.gemspec"
+
+# Supports --auto-correct
+Gemspec/OrderedDependencies:
+  Description: Dependencies in the gemspec should be alphabetically sorted.
+  Enabled: true
+  VersionAdded: '0.51'
+  TreatCommentsAsGroupSeparators: true
+  Include:
+    - "**/*.gemspec"
+
+Gemspec/RequiredRubyVersion:
+  Description: Checks that `required_ruby_version` of gemspec and `TargetRubyVersion`
+    of .rubocop.yml are equal.
+  Enabled: true
+  VersionAdded: '0.52'
+  Include:
+    - "**/*.gemspec"
+
+# Supports --auto-correct
+Layout/ClassStructure:
+  Description: Enforces a configured order of definitions within a class body.
+  StyleGuide: https://github.com/rubocop-hq/ruby-style-guide#consistent-classes
+  Enabled: false
+  VersionAdded: '0.52'
+  Categories:
+    module_inclusion:
+      - include
+      - prepend
+      - extend
+  ExpectedOrder:
+    - module_inclusion
+    - constants
+    - public_class_methods
+    - initializer
+    - public_methods
+    - protected_methods
+    - private_methods
+
+# Supports --auto-correct
+Layout/ClosingHeredocIndentation:
+  Description: Checks the indentation of here document closings.
+  Enabled: true
+  VersionAdded: '0.57'
+
+# Supports --auto-correct
+Layout/EmptyComment:
+  Description: Checks empty comment.
+  Enabled: true
+  VersionAdded: '0.53'
+  AllowBorderComment: true
+  AllowMarginComment: true
+
+# Supports --auto-correct
+Layout/EmptyLineAfterGuardClause:
+  Description: Add empty line after guard clause.
+  Enabled: true
+  VersionAdded: '0.56'
+  VersionChanged: '0.59'
+
+# Supports --auto-correct
+Layout/EmptyLinesAroundArguments:
+  Description: Keeps track of empty lines around method arguments.
+  Enabled: true
+  VersionAdded: '0.52'
+
+
+
+# Supports --auto-correct
+Layout/SpaceInsideArrayLiteralBrackets:
+  Description: Checks the spacing inside array literal brackets.
+  Enabled: true
+  VersionAdded: '0.52'
+  EnforcedStyle: no_space
+  SupportedStyles:
+    - space
+    - no_space
+    - compact
+  EnforcedStyleForEmptyBrackets: no_space
+  SupportedStylesForEmptyBrackets:
+    - space
+    - no_space
+
+# Supports --auto-correct
+Layout/SpaceInsideReferenceBrackets:
+  Description: Checks the spacing inside referential brackets.
+  Enabled: true
+  VersionAdded: '0.52'
+  VersionChanged: '0.53'
+  EnforcedStyle: no_space
+  SupportedStyles:
+    - space
+    - no_space
+  EnforcedStyleForEmptyBrackets: no_space
+  SupportedStylesForEmptyBrackets:
+    - space
+    - no_space
+
+# Supports --auto-correct
+Lint/BigDecimalNew:
+  Description: "`BigDecimal.new()` is deprecated. Use `BigDecimal()` instead."
+  Enabled: true
+  VersionAdded: '0.53'
+
+Lint/BooleanSymbol:
+  Description: Check for `:true` and `:false` symbols.
+  Enabled: true
+  VersionAdded: '0.50'
+
+Lint/ErbNewArguments:
+  Description: Use `:trim_mode` and `:eoutvar` keyword arguments to `ERB.new`.
+  Enabled: true
+  VersionAdded: '0.56'
+
+Lint/InterpolationCheck:
+  Description: Raise warning for interpolation in single q strs
+  Enabled: true
+  VersionAdded: '0.50'
+
+Lint/MissingCopEnableDirective:
+  Description: Checks for a `# rubocop:enable` after `# rubocop:disable`
+  Enabled: true
+  VersionAdded: '0.52'
+  MaximumRangeSize: .inf
+
+Lint/NestedPercentLiteral:
+  Description: Checks for nested percent literals.
+  Enabled: true
+  VersionAdded: '0.52'
+
+Lint/NumberConversion:
+  Description: Checks unsafe usage of number conversion methods.
+  Enabled: false
+  VersionAdded: '0.53'
+
+# Supports --auto-correct
+Lint/OrderedMagicComments:
+  Description: Checks the proper ordering of magic comments and whether a magic comment
+    is not placed before a shebang.
+  Enabled: true
+  VersionAdded: '0.53'
+
+# Supports --auto-correct
+Lint/RedundantWithIndex:
+  Description: Checks for redundant `with_index`.
+  Enabled: true
+  VersionAdded: '0.50'
+
+# Supports --auto-correct
+Lint/RedundantWithObject:
+  Description: Checks for redundant `with_object`.
+  Enabled: true
+  VersionAdded: '0.51'
+
+Lint/RegexpAsCondition:
+  Description: Do not use regexp literal as a condition. The regexp literal matches
+    `$_` implicitly.
+  Enabled: true
+  VersionAdded: '0.51'
+
+# Supports --auto-correct
+Lint/RescueType:
+  Description: Avoid rescuing from non constants that could result in a `TypeError`.
+  Enabled: true
+  VersionAdded: '0.49'
+
+Lint/ReturnInVoidContext:
+  Description: Checks for return in void context.
+  Enabled: true
+  VersionAdded: '0.50'
+
+
+# Supports --auto-correct
+Lint/ScriptPermission:
+  Description: Grant script file execute permission.
+  Enabled: true
+  VersionAdded: '0.49'
+  VersionChanged: '0.50'
+
+Lint/ShadowedArgument:
+  Description: Avoid reassigning arguments before they were used.
+  Enabled: true
+  VersionAdded: '0.52'
+  IgnoreImplicitReferences: false
+
+
+
+Lint/UriEscapeUnescape:
+  Description: "`URI.escape` method is obsolete and should not be used. Instead, use
+    `CGI.escape`, `URI.encode_www_form` or `URI.encode_www_form_component` depending
+    on your specific use case. Also `URI.unescape` method is obsolete and should not
+    be used. Instead, use `CGI.unescape`, `URI.decode_www_form` or `URI.decode_www_form_component`
+    depending on your specific use case."
+  Enabled: true
+  VersionAdded: '0.50'
+
+# Supports --auto-correct
+Lint/UriRegexp:
+  Description: Use `URI::DEFAULT_PARSER.make_regexp` instead of `URI.regexp`.
+  Enabled: true
+  VersionAdded: '0.50'
+
+Naming/HeredocDelimiterCase:
+  Description: Use configured case for heredoc delimiters.
+  StyleGuide: "#heredoc-delimiters"
+  Enabled: true
+  VersionAdded: '0.50'
+  EnforcedStyle: uppercase
+  SupportedStyles:
+    - lowercase
+    - uppercase
+
+Naming/MemoizedInstanceVariableName:
+  Description: Memoized method name should match memo instance variable name.
+  Enabled: true
+  VersionAdded: '0.53'
+  VersionChanged: '0.58'
+  EnforcedStyleForLeadingUnderscores: disallowed
+  SupportedStylesForLeadingUnderscores:
+    - disallowed
+    - required
+    - optional
+
+Security/Open:
+  Description: The use of Kernel#open represents a serious security risk.
+  Enabled: true
+  VersionAdded: '0.53'
+  Safe: false
+
+Style/AccessModifierDeclarations:
+  Description: Checks style of how access modifiers are used.
+  Enabled: true
+  VersionAdded: '0.57'
+  EnforcedStyle: group
+  SupportedStyles:
+    - inline
+    - group
+
+# Supports --auto-correct
+Style/ColonMethodDefinition:
+  Description: 'Do not use :: for defining class methods.'
+  StyleGuide: "#colon-method-definition"
+  Enabled: true
+  VersionAdded: '0.52'
+
+Style/CommentedKeyword:
+  Description: Do not place comments on the same line as certain keywords.
+  Enabled: true
+  VersionAdded: '0.51'
+
+Style/DateTime:
+  Description: Use Time over DateTime.
+  StyleGuide: "#date--time"
+  Enabled: false
+  VersionAdded: '0.51'
+  VersionChanged: '0.59'
+  AllowCoercion: false
+
+# Supports --auto-correct
+Style/Dir:
+  Description: Use the `__dir__` method to retrieve the canonicalized absolute path
+    to the current file.
+  Enabled: true
+  VersionAdded: '0.50'
+
+# Supports --auto-correct
+Style/EmptyBlockParameter:
+  Description: Omit pipes for empty block parameters.
+  Enabled: true
+  VersionAdded: '0.52'
+
+# Supports --auto-correct
+Style/EmptyLambdaParameter:
+  Description: Omit parens for empty lambda parameters.
+  Enabled: true
+  VersionAdded: '0.52'
+
+Style/EvalWithLocation:
+  Description: Pass `__FILE__` and `__LINE__` to `eval` method, as they are used by
+    backtraces.
+  Enabled: true
+  VersionAdded: '0.52'
+
+# Supports --auto-correct
+Style/ExpandPathArguments:
+  Description: Use `expand_path(__dir__)` instead of `expand_path('..', __FILE__)`.
+  Enabled: true
+  VersionAdded: '0.53'
+
+Style/FormatStringToken:
+  Description: Use a consistent style for format string tokens.
+  Enabled: true
+  EnforcedStyle: annotated
+  SupportedStyles:
+    - annotated
+    - template
+    - unannotated
+  VersionAdded: '0.49'
+  VersionChanged: '0.52'
+
+# Supports --auto-correct
+Style/MinMax:
+  Description: Use `Enumerable#minmax` instead of `Enumerable#min` and `Enumerable#max`
+    in conjunction.'
+  Enabled: true
+  VersionAdded: '0.50'
+
+Style/MixinUsage:
+  Description: Checks that `include`, `extend` and `prepend` exists at the top level.
+  Enabled: true
+  VersionAdded: '0.51'
+
+Style/MultilineMethodSignature:
+  Description: Avoid multi-line method signatures.
+  Enabled: false
+  VersionAdded: '0.59'
+
+Style/MultipleComparison:
+  Description: Avoid comparing a variable with multiple items in a conditional, use
+    Array#include? instead.
+  Enabled: true
+  VersionAdded: '0.49'
+
+# Supports --auto-correct
+Style/OrAssignment:
+  Description: Recommend usage of double pipe equals (||=) where applicable.
+  StyleGuide: "#double-pipe-for-uninit"
+  Enabled: true
+  VersionAdded: '0.50'
+
+# Supports --auto-correct
+Style/RandomWithOffset:
+  Description: Prefer to use ranges when generating random numbers instead of integers
+    with offsets.
+  StyleGuide: "#random-numbers"
+  Enabled: true
+  VersionAdded: '0.52'
+
+# Supports --auto-correct
+Style/RedundantConditional:
+  Description: Don't return true/false from a conditional.
+  Enabled: true
+  VersionAdded: '0.50'
+
+# Supports --auto-correct
+Style/RescueStandardError:
+  Description: Avoid rescuing without specifying an error class.
+  Enabled: true
+  VersionAdded: '0.52'
+  EnforcedStyle: explicit
+  SupportedStyles:
+    - implicit
+    - explicit
+
+# Supports --auto-correct
+Style/ReturnNil:
+  Description: Use return instead of return nil.
+  Enabled: false
+  EnforcedStyle: return
+  SupportedStyles:
+    - return
+    - return_nil
+  VersionAdded: '0.50'
+
+# Supports --auto-correct
+Style/StderrPuts:
+  Description: Use `warn` instead of `$stderr.puts`.
+  StyleGuide: "#warn"
+  Enabled: true
+  VersionAdded: '0.51'
+
+# Supports --auto-correct
+Style/StringHashKeys:
+  Description: Prefer symbols instead of strings as hash keys.
+  StyleGuide: "#symbols-as-keys"
+  Enabled: false
+  VersionAdded: '0.52'
+
+# Supports --auto-correct
+Style/TrailingBodyOnClass:
+  Description: Class body goes below class statement.
+  Enabled: true
+  VersionAdded: '0.53'
+
+# Supports --auto-correct
+Style/TrailingBodyOnMethodDefinition:
+  Description: Method body goes below definition.
+  Enabled: true
+  VersionAdded: '0.52'
+
+# Supports --auto-correct
+Style/TrailingBodyOnModule:
+  Description: Module body goes below module statement.
+  Enabled: true
+  VersionAdded: '0.53'
+
+# Supports --auto-correct
+Style/TrailingMethodEndStatement:
+  Description: Checks for trailing end statement on line of method body.
+  Enabled: true
+  VersionAdded: '0.52'
+
+
+# Supports --auto-correct
+Style/UnpackFirst:
+  Description: Checks for accessing the first element of `String#unpack` instead of
+    using `unpack1`
+  Enabled: true
+  VersionAdded: '0.54'
+
+# Supports --auto-correct
+Style/YodaCondition:
+  Description: Forbid or enforce yoda conditions.
+  Reference: https://en.wikipedia.org/wiki/Yoda_conditions
+  Enabled: true
+  EnforcedStyle: forbid_for_all_comparison_operators
+  SupportedStyles:
+    - forbid_for_all_comparison_operators
+    - forbid_for_equality_operators_only
+    - require_for_all_comparison_operators
+    - require_for_equality_operators_only
+  VersionAdded: '0.49'
+  VersionChanged: '0.63'
