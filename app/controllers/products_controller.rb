@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all.page(params[:page]).per(10)
-    @other_products = Product.all.page(params[:page]).per(12)
+    @other_products = Product.all.page(params[:page]).per(8)
   end
 
   def new

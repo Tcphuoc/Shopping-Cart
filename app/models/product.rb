@@ -4,7 +4,7 @@ class Product < ApplicationRecord
   has_and_belongs_to_many :categories
   has_one_attached :image do |attachable|
     attachable.variant :thumb_smaller, resize_to_limit: [100, 100]
-    attachable.variant :thumb, resize_to_limit: [250, 250]
+    attachable.variant :thumb, resize_to_limit: [200, 200]
     attachable.variant :thumb_larger, resize_to_limit: [500, 500]
   end
   has_many :cart_items, dependent: :destroy

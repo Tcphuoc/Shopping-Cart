@@ -13,6 +13,7 @@ body{
   flex-direction: column;
   p{
     margin: 0;
+    size: 0.8rem;
   }
   h2{
     display: inline-block;
@@ -28,6 +29,11 @@ footer{
 .content{
   padding-top: 20px;
   padding-bottom: 20px;
+}
+
+/* Home */
+.carousel{
+  margin-bottom: 10px;
 }
 
 /* User */

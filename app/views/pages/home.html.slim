@@ -1,5 +1,3 @@
-- if shop_signed_in?
-  
-- else
+- unless shop_signed_in?
   - categories.each do |category|
     = render "shared/category", category: category
