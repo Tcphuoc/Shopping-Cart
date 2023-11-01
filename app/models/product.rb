@@ -45,4 +45,8 @@ class Product < ApplicationRecord
     new_value = stock + quantity
     update(stock: new_value)
   end
+
+  def slug_name
+    slug
+  end
 end

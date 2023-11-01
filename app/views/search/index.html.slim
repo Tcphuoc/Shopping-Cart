@@ -1,0 +1,6 @@
+h2 Search results
+.row
+  - @products.each do |product|
+    .col-3.col-md-3
+      = render "shared/card_product", product: product
+= paginate @products

@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   resources :products, param: :slug
   resources :carts, only: [:index, :update]
   resources :categories, param: :slug
+  resources :search, only: [:index]
+  post :search, to: 'search#search'
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 end

@@ -89,7 +89,7 @@ a.link-category{
 }
 
 /* Product */
-.product{
+.card-product{
   margin-bottom: 50px;
   a.link-product{
     text-decoration: none;
@@ -97,6 +97,12 @@ a.link-category{
       color: $black;
       text-transform: capitalize;
     }
+  }
+}
+
+.product-detail{
+  h2{
+    display: block;
   }
 }
 
@@ -126,5 +132,17 @@ a.link-category{
   img.image-item{
     float: left;
     margin-right: 10px;
+  }
+}
+
+/* Search */
+form.search-box{
+  input{
+    height: 40px; 
+    border: 1px solid $white; 
+    border-right: 0;
+    margin-top: auto; 
+    margin-bottom: auto;
+    color: $black;
   }
 }
