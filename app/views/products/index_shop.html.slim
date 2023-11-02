@@ -1,0 +1,17 @@
+.table-info
+  h2 List products
+  = link_to "New product", new_product_path, class: "btn btn-dark new-object"
+  table
+    tr
+      th ID
+      th Product name
+      th Description
+      th Category
+      th Price
+      th Stock
+      th Image
+      th Action
+    .row
+      - @products.each_with_index do |product, index|
+        = render "shared/edit_product", product: product, index: index
+= paginate @products

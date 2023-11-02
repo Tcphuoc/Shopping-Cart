@@ -1,0 +1,10 @@
+.row.cart-item
+  .col-md-6
+    = image_tag item.product.image.variant(:thumb_smaller), class: "image-item"
+    p = item.name
+    p = display_price(item.price)
+  .col-md-2.align-self-center
+    p = item.quantity
+  .col-md-2.align-self-center
+    p = display_price(item.price * item.quantity)
+hr

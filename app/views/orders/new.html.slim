@@ -2,8 +2,9 @@ h2 Payment
 .row
   .col-md-8
     h4 Your products
-    - @cart.cart_items.each do |order_item|
-      = render 'shared/order_item', item: order_item
+    - if @cart.cart_items.count > 0
+      - @cart.cart_items.each do |order_item|
+        = render 'shared/item_payment', item: order_item
     .row
       .col-md-8.align-self-center
         strong Total price:

@@ -1,0 +1,31 @@
+h1 Dear Shopping Cart,
+p We are pleased to inform you that a new order has been placed at your store.
+strong Customer Information:
+ul
+  li 
+    | Customer's Name: 
+    = @user.last_name
+  li
+    | Shipping Address: 
+    = @order.address
+  li
+    | Contact Number: 
+    = @order.phone 
+Strong Order Information:
+- @order.order_items.each do |item|
+  ul
+    li
+      strong Product:  
+      = item.name
+    li
+      | Quantity:  
+      = item.quantity
+    li
+      | Price: 
+      = item.price
+    li
+      | Subtotal:  
+      = item.quantity * item.price
+strong
+  | Total price:
+  = @order.total_price

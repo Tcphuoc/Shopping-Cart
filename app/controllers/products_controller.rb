@@ -5,8 +5,13 @@ class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :destroy]
 
   def index
-    @products = Product.all.page(params[:page]).per(10)
-    @other_products = Product.all.page(params[:page]).per(8)
+    if shop_signed_in?
+      @products = Product.all.page(params[:page]).per(10)
+      render 'products/index_shop'
+    else
+      @products = Product.all.page(params[:page]).per(8)
+      render 'products/index_user'
+    end
   end
 
   def new

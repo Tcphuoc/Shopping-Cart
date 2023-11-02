@@ -1,0 +1,34 @@
+h1 Thank you for ordering at Shopping Cart
+p Dear #{@user.last_name},
+p 
+  | Thank you for placing your order with our store. We are pleased to inform you that your order has been confirmed and is currently being processed.
+strong Shipping information:
+ul
+  li 
+    | Recipient's Name: 
+    = @user.last_name
+  li
+    | Shipping Address: 
+    = @order.address
+  li
+    | Contact Number: 
+    = @order.phone
+strong Order Information:
+- @order.order_items.each do |item|
+  ul
+    li
+      strong 
+        | Product:  
+        = item.name
+    li
+      | Quantity:  
+      = item.quantity
+    li
+      | Price: 
+      = item.price
+    li
+      | Subtotal:  
+      = item.quantity * item.price
+strong
+  | Total price:
+  = @order.total_price

@@ -6,7 +6,13 @@ li.nav-item.dropdown
     - categories.each do |category|
       li = link_to category.name, category_path(category.slug), class: 'dropdown-item'
 li.nav-item = link_to "Product", products_path, class: "nav-link"
-li.nav-item = link_to "Cart", carts_path, class: "nav-link"
+li.nav-item.position-relative
+  = link_to "Cart", carts_path, class: "nav-link position-relative"
+  - if user_signed_in? && current_user.cart.cart_items.count > 0
+    span.position-absolute.top-0.start-100.translate-middle.badge.rounded-pill.text-bg-light
+      = current_user.cart.cart_items.count
+      span.visually-hidden
+        | unread messages
 - if user_signed_in?
   li.nav-item.dropdown
     a.nav-link.dropdown-toggle[data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"]

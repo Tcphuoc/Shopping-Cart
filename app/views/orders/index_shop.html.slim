@@ -1,0 +1,13 @@
+.table-info
+  h2 List orders
+  table
+    tr 
+      th ID 
+      th Time
+      th Products
+      th Quantity
+      th Total price
+      th Action
+    .row
+      - current_shop.orders.each_with_index do |order, index|
+        = render 'shared/order_item', order: order, index: index

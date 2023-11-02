@@ -113,7 +113,7 @@ a.link-category{
 }
 
 /* Edit page */
-.edit-page{
+.table-info{
   table{
     border-collapse: collapse;
     width: 100%;
@@ -134,11 +134,9 @@ a.link-category{
 }
 
 /* Cart */
-.cart-item{
-  img.image-item{
-    float: left;
-    margin-right: 10px;
-  }
+img.image-item{
+  float: left;
+  margin-right: 10px;
 }
 
 /* Search */

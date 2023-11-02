@@ -1,5 +1,5 @@
-.row.cart-item
-  .col-md-6
+.row
+  .col-md-6.align-self-center
     = image_tag item.product.image.variant(:thumb_smaller), class: "image-item"
     p = item.name
     p = display_price(item.price)
