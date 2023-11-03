@@ -25,6 +25,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
+    redirect_to root_url if @category.nil?
   end
 
   def edit

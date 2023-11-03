@@ -22,11 +22,9 @@ class OrdersController < ApplicationController
     cart = current_user.cart
     order = Order.new(order_params)
     if order.save
-      shop = Shop.find_by(id: order.shop_id)
-      order.create_order_items(cart)
-      cart.remove_all_items
-      OrderMailer.confirm_order(order, current_user).deliver_now
-      OrderMailer.notify_order(order, shop, current_user).deliver_now
+      order_creator = OrderCreator.new(cart, order)
+      order_creator.create_order_items
+      order_creator.send_email
       flash[:notice] = 'Payment success. You can check your order in Order page'
       redirect_to root_url
     else

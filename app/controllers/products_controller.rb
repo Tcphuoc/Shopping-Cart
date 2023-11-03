@@ -33,6 +33,7 @@ class ProductsController < ApplicationController
 
   def show
     @cart = find_cart
+    redirect_to root_url if @product.nil?
   end
 
   def edit
