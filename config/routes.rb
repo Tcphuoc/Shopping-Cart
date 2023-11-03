@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'pages/about'
   root 'pages#home'
   resources :products, param: :slug
-  resources :carts, only: [:index, :update]
+  resources :carts, only: [:index, :new, :update]
   resources :categories, param: :slug
   resources :search, only: [:index]
   post :search, to: 'search#search'

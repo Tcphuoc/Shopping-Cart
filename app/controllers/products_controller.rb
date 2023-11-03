@@ -2,7 +2,8 @@
 
 class ProductsController < ApplicationController
   before_action :authenticate_shop!, only: [:new, :create, :edit, :update, :destroy]
-  before_action :find_product, only: [:show, :edit, :update, :destroy]
+  before_action :find_product, only: [:show, :edit, :destroy]
+  before_action :find_by_slug, only: [:update]
 
   def index
     if shop_signed_in?
@@ -58,6 +59,10 @@ class ProductsController < ApplicationController
 
   def find_product
     @product = Product.find_by(slug: params[:slug])
+  end
+
+  def find_by_slug
+    @product = Product.find_by(slug: params[:product][:slug])
   end
 
   def product_params

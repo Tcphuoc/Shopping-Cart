@@ -7,12 +7,12 @@ tr
   td
     = image_tag order.order_items.first.product.image.variant(:thumb_smaller), class: "image-item"
     p = order.order_items.first.name
-    p = order.order_items.first.price
+    p = display_price(order.order_items.first.price)
   td
     = order.order_items.first.quantity
 
   td rowspan="#{order.order_items.count}"
-    = order.total_price
+    = display_price(order.total_price)
   - if shop_signed_in?
     td rowspan="#{order.order_items.count}"
       = button_to "Ready to ship", "#", class: "btn btn-outline-dark"
@@ -22,6 +22,6 @@ tr
     td
       = image_tag item.product.image.variant(:thumb_smaller), class: "image-item"
       p = item.name 
-      p = item.price
+      p = display_price(item.price)
     td
       = item.quantity

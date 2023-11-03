@@ -21,6 +21,11 @@ body{
   }
 }
 
+.text-center{
+  display: block;
+  text-align: center;
+}
+
 footer{
   color: $white;
   margin-top: auto;
@@ -142,11 +147,19 @@ img.image-item{
 /* Search */
 form.search-box{
   input{
-    height: 40px; 
-    border: 1px solid $white; 
+    background: transparent;
+    height: 40px;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px solid $gray;
+    border-radius: 0; 
     border-right: 0;
     margin-top: auto; 
     margin-bottom: auto;
     color: $black;
+  }
+  input:focus{
+    box-shadow: none;
   }
 }

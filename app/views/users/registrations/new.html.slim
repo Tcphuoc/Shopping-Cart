@@ -1,6 +1,6 @@
 .row.justify-content-md-center
   .col-md-6
-    h2
+    h2.text-center
       | Sign up
     = form_for(resource, url: registration_path(resource), data: { controller: "users" }, local: true) do |f|
       = render "devise/shared/error_messages", resource: resource

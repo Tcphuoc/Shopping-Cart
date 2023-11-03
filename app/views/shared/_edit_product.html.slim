@@ -5,7 +5,7 @@ tr
   td 
     - product.categories.each do |category| 
       p = category.name
-  td = product.price
+  td = display_price(product.price)
   td = product.stock
   td = image_tag product.image.variant(:thumb_smaller)
   td 

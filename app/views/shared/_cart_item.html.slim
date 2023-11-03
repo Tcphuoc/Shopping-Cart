@@ -8,16 +8,18 @@
   .col-md-2.align-self-center
     p = display_price(item.price * item.quantity)
   .col-md-2.align-self-center
-    = form_with(model: @cart, local: true) do |f|
-      = f.hidden_field :product_id, value: item.product_id
-      = f.hidden_field :quantity, value: -item.quantity
-      = f.submit "Remove item", class: "btn btn-outline-dark"
-    = form_with(model: @cart, local: true) do |f|
-      = f.hidden_field :product_id, value: item.product_id
-      = f.hidden_field :quantity, value: 1
-      = f.submit "Add one", class: "btn btn-outline-dark"
-    = form_with(model: @cart, local: true) do |f|
-      = f.hidden_field :product_id, value: item.product_id
-      = f.hidden_field :quantity, value: -1
-      = f.submit "Reduce one", class: "btn btn-outline-dark"
+    = form_with(model: @cart, local: true, data: {controller: "cart"}) do |f|
+      = f.hidden_field :product_id, data: {"cart-target": "product_id"}, value: item.product_id
+      = f.hidden_field :quantity, data: {"cart-target": "quantity"}, value: -item.quantity
+      = f.submit "Remove item", class: "btn btn-outline-dark form-control"
+
+    = form_with(model: @cart, local: true, data: {controller: "cart"}) do |f|
+      = f.hidden_field :product_id, data: {"cart-target": "product_id"}, value: item.product_id
+      = f.hidden_field :quantity, data: {"cart-target": "quantity"}, value: 1
+      = f.submit "Add one", class: "btn btn-outline-dark form-control"
+
+    = form_with(model: @cart, local: true, data: {controller: "cart"}) do |f|
+      = f.hidden_field :product_id, data: {"cart-target": "product_id"}, value: item.product_id
+      = f.hidden_field :quantity, data: {"cart-target": "quantity"}, value: -1
+      = f.submit "Reduce one", class: "btn btn-outline-dark form-control"
 hr
