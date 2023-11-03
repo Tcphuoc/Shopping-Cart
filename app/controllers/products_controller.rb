@@ -20,13 +20,12 @@ class ProductsController < ApplicationController
   end
 
   def create
-    product = Product.new(product_params)
-    if product.save
+    @product = Product.new(product_params)
+    if @product.save
       product.add_categories(params[:product][:categories])
       flash[:notice] = 'Create product success'
       redirect_to products_url
     else
-      flash[:alert] = 'Create product fail. Please try again'
       render 'new', status: :unprocessable_entity
     end
   end

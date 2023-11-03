@@ -1,5 +1,7 @@
 h2 Update category
 = form_with(model: @category, local: true) do |f|
+  = render "shared/error_messages", object: f.object
+
   = f.hidden_field :shop_id, value: current_shop.id
   = f.hidden_field :old_slug, value: @category.slug
 

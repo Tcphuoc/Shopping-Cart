@@ -14,12 +14,11 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    category = Category.new(category_params)
-    if category.save
+    @category = Category.new(category_params)
+    if @category.save
       flash[:notice] = 'Create category success'
       redirect_to categories_url
     else
-      flash.now[:alert] = 'Create category fail. Please try again'
       render 'new', status: :unprocessable_entity
     end
   end
