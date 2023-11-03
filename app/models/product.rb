@@ -12,8 +12,8 @@ class Product < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
   validates :description, presence: true
-  validates :stock, presence: true
-  validates :price, presence: true
+  validates :stock, presence: true, comparison: { greater_than_or_equal_to: 0 }
+  validates :price, presence: true, comparison: { greater_than: 0 }
   validates :slug, presence: true, uniqueness: true
 
   def add_category(category)

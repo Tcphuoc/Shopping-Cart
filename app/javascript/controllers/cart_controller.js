@@ -18,7 +18,7 @@ export default class extends Controller {
           Swal.fire({
             icon: 'error',
             title: 'Haven\'t signed in your account yet',
-            footer: '<a href="/users/sign_in">Sign in</a> to shop'
+            confirmButtonText: '<a href="/users/sign_in">Sign in</a>'
           })
         }
       },
@@ -29,11 +29,13 @@ export default class extends Controller {
           Swal.fire({
             icon: 'success',
             title: response.message,
+            confirmButtonText: `<p>OK<p>`
           })
         } else {
           Swal.fire({
             icon: 'error',
             title: response.message,
+            confirmButtonText: `<p>OK<p>`
           })
         }
       }

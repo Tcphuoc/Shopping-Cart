@@ -15,8 +15,9 @@ Strong Order Information:
 - @order.order_items.each do |item|
   ul
     li
-      strong Product:  
-      = item.name
+      strong 
+        | Product:  
+        = item.name
     li
       | Quantity:  
       = item.quantity
@@ -27,5 +28,5 @@ Strong Order Information:
       | Subtotal:  
       = item.quantity * item.price
 strong
-  | Total price:
+  | Total price: 
   = @order.total_price

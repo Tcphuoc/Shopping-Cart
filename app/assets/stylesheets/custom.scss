@@ -21,6 +21,13 @@ body{
   }
 }
 
+/* Remove number stepper in number input*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .text-center{
   display: block;
   text-align: center;
@@ -37,17 +44,19 @@ footer{
 }
 
 /* Home */
-.carousel{
-  margin-bottom: 10px;
+a.navbar-brand{
+  img.logo{
+    margin-right: 10px;
+    height: 30px;
+    width: 30px;
+  }
+  p{
+    display: inline;
+  }
 }
-
-/* User */
 
 /* Form */
 form{
-  div#error_explanation{
-    color: $red;
-  }
   input{
     margin-bottom: 5px;
     &[type="submit"]{
@@ -112,10 +121,16 @@ a.link-category{
   margin-bottom: 50px;
   a.link-product{
     text-decoration: none;
-    .name-product{
+    strong{
       color: $black;
       text-transform: capitalize;
     }
+    img{
+      width: 100%;
+    }
+  }
+  div.button-cart{
+    padding-left: 0;
   }
 }
 
@@ -169,5 +184,22 @@ form.search-box{
   }
   input:focus{
     box-shadow: none;
+  }
+}
+
+/* Sweet alert */
+button.swal2-confirm{
+  padding: 0;
+  text-align: center;
+  a{
+    padding: 10px 20px;
+    display: block;
+    color: $white;
+    text-decoration: none;
+  }
+  p{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
   }
 }

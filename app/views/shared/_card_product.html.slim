@@ -1,11 +1,18 @@
-.card-product
-  a href="/products/#{product.slug}" class="link-product"
-    .card.text-center
-      - if product.image.attached?
-        = image_tag product.image.variant(:thumb)
-      - else
-        img src="https://www.bahmansport.com/media/com_store/images/empty.png" style="width: 100%; height: 14rem;"
-      .card-body
-        .card-title.name-product.justify-content-between
+.card-product.text-center
+  .card
+    - if product.image.attached?
+      = image_tag product.image.variant(:thumb)
+    - else
+      img src="https://www.bahmansport.com/media/com_store/images/empty.png" style="width: 100%; height: 14rem;"
+    .card-body
+      .card-title
+        = link_to product_path(product.slug), class: "link-product"
           strong = product.name
-          p = display_price(product.price)
+        p = display_price(product.price)
+        = form_with(remote: true, data: {controller: "cart"}) do |f|
+          = f.hidden_field :product_id, data: {"cart-target": "product_id"}, value: product.id
+          .row
+            .col = f.number_field :quantity, in: 1...10, placeholder: "#{product.stock}", data: {"cart-target": "quantity"},  class: "form-control"
+            .col-md-3 = f.button "Add to cart", type: "button", class: "btn btn-outline-dark", data: {action: "click->cart#add_to_cart"}
+              span
+                i.fa.fa-plus
