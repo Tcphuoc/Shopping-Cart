@@ -87,7 +87,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_01_035632) do
   create_table "orders", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "user_id"
     t.integer "shop_id"
-    t.integer "status"
     t.string "address"
     t.string "phone"
     t.integer "total_price"

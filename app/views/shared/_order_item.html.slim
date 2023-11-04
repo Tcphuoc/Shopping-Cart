@@ -15,9 +15,9 @@ tr
     = display_price(order.total_price)
   - if shop_signed_in?
     td.action-column rowspan="#{order.order_items.count}"
-      button.btn.btn-outline-dark[type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"]
+      button.btn.btn-outline-dark[type="button" data-bs-toggle="modal" data-bs-target="#exampleModal#{index}"]
         i.fa-solid.fa-eye
-      #exampleModal.modal.fade[tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"]
+      div id="exampleModal#{index}" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
         .modal-dialog
           .modal-content
             .modal-header
@@ -43,9 +43,9 @@ tr
                 - order.order_items.each do |item|
                   .row
                     .col
-                      = item.name
+                      = "#{item.name} (Qty: #{item.quantity})"
                     .col-md-4.text-end
-                      = display_price(item.price)
+                      = display_price(item.price * item.quantity)
                 hr
                 .row
                   .col

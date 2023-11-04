@@ -17,14 +17,23 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    @cart = current_user.cart
+    if cookies[:product_id].empty?
+      @cart_items = current_user.cart.cart_items
+      @total_price = current_user.cart.total_price
+    else
+      @product = Product.find_by(id: cookies[:product_id])
+      @quantity = cookies[:quantity].to_i
+      cookies[:product_id] = nil
+      cookies[:quantity] = nil
+      @total_price = @quantity * @product.price
+    end
   end
 
   def create
     cart = current_user.cart
-    order = Order.new(order_params)
+    order = Order.new(order_params.except(:product_id, :quantity))
     if order.save
-      order_creator = OrderCreator.new(cart, order)
+      order_creator = OrderCreator.new(cart, order, params[:order][:product_id], params[:order][:quantity])
       order_creator.create_order_items
       order_creator.send_email
       flash[:notice] = 'Payment success. You can check your order in Order page'
@@ -42,7 +51,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:user_id, :shop_id, :status, :address, :phone, :total_price)
+    params.require(:order).permit(:user_id, :shop_id, :address, :phone, :total_price, :product_id, :quantity)
   end
 
   def shop_signed_in?

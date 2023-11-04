@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 class CartCreator
-  def initialize(id, quantity)
+  def initialize(id, quantity, cart, buy_now)
     @product = find_product(id)
     @quantity = quantity
+    @cart = cart
+    @buy_now = buy_now
   end
 
   def find_product(id)
@@ -22,10 +24,25 @@ class CartCreator
     @product.stock < @quantity
   end
 
-  def update_cart(cart)
+  def update_cart
     item = { product_id: @product.id, name: @product.name, price: @product.price, quantity: @quantity }
 
-    cart.update_cart_item(item)
+    @cart.update_cart_item(item)
     @product.update_stock(-@quantity)
+  end
+
+  def response
+    if add_cart_valid?
+      if @buy_now
+        { status: 'redirect' }
+      else
+        update_cart
+        { status: 'success', message: 'Add to cart success', items: @cart.cart_items.count }
+      end
+    elsif out_of_stock?
+      { status: 'fail', message: 'You buy products more than our stock. Please try again' }
+    else
+      { status: 'fail', message: 'Quantity must be greater than 0. Please try again' }
+    end
   end
 end

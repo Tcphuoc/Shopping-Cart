@@ -7,12 +7,5 @@ hr
   .col
     - order.order_items.each do |item|
       p = item.name
-  .col 
-    - if order.status == 1
-      p Processing
-    - elsif order.status == 2
-      p On delivery
-    - else
-      p Delivered
   .col
     = display_price order.total_price

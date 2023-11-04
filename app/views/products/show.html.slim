@@ -4,10 +4,11 @@
     h2 = @product.name
     h2 = display_price(@product.price)
     p = @product.description
+    p Stock: #{@product.stock}
     = form_with(model: @cart, remote: true, data: {controller: "cart"}) do |f|
       = f.hidden_field :product_id, data: {"cart-target": "product_id"}, value: @product.id
       .row.mb-3
         = f.label :quantity, class: "col-sm-2 col-form-label"
         .col-sm-10 = f.number_field :quantity, data: {"cart-target": "quantity"}, class: "form-control"
-        
-      = f.button "Add to cart", type: "button", class: "btn btn-dark form-control", data: {action: "click->cart#add_to_cart"}
+      = f.button "Buy now", type: "button", class: "btn btn-dark form-control", data: {action: "click->cart#buy_now"}
+      = f.button "Add to cart", type: "button", class: "btn btn-outline-dark form-control", data: {action: "click->cart#add_to_cart"}

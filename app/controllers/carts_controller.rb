@@ -8,26 +8,22 @@ class CartsController < ApplicationController
   end
 
   def new
-    cart_creator = CartCreator.new(params[:product_id], params[:quantity].to_i)
-    cart = current_user.cart
-    if cart_creator.add_cart_valid?
-      cart_creator.update_cart(cart)
-      response = { status: 'success', message: 'Add to cart success', items: cart.cart_items.count }
-    elsif cart_creator.out_of_stock?
-      response = { status: 'fail', message: 'You buy products more than our stock. Please try again' }
-    else
-      response = { status: 'fail', message: 'Quantity must be greater than 0. Please try again' }
-    end
+    cart_creator = if params[:buy_now]
+                     cookies[:product_id] = params[:product_id]
+                     cookies[:quantity] = params[:quantity]
+                     CartCreator.new(params[:product_id], params[:quantity].to_i, current_user.cart, true)
+                   else
+                     CartCreator.new(params[:product_id], params[:quantity].to_i, current_user.cart, false)
+                   end
 
     respond_to do |format|
-      format.json { render json: response }
+      format.json { render json: cart_creator.response }
     end
   end
 
   def update
-    cart_creator = CartCreator.new(params[:cart][:product_id], params[:cart][:quantity].to_i)
-    cart = current_user.cart
-    cart_creator.update_cart(cart) if cart_creator.update_cart_valid?
+    cart_creator = CartCreator.new(params[:cart][:product_id], params[:cart][:quantity].to_i, current_user.cart, false)
+    cart_creator.update_cart if cart_creator.update_cart_valid?
     redirect_to request.referrer
   end
 

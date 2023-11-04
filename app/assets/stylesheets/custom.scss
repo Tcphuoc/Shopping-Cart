@@ -13,7 +13,7 @@ body{
   display: flex;
   flex-direction: column;
   p{
-    margin: 0;
+    margin-bottom: 5px;
     size: 0.8rem;
   }
   h2{
@@ -139,6 +139,9 @@ a.link-category{
   h2{
     display: block;
   }
+  button{
+    margin-bottom: 10px;
+  }
 }
 
 /* Edit page */
@@ -207,15 +210,14 @@ button.swal2-confirm{
   padding: 0;
   text-align: center;
   a{
-    padding: 10px 20px;
+    padding: 5px 20px;
     display: block;
     color: $white;
     text-decoration: none;
   }
   p{
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 10px;
+    height: 100%;
+    padding: 5px 20px
   }
 }
 
@@ -239,7 +241,6 @@ button.swal2-confirm{
 .modal-body{
   p{
     font-weight: bold;
-    margin-bottom: 5px;
   }
   .row{
     margin-bottom: 15px;
