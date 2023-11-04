@@ -12,5 +12,6 @@
           th Quantity
           th Total price
         .row
-          - current_user.orders.each_with_index do |order, index|
+          - @orders.each_with_index do |order, index|
             = render 'shared/order_item', order: order, index: index
+      = paginate @orders

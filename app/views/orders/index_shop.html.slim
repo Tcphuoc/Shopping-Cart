@@ -9,5 +9,6 @@
       th Total price
       th Action
     .row
-      - current_shop.orders.each_with_index do |order, index|
-        = render 'shared/order_item', order: order, index: index
+      - @orders.each_with_index do |order, index|
+        = render 'shared/order_item', order: order, index: index, user: find_user_by_id(order.user_id)
+  = paginate @orders

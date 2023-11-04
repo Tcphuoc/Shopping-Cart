@@ -5,8 +5,10 @@ class OrdersController < ApplicationController
 
   def index
     if shop_signed_in?
+      @orders = current_shop.orders.page(params[:page]).per(5)
       render 'orders/index_shop'
     elsif user_signed_in?
+      @orders = current_user.orders.page(params[:page]).per(5)
       render 'orders/index_user'
     else
       redirect_to root_url

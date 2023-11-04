@@ -8,4 +8,8 @@ module OrdersHelper
   def display_date(date)
     date.strftime('%d/%m/%Y')
   end
+
+  def find_user_by_id(id)
+    User.find_by(id: id)
+  end
 end

@@ -2,6 +2,7 @@
 $blue: #0d6efd;
 $white: #ffffff;
 $black: #212529;
+$dark-gray: #6c757d;
 $gray: #adb5bd;
 $light-gray: #e9ecef;
 $red: #f21b3f;
@@ -146,7 +147,7 @@ a.link-category{
     border-collapse: collapse;
     width: 100%;
     td, th{
-      border: 1px solid $light-gray;
+      border: 1px solid $gray;
       text-align: left;
       padding: 8px;
     }
@@ -233,3 +234,18 @@ button.swal2-confirm{
     border-color: $black;
   }
 }
+
+/* Order detail */
+.modal-body{
+  p{
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  .row{
+    margin-bottom: 15px;
+  }
+  .bg-body-secondary{
+    padding: 10px;
+    border-radius: 10px;
+  }
+} 
