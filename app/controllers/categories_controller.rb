@@ -24,8 +24,18 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @products = @category.products.page(params[:page]).per(8)
-    redirect_to root_url if @category.nil?
+    if @category.nil?
+      redirect_to root_url if @category.nil?
+      return
+    end
+
+    if shop_signed_in?
+      @products = @category.products.page(params[:page]).per(10)
+      render 'products/index_shop'
+    else
+      @products = @category.products.page(params[:page]).per(8)
+      render 'categories/show_user'
+    end
   end
 
   def edit

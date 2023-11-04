@@ -152,13 +152,27 @@ a.link-category{
     }
     margin-bottom: 10px;
   }
-  a{
-    margin-bottom: 5px;
-    &.new-object{
-      float: right;
-      margin-bottom: 20px;
+  a.create-button{
+    float: right;
+    margin-bottom: 20px;
+  }
+  a.edit-button{
+    margin-right: 5px;
+  }
+  a.category-detail{
+    text-decoration: none;
+    color: $black;
+    &:hover{
+      text-decoration: underline;
     }
   }
+  td.action-column{
+    width: 10%;
+  }
+}
+
+form.delete-form{
+  display: inline-block;
 }
 
 /* Cart */

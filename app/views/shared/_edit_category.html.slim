@@ -1,10 +1,15 @@
 tr
   td = index + 1
-  td = category.name
   td 
-    - category.products.each do |product|
-      p = product.name
+    = link_to category.name, category_path(category.slug), class: "category-detail"
+  td 
+    = category.products.count
   td = category.slug
-  td
-    = link_to "Edit", edit_category_path(category.slug), class: "btn btn-outline-dark"
-    = button_to "Delete", category_path(category.slug), method: :delete, class: "btn btn-outline-dark"
+  td.action-column
+    = link_to edit_category_path(category.slug), class: "btn btn-outline-dark edit-button"
+      span
+        i.fa-solid.fa-pen-to-square
+    = button_to category_path(category.slug), method: :delete, class: "btn btn-outline-dark", form_class: "delete-form"
+      span
+        i.fa-solid.fa-trash
+
