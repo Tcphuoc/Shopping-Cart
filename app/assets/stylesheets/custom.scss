@@ -203,3 +203,19 @@ button.swal2-confirm{
     padding-top: 10px;
   }
 }
+
+/* paginate */
+.pagination{
+  justify-content: center;
+  a.page-link{
+    color: $black;
+    &:focus{
+      box-shadow: none;
+    }
+  }
+  li.active>a.page-link{
+    color: $white;
+    background-color: $black;
+    border-color: $black;
+  }
+}

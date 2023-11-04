@@ -24,6 +24,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
+    @products = @category.products.page(params[:page]).per(8)
     redirect_to root_url if @category.nil?
   end
 

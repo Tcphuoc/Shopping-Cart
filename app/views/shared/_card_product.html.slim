@@ -12,7 +12,7 @@
         = form_with(remote: true, data: {controller: "cart"}) do |f|
           = f.hidden_field :product_id, data: {"cart-target": "product_id"}, value: product.id
           .row
-            .col = f.number_field :quantity, in: 1...10, placeholder: "#{product.stock}", data: {"cart-target": "quantity"},  class: "form-control"
+            .col = f.number_field :quantity, in: 1...10, data: {"cart-target": "quantity"},  class: "form-control"
             .col-md-3 = f.button "Add to cart", type: "button", class: "btn btn-outline-dark", data: {action: "click->cart#add_to_cart"}
               span
                 i.fa.fa-plus
