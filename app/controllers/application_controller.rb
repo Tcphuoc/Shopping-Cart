@@ -3,6 +3,7 @@
 class ApplicationController < ActionController::Base
   include ProductsHelper
   include CartsHelper
+  include OrdersHelper
   before_action :configure_sign_up_params, if: :devise_controller?
   before_action :check_url
 

@@ -3,18 +3,12 @@ header.navbar.navbar-expand-lg.shadow.sticky-top.bg-light
     a.navbar-brand.h1[href="/"]
       = image_tag "logo.png", with: 40, height: 40, class: "logo"
       p.align-middle Shopping Cart
-    button.btn.btn-outline-light.d-lg-none[type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResponsive" aria-controls="offcanvasResponsive"]
-      span.navbar-toggler-icon
 
-    #offcanvasResponsive.offcanvas-lg.offcanvas-end.position-absolute.top-50.start-50.translate-middle[tabindex="-1" aria-labelledby="offcanvasResponsiveLabel"]
-      .offcanvas-header
-        h5#offcanvasResponsiveLabel.offcanvas-title Shopping 
-        button.btn-close[type="button" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasResponsive" aria-label="Close"]
-      .offcanvas-body
-        ul.nav.nav-underline.navbar-nav
-          - if shop_signed_in?
-            = render "shop/shared/header_shop"
-          - else
-            = render "users/shared/header_user"
+    .position-absolute.top-50.start-50.translate-middle
+      ul.nav.nav-underline.navbar-nav
+        - if shop_signed_in?
+          = render "shop/shared/header_shop"
+        - else
+          = render "users/shared/header_user"
     - unless shop_signed_in?
       = render "shared/search"

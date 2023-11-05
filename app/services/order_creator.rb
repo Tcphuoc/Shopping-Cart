@@ -22,6 +22,17 @@ class OrderCreator
     Product.find_by(id: id)
   end
 
+  def save
+    if @quantity || @cart.cart_items.count.positive?
+      @order.save
+      create_order_items
+      send_email
+      true
+    else
+      false
+    end
+  end
+
   def create_order_items
     if @product
       param = {
