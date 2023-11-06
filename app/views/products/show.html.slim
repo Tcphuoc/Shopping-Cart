@@ -1,6 +1,14 @@
 .row.product-detail
-  .col = image_tag @product.image.variant(:thumb_larger)
   .col
+    - if @product.images.attached?
+      p
+        a[href="javascript:;" data-fancybox-trigger="gallery" data-fancybox-index="0" data-controller="product" data-action="click->product#show"]
+          = image_tag @product.images[0].variant(:thumb_larger)
+      div
+        - @product.images.each do |image|
+          a[data-fancybox="gallery" data-src=url_for(image) data-controller="product" data-action="click->product#show"]
+            = image_tag image.variant(:thumb_smaller)
+  .col-md-7
     h2 = @product.name
     h2 = display_price(@product.price)
     p = @product.description

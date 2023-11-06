@@ -1,8 +1,8 @@
 .card-product.text-center
   = link_to product_path(product.slug), class: "link-product"
     .card
-      - if product.image.attached?
-        = image_tag product.image.variant(:thumb)
+      - if product.images.attached?
+        = image_tag product.images[0].variant(:thumb)
       - else
         img src="https://www.bahmansport.com/media/com_store/images/empty.png" style="width: 100%; height: 14rem;"
       .card-body

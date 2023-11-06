@@ -7,7 +7,7 @@ tr
       p = category.name
   td = display_price(product.price)
   td = product.stock
-  td = image_tag product.image.variant(:thumb_smaller)
+  td = image_tag product.images[0].variant(:thumb_smaller)
   td.action-column
     = link_to edit_product_path(product.slug), class: "btn btn-outline-dark edit-button" 
       span

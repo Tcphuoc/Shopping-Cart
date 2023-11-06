@@ -15,12 +15,14 @@ pants_category = Category.create(name: 'Pants', shop_id: 1, slug: 'pants')
 polo_category = Category.create(name: 'Polo Shirt', shop_id: 1, slug: 'polo_shirt')
 short_category = Category.create(name: 'Short', shop_id: 1, slug: 'short')
 
-def create_product(param, name_image, category)
+def create_product(param, index, category)
   product = Product.new(param)
-  product.image.attach(
-    io: File.open(Rails.root.join("public/#{category.slug}/#{name_image}")),
-    filename: name_image
+  4.times.each do |i|
+    product.images.attach(
+    io: File.open(Rails.root.join("public/#{category.slug}/#{index}/#{param[:slug]}_#{i+1}.jpg")),
+    filename: "#{param[:slug]}_1.jpg"
   )
+  end
   product.save
   product.add_category(category)
 end
@@ -29,14 +31,14 @@ end
   index = i + 1
 
   tshirt_param = {
-    name: "Shirt #{index}",
+    name: "T-Shirt #{index}",
     description: '100% cotton T-shirt, pre-washed for a casual look. Contrasting color block design.',
     price: 100000,
     stock: 10+i,
     shop_id: 1,
-    slug: "shirt_#{index}"
+    slug: "tshirt_#{index}"
   }
-  create_product(tshirt_param, "tshirt_#{index}.jpg", tshirt_category)
+  create_product(tshirt_param, index, tshirt_category)
 
   sweater_param = {
     name: "Sweater #{index}",
@@ -46,7 +48,7 @@ end
     shop_id: 1,
     slug: "sweater_#{index}"
   }
-  create_product(sweater_param, "sweater_#{index}.jpg", sweater_category)
+  create_product(sweater_param, index, sweater_category)
 
   jeans_param = {
     name: "Jeans #{index}",
@@ -56,7 +58,7 @@ end
     shop_id: 1,
     slug: "jeans_#{index}"
   }
-  create_product(jeans_param, "jeans_#{index}.jpg", jeans_category)
+  create_product(jeans_param, index, jeans_category)
 
   pants_param = {
     name: "Pants #{index}",
@@ -66,7 +68,7 @@ end
     shop_id: 1,
     slug: "pants_#{index}"
   }
-  create_product(pants_param, "pants_#{index}.jpg", pants_category)
+  create_product(pants_param, index, pants_category)
 
   polo_param = {
     name: "Polo shirt #{index}",
@@ -76,7 +78,7 @@ end
     shop_id: 1,
     slug: "polo_shirt_#{index}"
   }
-  create_product(polo_param, "polo_#{index}.jpg", polo_category)
+  create_product(polo_param, index, polo_category)
 
   short_param = {
     name: "Short #{index}",
@@ -86,5 +88,5 @@ end
     shop_id: 1,
     slug: "short_#{index}"
   }
-  create_product(short_param, "short_#{index}.jpg", short_category)
+  create_product(short_param, index, short_category)
 end

@@ -1,6 +1,6 @@
 .row
   .col-md-6.align-self-center
-    = image_tag item.product.image.variant(:thumb_smaller), class: "image-item"
+    = image_tag item.product.images[0].variant(:thumb_smaller), class: "image-item"
     p = item.name
     p = display_price(item.price)
   .col-md-2.align-self-center

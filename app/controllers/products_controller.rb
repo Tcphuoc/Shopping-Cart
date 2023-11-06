@@ -22,7 +22,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      product.add_categories(params[:product][:categories])
+      @product.add_categories(params[:product][:categories])
       flash[:notice] = 'Create product success'
       redirect_to products_url
     else
