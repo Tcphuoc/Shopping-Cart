@@ -4,4 +4,3 @@
 //= link_tree ../../../vendor/javascript .js
 //= link app.js
 //= link_tree ../stylesheets .scss
-

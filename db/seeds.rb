@@ -1,10 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
 Shop.create(first_name: 'Truong', last_name: 'Phuoc', phone: '0938543184',
                    address: '123 Ngo Gia Tu, phuong 2, quan 10, TP.HCM', email: 'tcphuoc@gmail.com', password: '12345678', password_confirmation: '12345678')
 
@@ -33,7 +26,7 @@ end
   tshirt_param = {
     name: "T-Shirt #{index}",
     description: '100% cotton T-shirt, pre-washed for a casual look. Contrasting color block design.',
-    price: 100000,
+    price: 100_000,
     stock: 10+i,
     shop_id: 1,
     slug: "tshirt_#{index}"
@@ -43,7 +36,7 @@ end
   sweater_param = {
     name: "Sweater #{index}",
     description: 'Fine texture and stunning coloring. Designed with traditional sweatshirt details.',
-    price: 200000,
+    price: 200_000,
     stock: 10+i,
     shop_id: 1,
     slug: "sweater_#{index}"
@@ -53,7 +46,7 @@ end
   jeans_param = {
     name: "Jeans #{index}",
     description: 'Incredible stretch for a comfortable, flattering fit. Buttons and stitching in chic tones for a sophisticated look.',
-    price: 350000,
+    price: 350_000,
     stock: 10+i,
     shop_id: 1,
     slug: "jeans_#{index}"
@@ -63,7 +56,7 @@ end
   pants_param = {
     name: "Pants #{index}",
     description: 'Sleek and stretchy. Versatile pants for comfort at home or the office.',
-    price: 320000,
+    price: 320_000,
     stock: 10+i,
     shop_id: 1,
     slug: "pants_#{index}"
@@ -73,7 +66,7 @@ end
   polo_param = {
     name: "Polo shirt #{index}",
     description: 'A smooth and durable blend of cotton and recycled polyester. This wardrobe staple is always evolving.',
-    price: 250000,
+    price: 250_000,
     stock: 10+i,
     shop_id: 1,
     slug: "polo_shirt_#{index}"
@@ -83,7 +76,7 @@ end
   short_param = {
     name: "Short #{index}",
     description: 'Quick-drying fabric that allows ease of movement. Versatile pants for relaxing at home or wearing out and about.',
-    price: 210000,
+    price: 210_000,
     stock: 10+i,
     shop_id: 1,
     slug: "short_#{index}"
