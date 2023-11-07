@@ -132,12 +132,21 @@ html[lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microso
 
           - @order.order_items.each do |item|
             tr[style="border-bottom: 1px solid rgba(0,0,0,.05);"]
-              td[valign="middle" width="80%" style="text-align:left; padding: 0 2.5em;"]
+              td[valign="middle" width="80%" style="text-align:left; padding: 0 0 0 2.5em;"]
                 .product-entry
                   h3 #{item.name} (Qty: #{item.quantity})
-              td[valign="middle" width="20%" style="text-align:right; padding: 0 2em;"]
+              td[valign="middle" width="20%" style="text-align:right; padding: 0 2.5em 0 0;"]
                 span.price[style="color: #000; font-size: 20px;"]
                   = "#{number_with_delimiter(item.price, delimeter: ',')} VND"
+
+          tr[style="border-bottom: 1px solid rgba(0,0,0,.05);"]
+            td[valign="middle" width="80%" style="text-align:left; padding: 0 0 0 2.5em;"]
+              .product-entry
+                h3[style="font-weight:bold"]
+                  | Total price
+            td[valign="middle" width="20%" style="text-align:right; padding: 0 2.5em 0 0;"]
+              span.price[style="color: #000; font-size: 20px; font-weight: bold"]
+                = "#{number_with_delimiter(@order.total_price, delimeter: ',')} VND"
 
         / Footer
         table[align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: auto;"]
