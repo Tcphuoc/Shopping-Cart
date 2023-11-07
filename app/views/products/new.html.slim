@@ -14,10 +14,10 @@ h2 Create new product
   = f.label :stock
   = f.number_field :stock, class: "form-control"
 
-  = f.label :categories
-  = f.collection_check_boxes(:categories, Category.all, :id, :name) do |box|
+  = f.label :category
+  = f.collection_radio_buttons(:category, Category.all, :id, :name) do |box|
     = box.label class:"form-check" do
-      = box.check_box class: "form-check-input"
+      = box.radio_button class: "form-check-input"
       = box.label class:"form-check-label"
 
   = f.label :slug
@@ -25,7 +25,7 @@ h2 Create new product
     |  (The name display in url)
   = f.text_field :slug, class: "form-control"
 
-  = f.label :image
-  = f.file_field :image, class: "form-control"
+  = f.label :images
+  = f.file_field :images, class: "form-control", multiple: true
 
   = f.submit "Create", class: "btn btn-dark form-control"

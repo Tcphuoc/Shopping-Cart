@@ -25,7 +25,7 @@ class OrderCreator
   def save
     if @quantity || @cart.cart_items.count.positive?
       @order.save
-      create_order_items
+      create_items
       send_email
       true
     else
@@ -33,28 +33,24 @@ class OrderCreator
     end
   end
 
-  def create_order_items
+  def cart_item_param(product, quantity)
+    {
+      product_id: product.id,
+      order_id: @order.id,
+      name: product.name,
+      price: product.price,
+      quantity: quantity
+    }
+  end
+
+  def create_items
     if @product
-      param = {
-        product_id: @product.id,
-        order_id: @order.id,
-        name: @product.name,
-        price: @product.price,
-        quantity: @quantity
-      }
-      @order.order_items.create(param)
+      @order.order_items.create(cart_item_param(@product, @quantity))
     else
       @cart.cart_items.each do |item|
-        param = {
-          product_id: item.product_id,
-          order_id: @order.id,
-          name: item.name,
-          price: item.price,
-          quantity: item.quantity
-        }
-        @order.order_items.create(param)
+        @order.order_items.create(cart_item_param(item, item.quantity))
+        @cart.remove_all_items
       end
-      @cart.remove_all_items
     end
   end
 

@@ -64,16 +64,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_01_035632) do
     t.string "slug"
   end
 
-  create_table "categories_products", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "product_id"
-    t.bigint "category_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_categories_products_on_category_id"
-    t.index ["product_id", "category_id"], name: "index_categories_products_on_product_id_and_category_id", unique: true
-    t.index ["product_id"], name: "index_categories_products_on_product_id"
-  end
-
   create_table "order_items", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "product_id"
     t.integer "order_id"
@@ -96,6 +86,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_01_035632) do
 
   create_table "products", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "shop_id"
+    t.integer "category_id"
     t.string "name"
     t.string "description"
     t.integer "price"

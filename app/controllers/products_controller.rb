@@ -20,12 +20,13 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new(product_params)
-    if @product.save
-      @product.add_categories(params[:product][:categories])
+    product_creator = ProductCreator.new(product_params)
+    if product_creator.valid?
+      product_creator.save
       flash[:notice] = 'Create product success'
       redirect_to products_url
     else
+      @product = product_creator.return_product
       render 'new', status: :unprocessable_entity
     end
   end
@@ -40,7 +41,6 @@ class ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
-      @product.update_category(params[:product][:categories])
       flash[:notice] = 'Update product success'
       redirect_to products_url
     else
@@ -66,6 +66,6 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :description, :price, :stock, :image, :slug)
+    params.require(:product).permit(:name, :description, :price, :stock, :slug, :category, images: [])
   end
 end

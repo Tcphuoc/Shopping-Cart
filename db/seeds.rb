@@ -12,12 +12,11 @@ def create_product(param, index, category)
   product = Product.new(param)
   4.times.each do |i|
     product.images.attach(
-    io: File.open(Rails.root.join("public/#{category.slug}/#{index}/#{param[:slug]}_#{i+1}.jpg")),
-    filename: "#{param[:slug]}_1.jpg"
-  )
+      io: File.open(Rails.root.join("public/#{category.slug}/#{index}/#{param[:slug]}_#{i+1}.jpg")),
+      filename: "#{param[:slug]}_1.jpg"
+    )
   end
   product.save
-  product.add_category(category)
 end
 
 6.times.each do |i|
@@ -29,6 +28,7 @@ end
     price: 100_000,
     stock: 10+i,
     shop_id: 1,
+    category_id: tshirt_category.id,
     slug: "tshirt_#{index}"
   }
   create_product(tshirt_param, index, tshirt_category)
@@ -39,6 +39,7 @@ end
     price: 200_000,
     stock: 10+i,
     shop_id: 1,
+    category_id: sweater_category.id,
     slug: "sweater_#{index}"
   }
   create_product(sweater_param, index, sweater_category)
@@ -49,6 +50,7 @@ end
     price: 350_000,
     stock: 10+i,
     shop_id: 1,
+    category_id: jeans_category.id,
     slug: "jeans_#{index}"
   }
   create_product(jeans_param, index, jeans_category)
@@ -59,6 +61,7 @@ end
     price: 320_000,
     stock: 10+i,
     shop_id: 1,
+    category_id: pants_category.id,
     slug: "pants_#{index}"
   }
   create_product(pants_param, index, pants_category)
@@ -69,6 +72,7 @@ end
     price: 250_000,
     stock: 10+i,
     shop_id: 1,
+    category_id: polo_category.id,
     slug: "polo_shirt_#{index}"
   }
   create_product(polo_param, index, polo_category)
@@ -79,6 +83,7 @@ end
     price: 210_000,
     stock: 10+i,
     shop_id: 1,
+    category_id: short_category.id,
     slug: "short_#{index}"
   }
   create_product(short_param, index, short_category)

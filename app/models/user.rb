@@ -21,7 +21,7 @@ class User < ApplicationRecord
   def create_order(param)
     order = Order.new(user_id: id, address: param[:address], phone: param[:phone])
     if order.save
-      order.create_order_items(cart)
+      order.create_items(cart)
       true
     else
       false

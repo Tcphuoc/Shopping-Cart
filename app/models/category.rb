@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Category < ApplicationRecord
-  has_and_belongs_to_many :products
+  has_many :products
   validates :name, presence: true, length: { maximum: 20 }
   validates :slug, presence: true, length: { maximum: 20 }, uniqueness: true
 

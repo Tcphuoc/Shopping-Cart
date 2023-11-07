@@ -32,17 +32,14 @@ class CartCreator
   end
 
   def response
-    if add_cart_valid?
-      if @buy_now
-        { status: 'redirect' }
-      else
-        update_cart
-        { status: 'success', message: 'Add to cart success', items: @cart.cart_items.count }
-      end
-    elsif out_of_stock?
-      { status: 'fail', message: 'You buy products more than our stock. Please try again' }
+    return { status: 'fail', message: 'You buy products more than our stock. Please try again' } if out_of_stock?
+    return { status: 'fail', message: 'Quantity must be greater than 0. Please try again' } unless add_cart_valid?
+
+    if @buy_now
+      { status: 'redirect' }
     else
-      { status: 'fail', message: 'Quantity must be greater than 0. Please try again' }
+      update_cart
+      { status: 'success', message: 'Add to cart success', items: @cart.cart_items.count }
     end
   end
 end

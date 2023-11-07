@@ -2,9 +2,7 @@ tr
   td = index + 1
   td = product.name
   td = product.description
-  td 
-    - product.categories.each do |category| 
-      p = category.name
+  td = product.category.name
   td = display_price(product.price)
   td = product.stock
   td = image_tag product.images[0].variant(:thumb_smaller)
