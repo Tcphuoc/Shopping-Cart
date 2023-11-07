@@ -2,11 +2,8 @@ h2 Payment
 .row
   .col-md-8
     h4 Your products
-    - unless @cart_items.nil?
-      - @cart_items.each do |order_item|
-        = render 'shared/item_payment', item: order_item
-    - else
-      = render 'shared/item_payment', item: CartItem.create(product_id: @product.id, name: @product.name, price: @product.price, quantity: @quantity)
+    - @cart_items.each do |order_item|
+      = render 'shared/item_payment', item: order_item
     .row
       .col-md-8.align-self-center
         strong Total price:
@@ -17,9 +14,9 @@ h2 Payment
     = form_with(model: @order, local: true) do |f|
       = f.hidden_field :user_id, value: current_user.id
       = f.hidden_field :shop_id, value: 1
-      - if @product
-        = f.hidden_field :product_id, value: @product.id
-        = f.hidden_field :quantity, value: @quantity
+      - if @cart_items.length == 1
+        = f.hidden_field :product_id, value: @cart_items[0].product_id
+        = f.hidden_field :quantity, value: @cart_items[0].quantity
       = f.hidden_field :total_price, value: @total_price
 
       = f.label :address

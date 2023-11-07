@@ -22,15 +22,19 @@ class OrderCreator
     Product.find_by(id: id)
   end
 
+  def cart_items_positve?
+    @cart.cart_items.count.positive?
+  end
+
   def save
-    if @quantity || @cart.cart_items.count.positive?
+    if @quantity || cart_items_positve?
       @order.save
       create_items
       send_email
-      true
-    else
-      false
+      return true
     end
+
+    false
   end
 
   def cart_item_param(product, quantity)
@@ -57,5 +61,17 @@ class OrderCreator
   def send_email
     OrderMailer.confirm_order(@order, @user).deliver_now
     OrderMailer.notify_order(@order, @shop, @user).deliver_now
+  end
+
+  def cart_items
+    return @cart.cart_items if cart_items_positve?
+
+    [CartItem.create(product_id: @product.id, name: @product.name, price: @product.price, quantity: @quantity)]
+  end
+
+  def total_price
+    return @cart.total_price if cart_items_positve?
+
+    @quantity * @product.price
   end
 end

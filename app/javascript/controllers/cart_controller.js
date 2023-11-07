@@ -10,8 +10,10 @@ export default class extends Controller {
       method: "GET",
       dataType: "json",
       data: {
-        product_id: this.product_idTarget.value,
-        quantity: this.quantityTarget.value
+        cart: {
+          product_id: this.product_idTarget.value,
+          quantity: this.quantityTarget.value
+        }
       },
       error: function(xhr, status, error){
         if(error == "Unauthorized"){
