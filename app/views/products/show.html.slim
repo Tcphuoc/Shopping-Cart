@@ -9,14 +9,27 @@
           a[data-fancybox="gallery" data-src=url_for(image) data-controller="product" data-action="click->product#show"]
             = image_tag image.variant(:thumb_smaller)
   .col-md-7
-    h2 = @product.name
-    h2 = display_price(@product.price)
+    h3 = @product.name
+    h3 = display_price(@product.price)
+    p 
+      strong Stock: 
+      = @product.stock 
+      |  | 
+      strong Sold: 
+      = display_sold(@product.id)
+    strong Description
     p = @product.description
-    p Stock: #{@product.stock}
     = form_with(model: @cart, remote: true, data: {controller: "cart"}) do |f|
+      = f.hidden_field :stock, data: {"cart-target": "stock"}, value: @product.stock
       = f.hidden_field :product_id, data: {"cart-target": "product_id"}, value: @product.id
-      .row.mb-3
-        = f.label :quantity, class: "col-sm-2 col-form-label"
-        .col-sm-10 = f.number_field :quantity, data: {"cart-target": "quantity"}, class: "form-control"
+      .row
+        strong style="width: 20px"
+          = f.label :quantity, class: "form-label"
+      = f.button type: "button", id: "btn-add", class: "btn btn-outline-dark", data: {action: "click->cart#add"}, style: "width: 40px; float:left"
+        i.fas.fa-plus
+      = f.number_field :quantity, data: {"cart-target": "quantity"}, class: "form-control", style: "width: 50px; float: left; margin: 0 10px", value: 1, disabled: true
+      = f.button type: "button", id: "btn-minus", class: "btn btn-outline-dark", data: {action: "click->cart#minus"}, style: "width: 40px; float: left", disabled: true
+        i.fas.fa-minus
+
       = f.button "Buy now", type: "button", class: "btn btn-dark form-control", data: {action: "click->cart#buy_now"}
       = f.button "Add to cart", type: "button", class: "btn btn-outline-dark form-control", data: {action: "click->cart#add_to_cart"}

@@ -12,6 +12,10 @@ class CartCreator
     Product.find_by(id: id)
   end
 
+  def find_cart_item(product_id)
+    CartItem.find_by(product_id: product_id)
+  end
+
   def add_cart_valid?
     !out_of_stock? && @quantity.positive?
   end
@@ -21,14 +25,17 @@ class CartCreator
   end
 
   def out_of_stock?
-    @product.stock < @quantity
+    @product.stock < if @cart.include?(@product.id)
+                       (@quantity + find_cart_item(@product.id).quantity)
+                     else
+                       @quantity
+                     end
   end
 
   def update_cart
     item = { product_id: @product.id, name: @product.name, price: @product.price, quantity: @quantity }
 
     @cart.update_cart_item(item)
-    @product.update_stock(-@quantity)
   end
 
   def response
@@ -39,7 +46,17 @@ class CartCreator
       { status: 'redirect' }
     else
       update_cart
-      { status: 'success', message: 'Add to cart success', items: @cart.cart_items.count }
+      { status: 'success', message: 'Add to cart success', items: quantity_items }
     end
+  end
+
+  def quantity_items
+    result = @cart.cart_items.reduce(0) do |total, item|
+      total += item.quantity
+      total
+    end
+    return '10+' if result > 10
+
+    result
   end
 end

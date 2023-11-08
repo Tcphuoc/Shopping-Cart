@@ -1,29 +1,16 @@
 # frozen_string_literal: true
 
 class ProductCreator
-  def initialize(params)
-    @images = params[:images].count
-    @product = new_product(params)
-  end
-
-  def new_product(params)
-    Product.new(
-      name: params[:name],
-      description: params[:description],
-      price: params[:price],
-      stock: params[:stock],
-      slug: params[:slug],
-      category_id: params[:category].to_i,
-      images: params[:images]
-    )
+  def initialize(params, product)
+    @params = params
+    @product = product
   end
 
   def image_valid?
-    if @images > 4
-      @product.errors.add(:images, "Images can't be greater than 4 images")
-      return false
-    end
-    true
+    return true if @params[:images].count <= 5
+
+    @product.errors.add(:images, "Images can't be greater than 4 images")
+    false
   end
 
   def valid?
@@ -32,6 +19,10 @@ class ProductCreator
 
   def save
     @product.save
+  end
+
+  def update
+    @product.update(@params)
   end
 
   def return_product

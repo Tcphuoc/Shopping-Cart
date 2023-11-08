@@ -1,34 +1,10 @@
 # frozen_string_literal: true
 
 class ProductsController < ApplicationController
-  before_action :authenticate_shop!, only: [:new, :create, :edit, :update, :destroy]
-  before_action :find_product, only: [:show, :edit, :destroy]
-  before_action :find_by_slug, only: [:update]
+  before_action :find_product, only: [:show]
 
   def index
-    if shop_signed_in?
-      @products = Product.all.page(params[:page]).per(10)
-      render 'products/index_shop'
-    else
-      @products = Product.all.page(params[:page]).per(8)
-      render 'products/index_user'
-    end
-  end
-
-  def new
-    @product = Product.new
-  end
-
-  def create
-    product_creator = ProductCreator.new(product_params)
-    if product_creator.valid?
-      product_creator.save
-      flash[:notice] = 'Create product success'
-      redirect_to products_url
-    else
-      @product = product_creator.return_product
-      render 'new', status: :unprocessable_entity
-    end
+    @products = Product.all.page(params[:page]).per(8)
   end
 
   def show
@@ -36,36 +12,9 @@ class ProductsController < ApplicationController
     redirect_to root_url if @product.nil?
   end
 
-  def edit
-  end
-
-  def update
-    if @product.update(product_params)
-      flash[:notice] = 'Update product success'
-      redirect_to products_url
-    else
-      flash.now[:alert] = 'Update product fail. Please try again'
-      render 'edit', status: :unprocessable_entity
-    end
-  end
-
-  def destroy
-    @product.destroy
-    flash[:notice] = 'Delete product success'
-    redirect_to products_url
-  end
-
   private
 
   def find_product
     @product = Product.find_by(slug: params[:slug])
-  end
-
-  def find_by_slug
-    @product = Product.find_by(slug: params[:product][:slug])
-  end
-
-  def product_params
-    params.require(:product).permit(:name, :description, :price, :stock, :slug, :category, images: [])
   end
 end

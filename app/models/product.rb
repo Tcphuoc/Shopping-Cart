@@ -24,4 +24,8 @@ class Product < ApplicationRecord
   def slug_name
     slug
   end
+
+  def category?(category)
+    self.category == category
+  end
 end

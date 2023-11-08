@@ -1,5 +1,5 @@
 h2 Create new product
-= form_with(model: @product, local: true) do |f|
+= form_with(model: @product, url: admin_products_path, local: true) do |f|
   = render "shared/error_messages", object: f.object
 
   = f.label :name
@@ -14,8 +14,8 @@ h2 Create new product
   = f.label :stock
   = f.number_field :stock, class: "form-control"
 
-  = f.label :category
-  = f.collection_radio_buttons(:category, Category.all, :id, :name) do |box|
+  = f.label :category_id
+  = f.collection_radio_buttons(:category_id, Category.all, :id, :name) do |box|
     = box.label class:"form-check" do
       = box.radio_button class: "form-check-input"
       = box.label class:"form-check-label"

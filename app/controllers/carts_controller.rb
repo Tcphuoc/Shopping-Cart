@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class CartsController < ApplicationController
-  before_action :authenticate_user!
+class CartsController < UsersController
   before_action :create_cart_creator, only: [:new, :update]
 
   def index

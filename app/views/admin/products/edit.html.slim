@@ -1,5 +1,5 @@
 h2 Edit product
-= form_with(model: @product, local: true) do |f|
+= form_with(model: @product, url: admin_product_path(@product.slug), local: true) do |f|
   = render "shared/error_messages", object: f.object
 
   = f.label :name
@@ -14,10 +14,10 @@ h2 Edit product
   = f.label :stock
   = f.number_field :stock, class: "form-control"
 
-  = f.label :categories
-  = f.collection_check_boxes(:categories, Category.all, :id, :name) do |box|
+  = f.label :category_id
+  = f.collection_radio_buttons(:category_id, Category.all, :id, :name) do |box|
     = box.label class:"form-check" do
-      = box.check_box(class: "form-check-input", checked: @product.category?(box.object))
+      = box.radio_button(class: "form-check-input", checked: @product.category?(box.object))
       = box.label class:"form-check-label"
   
   = f.label :slug
@@ -25,8 +25,8 @@ h2 Edit product
     |  (The name display in url)
   = f.text_field :slug, class: "form-control"
 
-  = f.label :image
-  = f.file_field :image, class: "form-control"
+  = f.label :images
+  = f.file_field :images, class: "form-control", multiple: true
 
   = f.submit "Edit", class: "btn btn-dark form-control", style: "text-align: center;"
 = button_to "Delete", product_path(@product), method: :delete, class: "btn btn-outline-dark form-control"

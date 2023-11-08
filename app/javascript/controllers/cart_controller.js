@@ -2,9 +2,17 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = ["product_id", "quantity", "stock"]
+  sweet_alert(type, message, confirm_button = '<p>OK</p>'){
+    Swal.fire({
+      icon: type,
+      title: message,
+      confirmButtonText: confirm_button
+    })
+  }
 
   add_to_cart(event){
     event.preventDefault()
+    let self = this
     $.ajax({
       url: "/carts/new",
       method: "GET",
@@ -14,31 +22,18 @@ export default class extends Controller {
           product_id: this.product_idTarget.value,
           quantity: this.quantityTarget.value
         }
-      },
-      error: function(xhr, status, error){
-        if(error == "Unauthorized"){
-          Swal.fire({
-            icon: 'error',
-            title: 'Haven\'t signed in your account yet',
-            confirmButtonText: '<a href="/users/sign_in">Sign in</a>'
-          })
-        }
-      },
-      success: function(response){
-        if(response.status == 'success'){
-          document.getElementById("cart-items").innerHTML = response.items
-          Swal.fire({
-            icon: 'success',
-            title: response.message,
-            confirmButtonText: '<p>OK</p>'
-          })
-        } else if(response.status == 'fail') {
-          Swal.fire({
-            icon: 'error',
-            title: response.message,
-            confirmButtonText: '<p>OK</p>'
-          })
-        }
+      }
+    }).done(function(response) {
+      self.quantityTarget.value = 1
+      if(response.status == 'success'){
+        document.getElementById("cart-items").innerHTML = response.items
+        self.sweet_alert('success', response.message)
+      } else if(response.status == 'fail') {
+        self.sweet_alert('error', response.message)
+      }
+    }).fail(function(xhr, status, error) {
+      if(error == "Unauthorized"){
+        self.sweet_alert('error', 'Haven\'t signed in your account yet', '<a href="/users/sign_in">Sign in</a>')
       }
     })
   }
@@ -50,32 +45,43 @@ export default class extends Controller {
       method: "GET",
       dataType: "json",
       data: {
-        product_id: this.product_idTarget.value,
-        quantity: this.quantityTarget.value,
-        buy_now: true
-      },
-      error: function(xhr, status, error){
-        console.error(error)
-        if(error == "Unauthorized"){
-          Swal.fire({
-            icon: 'error',
-            title: 'Haven\'t signed in your account yet',
-            confirmButtonText: '<a href="/users/sign_in">Sign in</a>'
-          })
-        }
-      },
-      success: function(response){
-        console.log(response)
-        if(response.status == 'redirect'){
-          window.location.href = '/orders/new'
-        } else if(response.status == 'fail') {
-          Swal.fire({
-            icon: 'error',
-            title: response.message,
-            confirmButtonText: '<p>OK</p>'
-          })
+        cart: {
+          product_id: this.product_idTarget.value,
+          quantity: this.quantityTarget.value,
+          buy_now: true
         }
       }
+    }).done(function(response) {
+      self.quantityTarget.value = 1
+      if(response.status == 'redirect'){
+        window.location.href = '/orders/new'
+      } else if(response.status == 'fail') {
+        self.sweet_alert('error', response.message)
+      }
+    }).fail(function(xhr, status, error) {
+      if(error == "Unauthorized"){
+        self.sweet_alert('error', 'Haven\'t signed in your account yet', '<a href="/users/sign_in">Sign in</a>')
+      }
     })
+  }
+
+  add(){
+    this.quantityTarget.value = parseInt(this.quantityTarget.value) + 1
+    if (this.quantityTarget.value > 1){
+      document.getElementById("btn-minus").disabled = false
+    }
+    if (this.quantityTarget.value > this.stockTarget.value){
+      document.getElementById("btn-add").disabled = false
+    }
+  }
+
+  minus(){
+    this.quantityTarget.value = parseInt(this.quantityTarget.value) - 1
+    if (this.quantityTarget.value <= 1){
+      document.getElementById("btn-minus").disabled = true
+    }
+    if (this.quantityTarget.value < this.stockTarget.value){
+      document.getElementById("btn-add").disabled = true
+    }
   }
 }

@@ -7,9 +7,9 @@ tr
   td = product.stock
   td = image_tag product.images[0].variant(:thumb_smaller)
   td.action-column
-    = link_to edit_product_path(product.slug), class: "btn btn-outline-dark edit-button" 
+    = link_to edit_admin_product_path(product.slug), class: "btn btn-outline-dark edit-button" 
       span
         i.fa-solid.fa-pen-to-square
-    = button_to product_path(product.slug), method: :delete, class: "btn btn-outline-dark", form_class: "delete-form"
+    = button_to admin_product_path(product.slug), method: :delete, class: "btn btn-outline-dark", form_class: "delete-form"
       span
         i.fa-solid.fa-trash

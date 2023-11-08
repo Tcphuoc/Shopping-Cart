@@ -1,6 +1,6 @@
 .table-info
   h2 List products
-  = link_to "New product", new_product_path, class: "btn btn-dark create-button"
+  = link_to "New product", new_admin_product_path, class: "btn btn-dark create-button"
   table
     tr
       th ID
@@ -13,5 +13,5 @@
       th Action
     .row
       - @products.each_with_index do |product, index|
-        = render "shared/edit_product", product: product, index: index
+        = render "admin/shared/edit_product", product: product, index: index
 = paginate @products

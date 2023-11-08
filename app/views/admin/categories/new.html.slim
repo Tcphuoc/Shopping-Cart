@@ -1,5 +1,5 @@
 h2 Create new category
-= form_with(model: @category, local: true) do |f|
+= form_with(model: @category, url: admin_categories_path, local: true) do |f|
   = render "shared/error_messages", object: f.object
 
   = f.hidden_field :shop_id, value: current_shop.id

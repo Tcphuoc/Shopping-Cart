@@ -15,5 +15,11 @@ Rails.application.routes.draw do
   post :search, to: 'search#search'
   resources :orders, only: [:index, :new, :create, :destroy]
 
+  namespace :admin do
+    resources :products, param: :slug
+    resources :categories, param: :slug
+    resources :orders, only: [:index]
+  end
+
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 end

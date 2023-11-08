@@ -1,6 +1,6 @@
 .table-info
   h2 List categories
-  = link_to "New category", new_category_path, class: "btn btn-dark create-button"
+  = link_to "New category", new_admin_category_path, class: "btn btn-dark create-button"
   table
     tr
       th ID
@@ -9,5 +9,5 @@
       th Slug
       th Action
     - @categories.each_with_index do |category, index|
-      = render "shared/edit_category", category: category, index: index
+      = render "admin/shared/edit_category", category: category, index: index
   = paginate @categories

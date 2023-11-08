@@ -1,0 +1,15 @@
+tr
+  td = index + 1
+  td 
+    = link_to category.name, admin_category_path(category.slug), class: "category-detail"
+  td 
+    = category.products.count
+  td = category.slug
+  td.action-column
+    = link_to edit_admin_category_path(category.slug), class: "btn btn-outline-dark edit-button"
+      span
+        i.fa-solid.fa-pen-to-square
+    = button_to admin_category_path(category.slug), method: :delete, class: "btn btn-outline-dark", form_class: "delete-form"
+      span
+        i.fa-solid.fa-trash
+

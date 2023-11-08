@@ -15,6 +15,6 @@ class ApplicationController < ActionController::Base
   end
 
   def check_url
-    redirect_to products_url if request.path_info == '/' && shop_signed_in?
+    redirect_to admin_products_path if request.path_info == '/' && shop_signed_in?
   end
 end
