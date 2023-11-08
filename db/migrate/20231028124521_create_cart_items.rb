@@ -9,5 +9,7 @@ class CreateCartItems < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
+    add_index :cart_items, :product_id
+    add_index :cart_items, [:product_id, :cart_id]
   end
 end

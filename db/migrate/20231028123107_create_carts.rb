@@ -6,5 +6,6 @@ class CreateCarts < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
+    add_index :carts, :user_id, unique: true
   end
 end
