@@ -142,6 +142,20 @@ a.link-category{
   button{
     margin-bottom: 10px;
   }
+  #btn-add{
+    width: 40px; 
+    float:left;
+  }
+  #btn-minus{
+    width: 40px; 
+    float: left;
+  }
+  #input-quantity{
+    width: 45px; 
+    float: left; 
+    margin: 0 10px; 
+    text-align: center;
+  }
 }
 
 /* Edit page */

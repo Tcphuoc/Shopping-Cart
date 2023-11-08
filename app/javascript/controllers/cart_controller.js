@@ -2,6 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = ["product_id", "quantity", "stock"]
+
   sweet_alert(type, message, confirm_button = '<p>OK</p>'){
     Swal.fire({
       icon: type,
@@ -40,6 +41,7 @@ export default class extends Controller {
 
   buy_now(event){
     event.preventDefault()
+    let self = this
     $.ajax({
       url: "/carts/new",
       method: "GET",
