@@ -67,21 +67,9 @@ export default class extends Controller {
 
   add(){
     this.quantityTarget.value = parseInt(this.quantityTarget.value) + 1
-    if (this.quantityTarget.value > 1){
-      document.getElementById("btn-minus").disabled = false
-    }
-    if (this.quantityTarget.value > this.stockTarget.value){
-      document.getElementById("btn-add").disabled = false
-    }
   }
 
   minus(){
     this.quantityTarget.value = parseInt(this.quantityTarget.value) - 1
-    if (this.quantityTarget.value <= 1){
-      document.getElementById("btn-minus").disabled = true
-    }
-    if (this.quantityTarget.value < this.stockTarget.value){
-      document.getElementById("btn-add").disabled = true
-    }
   }
 }

@@ -5,6 +5,9 @@ class Cart < ApplicationRecord
   has_many :cart_items
   has_many :products, through: :cart_items
 
+  validates :user_id, presence: true
+  validates :total_price, presence: true
+
   def update_total_price(subtotal)
     new_value = total_price + subtotal
     update(total_price: new_value)

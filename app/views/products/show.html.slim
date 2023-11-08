@@ -28,7 +28,7 @@
       = f.button type: "button", id: "btn-add", class: "btn btn-outline-dark", data: {action: "click->cart#add"}, style: "width: 40px; float:left"
         i.fas.fa-plus
       = f.number_field :quantity, data: {"cart-target": "quantity"}, class: "form-control", style: "width: 50px; float: left; margin: 0 10px", value: 1, disabled: true
-      = f.button type: "button", id: "btn-minus", class: "btn btn-outline-dark", data: {action: "click->cart#minus"}, style: "width: 40px; float: left", disabled: true
+      = f.button type: "button", id: "btn-minus", class: "btn btn-outline-dark", data: {action: "click->cart#minus"}, style: "width: 40px; float: left"
         i.fas.fa-minus
 
       = f.button "Buy now", type: "button", class: "btn btn-dark form-control", data: {action: "click->cart#buy_now"}

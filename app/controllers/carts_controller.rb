@@ -2,9 +2,9 @@
 
 class CartsController < UsersController
   before_action :create_cart_creator, only: [:new, :update]
+  before_action :find_cart, only: [:index]
 
   def index
-    @cart = find_cart
   end
 
   def new
@@ -19,6 +19,12 @@ class CartsController < UsersController
   end
 
   protected
+
+  def find_cart
+    return @cart = current_user.cart if current_user
+
+    @cart = Cart.new(user_id: nil, total_price: 0)
+  end
 
   def cart_params
     params.require(:cart).permit(:product_id, :quantity)
