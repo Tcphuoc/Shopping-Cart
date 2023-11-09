@@ -8,6 +8,13 @@ $light-gray: #e9ecef;
 $red: #f21b3f;
 
 /* Universal */
+h1,h2,h3,h4,h5,h6,p{ 
+  font-family: 'Work Sans', 
+  sans-serif; 
+  color: #000000; 
+  margin-top: 0; 
+} 
+
 body{
   min-height: 100vh;
   display: flex;
@@ -199,6 +206,17 @@ img.image-item{
   margin-right: 10px;
 }
 
+.cart-item{
+  button.btn{
+    float: right;
+    margin-right: 5px;
+  }
+}
+
+a#btn-payment{
+  float: right;
+}
+
 /* Search */
 form.search-box{
   input{
@@ -231,7 +249,8 @@ button.swal2-confirm{
   }
   p{
     height: 100%;
-    padding: 5px 20px
+    padding: 5px 20px;
+    color: $white;
   }
 }
 

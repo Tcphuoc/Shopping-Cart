@@ -137,7 +137,7 @@ html[lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microso
                   h3 #{item.name} (Qty: #{item.quantity})
               td[valign="middle" width="20%" style="text-align:right; padding: 0 2.5em 0 0;"]
                 span.price[style="color: #000; font-size: 20px;"]
-                  = "#{number_with_delimiter(item.price, delimeter: ',')} VND"
+                  = "#{number_with_delimiter(item.price * item.quantity, delimeter: ',')} VND"
 
           tr[style="border-bottom: 1px solid rgba(0,0,0,.05);"]
             td[valign="middle" width="80%" style="text-align:left; padding: 0 0 0 2.5em;"]

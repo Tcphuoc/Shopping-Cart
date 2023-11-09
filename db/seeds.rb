@@ -12,7 +12,7 @@ def create_product(param, index, category)
   product = Product.new(param)
   4.times.each do |i|
     product.images.attach(
-      io: File.open(Rails.root.join("public/#{category.slug}/#{index}/#{param[:slug]}_#{i+1}.jpg")),
+      io: File.open(Rails.root.join("public/images/#{category.slug}/#{index}/#{param[:slug]}_#{i+1}.jpg")),
       filename: "#{param[:slug]}_1.jpg"
     )
   end

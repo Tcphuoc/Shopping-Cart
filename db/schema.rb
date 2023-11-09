@@ -40,11 +40,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_01_035632) do
   end
 
   create_table "cart_items", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.integer "product_id"
+    t.integer "product_id", null: false
     t.integer "cart_id"
-    t.string "name"
-    t.integer "price"
-    t.integer "quantity"
+    t.string "name", null: false
+    t.integer "price", null: false
+    t.integer "quantity", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id", "cart_id"], name: "index_cart_items_on_product_id_and_cart_id"
@@ -52,29 +52,29 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_01_035632) do
   end
 
   create_table "carts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "total_price"
+    t.integer "user_id", null: false
+    t.integer "total_price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_carts_on_user_id", unique: true
   end
 
   create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name"
-    t.integer "shop_id"
+    t.string "name", null: false
+    t.integer "shop_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "slug"
+    t.string "slug", null: false
     t.index ["name", "shop_id"], name: "index_categories_on_name_and_shop_id", unique: true
     t.index ["name"], name: "index_categories_on_name"
   end
 
   create_table "order_items", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.integer "product_id"
-    t.integer "order_id"
-    t.string "name"
-    t.integer "price"
-    t.integer "quantity"
+    t.integer "product_id", null: false
+    t.integer "order_id", null: false
+    t.string "name", null: false
+    t.integer "price", null: false
+    t.integer "quantity", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_order_items_on_order_id"
@@ -83,27 +83,27 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_01_035632) do
   end
 
   create_table "orders", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "shop_id"
-    t.string "address"
-    t.string "phone"
-    t.integer "total_price"
+    t.integer "user_id", null: false
+    t.integer "shop_id", null: false
+    t.string "address", null: false
+    t.string "phone", null: false
+    t.integer "total_price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id", "shop_id"], name: "index_orders_on_user_id_and_shop_id"
   end
 
   create_table "products", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.integer "shop_id"
-    t.integer "category_id"
-    t.string "name"
-    t.string "description"
-    t.integer "price"
-    t.integer "stock"
+    t.integer "shop_id", null: false
+    t.integer "category_id", null: false
+    t.string "name", null: false
+    t.string "description", null: false
+    t.integer "price", null: false
+    t.integer "stock", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "slug"
-    t.index ["name"], name: "index_products_on_name"
+    t.string "slug", null: false
+    t.index ["name"], name: "index_products_on_name", unique: true
     t.index ["shop_id", "category_id", "name"], name: "index_products_on_shop_id_and_category_id_and_name", unique: true
   end
 

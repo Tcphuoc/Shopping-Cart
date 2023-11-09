@@ -1,20 +1,29 @@
-h2.text-center Your cart
-.row
-  .col-md-6
-    strong Product
-  .col-md-2
-    strong Quantity
-  .col-md-2
-    strong Subtotal
-hr
-- if @cart.cart_items.count > 0
-  - @cart.cart_items.each do |item|
-    = render "shared/cart_item", item: item, cart: @cart
-.row
-  .col-md-8.align-self-center
-    strong Total price:
-  .col-md-2.align-self-center
-    = display_price(@cart.total_price)
+#cart
   - if @cart.cart_items.count > 0
-    .col-md-2.align-self-center
-      = link_to "Payment", new_order_path, class: "btn btn-dark"
+    h2.text-center Your cart
+    .row
+      .col-md-5
+        strong Product
+      .col-md-2.text-center
+        strong Quantity
+      .col-md-2.text-center
+        strong Subtotal
+
+    hr
+      
+        - @cart.cart_items.each do |item|
+          = render "shared/cart_item", item: item, cart: @cart
+    .row
+      .col-md-7.align-self-center
+        strong Total price:
+      .col-md-2.align-self-center.text-center
+        = display_price(@cart.total_price)
+      - if @cart.cart_items.count > 0
+        .col.align-self-center
+          = link_to "Payment", new_order_path, class: "btn btn-dark", id: "btn-payment"
+  - else
+    .text-center
+      = image_tag 'empty.png', width: '280px'
+      h3 Your Cart is Empty
+      p Look like you haven't added anything to your cart yet
+      = link_to "Go Shopping", root_path, class: "btn btn-dark"

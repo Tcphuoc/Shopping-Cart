@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class CartsController < UsersController
+  skip_before_action :verify_authenticity_token, only: :update
   before_action :create_cart_creator, only: [:new, :update]
   before_action :find_cart, only: [:index]
 
@@ -8,6 +9,7 @@ class CartsController < UsersController
   end
 
   def new
+    @cart_creator.update_cart if @cart_creator.add_cart_valid?
     respond_to do |format|
       format.json { render json: @cart_creator.response }
     end
@@ -15,7 +17,8 @@ class CartsController < UsersController
 
   def update
     @cart_creator.update_cart if @cart_creator.update_cart_valid?
-    redirect_to request.referrer
+    render json: { html: render_to_string(partial: 'shared/cart', locals: { cart: @cart_creator.cart }),
+                   items: @cart_creator.quantity_items }
   end
 
   protected
