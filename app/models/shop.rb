@@ -7,4 +7,8 @@ class Shop < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :categories
   has_many :orders
+  validates :first_name, presence: true, length: { minimum: 2, maximum: 20 }
+  validates :last_name, presence: true, length: { minimum: 2, maximum: 20 }
+  validates :phone, presence: true, format: { with: REGEX_PHONE_NUMBER }
+  validates :address, presence: true
 end

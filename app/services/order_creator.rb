@@ -37,28 +37,23 @@ class OrderCreator
     false
   end
 
-  def create_order_item(product_id, product, quantity)
+  def create_order_item(product, quantity)
     param = {
-      product_id: product_id,
+      product_id: product.id,
       order_id: @order.id,
       name: product.name,
       price: product.price,
       quantity: quantity
     }
     @order.order_items.create(param)
-    update_stock(product_id, quantity)
-  end
-
-  def update_stock(product_id, quantity)
-    product = Product.find_by(id: product_id)
     product.update_stock(-quantity.to_i)
   end
 
   def create_items
     if @product
-      create_order_item(@product.id, @product, @quantity)
+      create_order_item(@product, @quantity)
     else
-      @cart.cart_items.each { |item| create_order_item(item.product_id, item, item.quantity) }
+      @cart.cart_items.each { |item| create_order_item(find_product(item.product_id), item.quantity) }
     end
     @cart.remove_all_items
   end
@@ -69,16 +64,14 @@ class OrderCreator
   end
 
   def cart_items
-    if @product
-      return [CartItem.create(product_id: @product.id, name: @product.name, price: @product.price, quantity: @quantity)]
-    end
+    return [CartItem.create(product_id: @product.id, quantity: @quantity)] if @product
 
     @cart.cart_items
   end
 
   def total_price
-    return @cart.total_price if cart_items_positve?
+    return @quantity * @product.price if @product
 
-    @quantity * @product.price
+    @cart.total_price
   end
 end

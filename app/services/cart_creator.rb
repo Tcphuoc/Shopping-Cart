@@ -59,9 +59,9 @@ class CartCreator
   end
 
   def update_cart
-    item = { product_id: @product.id, name: @product.name, price: @product.price, quantity: @quantity }
+    item = { product_id: @product.id, quantity: @quantity }
 
-    @cart.update_cart_item(item)
+    @cart.update_cart_item(item) unless @buy_now
   end
 
   def response

@@ -13,16 +13,23 @@ class ProductCreator
     false
   end
 
+  def product_valid?
+    @product.name = @params[:name]
+    @product.slug = @params[:slug]
+    @product.description = @params[:description]
+    @product.price = @params[:price]
+    @product.stock = @params[:stock]
+    @product.category_id = @params[:category_id]
+    @product.images = @params[:images]
+    @product.valid?
+  end
+
   def valid?
-    image_valid? && @product.valid?
+    image_valid? && product_valid?
   end
 
   def save
     @product.save
-  end
-
-  def update
-    @product.update(@params)
   end
 
   def return_product

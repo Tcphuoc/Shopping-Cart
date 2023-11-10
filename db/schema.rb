@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_01_035632) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_10_031828) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -42,8 +42,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_01_035632) do
   create_table "cart_items", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "product_id", null: false
     t.integer "cart_id"
-    t.string "name", null: false
-    t.integer "price", null: false
     t.integer "quantity", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -103,6 +101,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_01_035632) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug", null: false
+    t.string "image1"
+    t.string "image2"
+    t.string "image3"
+    t.string "image4"
     t.index ["name"], name: "index_products_on_name", unique: true
     t.index ["shop_id", "category_id", "name"], name: "index_products_on_shop_id_and_category_id_and_name", unique: true
   end

@@ -2,10 +2,12 @@ tr
   td = index + 1
   td = product.name
   td = product.description
-  td = product.category.name
+  td
+    - if product.category 
+      = product.category.name
   td = display_price(product.price)
   td = product.stock
-  td = image_tag product.images[0].variant(:thumb_smaller)
+  td = image_tag product.image1.thumb_smaller.url
   td.action-column
     = link_to edit_admin_product_path(product.slug), class: "btn btn-outline-dark edit-button" 
       span

@@ -2,7 +2,7 @@
 
 class Category < ApplicationRecord
   has_many :products
-  validates :name, presence: true, length: { maximum: 20 }
+  validates :name, presence: true, length: { maximum: 20 }, uniqueness: true
   validates :slug, presence: true, length: { maximum: 20 }, uniqueness: true
 
   before_save :convert_slug

@@ -66,9 +66,9 @@ a.navbar-brand{
 /* Form */
 form{
   input{
-    margin-bottom: 5px;
     &[type="submit"]{
       margin-top: 10px;
+      margin-bottom: 5px;
     }
   }
   a{
@@ -83,6 +83,9 @@ form{
     &.forget-password{
       text-align: right;
     }
+  }
+  .input-field{
+    margin-bottom: 10px;
   }
 }
 
@@ -200,6 +203,13 @@ form.delete-form{
   display: inline-block;
 }
 
+img.pre-image{
+  width: 80%;
+  height: 80%;
+  margin-bottom: 10px;
+  border-radius: 20px;
+}
+
 /* Cart */
 img.image-item{
   float: left;
@@ -210,6 +220,13 @@ img.image-item{
   button.btn{
     float: right;
     margin-right: 5px;
+  }
+  a{
+    text-decoration: none;
+  }
+  a:hover{
+    color: $black;
+    text-decoration: underline;
   }
 }
 

@@ -18,6 +18,7 @@ class Admin::CategoriesController < Admin::BaseController
       flash[:notice] = 'Create category success'
       redirect_to admin_categories_url
     else
+      flash.now[:alert] = 'Create category fail. Please try again'
       render 'new', status: :unprocessable_entity
     end
   end
@@ -35,8 +36,9 @@ class Admin::CategoriesController < Admin::BaseController
       flash[:notice] = 'Update category success'
       redirect_to admin_categories_url
     else
+      @category.slug = category_params[:old_slug]
       flash.now[:alert] = 'Update category fail. Please try again'
-      render 'edit'
+      render 'edit', status: :unprocessable_entity
     end
   end
 

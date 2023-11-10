@@ -1,31 +1,67 @@
-h2 Create new product
-= form_with(model: @product, url: admin_products_path, local: true) do |f|
-  = render "shared/error_messages", object: f.object
+h2.text-center Create new product
+= form_with(model: @product, url: admin_products_path, local: true, data: {controller: "product", controller: "form"}) do |f|
+  = f.hidden_field :shop_id, value: current_shop.id
 
-  = f.label :name
-  = f.text_field :name, class: "form-control"
+  .input-field
+    p 
+      strong Images
+    = render "shared/error_message", object: f.object, type: :image1
+    = render "shared/error_message", object: f.object, type: :image2
+    = render "shared/error_message", object: f.object, type: :image3
+    = render "shared/error_message", object: f.object, type: :image4
+    .row
+      .col.text-center
+        = image_tag "no_image.png", class: "pre-image"
+        = f.label :image1, class: "btn btn-outline-dark"
+          | Select image 1
+        = f.file_field :image1, class: "d-none", data: {action: "change->product#preview_image_1"}
+      .col.text-center
+        = image_tag "no_image.png", class: "pre-image"
+        = f.label :image2, class: "btn btn-outline-dark"
+          | Select image 2
+        = f.file_field :image2, class: "d-none", data: {action: "change->product#preview_image_2"}
+      .col.text-center
+        = image_tag "no_image.png", class: "pre-image"
+        = f.label :image3, class: "btn btn-outline-dark"
+          | Select image 3
+        = f.file_field :image3, class: "d-none", data: {action: "change->product#preview_image_3"}
+      .col.text-center
+        = image_tag "no_image.png", class: "pre-image"
+        = f.label :image4, class: "btn btn-outline-dark"
+          | Select image 4
+        = f.file_field :image4, class: "d-none", data: {action: "change->product#preview_image_4"}
 
-  = f.label :description
-  = f.text_field :description, class: "form-control"
+  .row
+    .col.input-field
+      strong = f.label :name
+      = f.text_field :name, class: "form-control", data: {"form-target": "input"}
+      = render "shared/error_message", object: f.object, type: :name
+    .col.input-field
+      strong = f.label :slug
+      = f.text_field :slug, class: "form-control", data: {"form-target": "input"}
+      = render "shared/error_message", object: f.object, type: :slug
 
-  = f.label :price
-  = f.text_field :price, class: "form-control"
+  .input-field
+    strong = f.label :description
+    = f.text_field :description, class: "form-control", data: {"form-target": "input"}
+    = render "shared/error_message", object: f.object, type: :description
 
-  = f.label :stock
-  = f.number_field :stock, class: "form-control"
+  .row 
+    .col.input-field
+      strong = f.label :price
+      = f.text_field :price, class: "form-control", data: {"form-target": "input"}
+      = render "shared/error_message", object: f.object, type: :price
+    .col.input-field
+      strong = f.label :stock
+      = f.number_field :stock, class: "form-control", data: {"form-target": "input"}
+      = render "shared/error_message", object: f.object, type: :stock
 
-  = f.label :category_id
-  = f.collection_radio_buttons(:category_id, Category.all, :id, :name) do |box|
-    = box.label class:"form-check" do
-      = box.radio_button class: "form-check-input"
-      = box.label class:"form-check-label"
-
-  = f.label :slug
-  em 
-    |  (The name display in url)
-  = f.text_field :slug, class: "form-control"
-
-  = f.label :images
-  = f.file_field :images, class: "form-control", multiple: true
+  .input-field
+    strong = f.label :category_id
+    = f.collection_radio_buttons(:category_id, Category.all, :id, :name) do |box|
+      = box.label class:"form-check" do
+        = box.radio_button class: "form-check-input"
+        = box.label class:"form-check-label"
+    = render "shared/error_message", object: f.object, type: :category
 
   = f.submit "Create", class: "btn btn-dark form-control"

@@ -10,9 +10,8 @@
         strong Subtotal
 
     hr
-      
-        - @cart.cart_items.each do |item|
-          = render "shared/cart_item", item: item, cart: @cart
+      - @cart.cart_items.each do |item|
+        = render "shared/cart_item", item: item, cart: @cart
     .row
       .col-md-7.align-self-center
         strong Total price:

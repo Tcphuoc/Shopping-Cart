@@ -1,32 +1,79 @@
 h2 Edit product
-= form_with(model: @product, url: admin_product_path(@product.slug), local: true) do |f|
-  = render "shared/error_messages", object: f.object
-
-  = f.label :name
-  = f.text_field :name, class: "form-control"
-
-  = f.label :description
-  = f.text_field :description, class: "form-control"
-
-  = f.label :price
-  = f.text_field :price, class: "form-control"
-
-  = f.label :stock
-  = f.number_field :stock, class: "form-control"
-
-  = f.label :category_id
-  = f.collection_radio_buttons(:category_id, Category.all, :id, :name) do |box|
-    = box.label class:"form-check" do
-      = box.radio_button(class: "form-check-input", checked: @product.category?(box.object))
-      = box.label class:"form-check-label"
+= form_with(model: @product, url: admin_product_path(@product.slug), local: true, data: {controller: "product", controller: "form"}) do |f|
+  = f.hidden_field :old_slug, value: @product.slug
   
-  = f.label :slug
-  em 
-    |  (The name display in url)
-  = f.text_field :slug, class: "form-control"
+  .input-field
+    p 
+      strong Images
+    = render "shared/error_message", object: f.object, type: :image1
+    = render "shared/error_message", object: f.object, type: :image2
+    = render "shared/error_message", object: f.object, type: :image3
+    = render "shared/error_message", object: f.object, type: :image4
+    .row
+      .col.text-center
+        - if @product.image1.file.nil?
+          = image_tag "no_image.png", class: "pre-image"
+        - else
+          = image_tag @product.image1.url, class: "pre-image"
+        = f.label :image1, class: "btn btn-outline-dark"
+          | Select image 1
+        = f.file_field :image1, class: "d-none", data: {action: "change->product#preview_image_1"}
+      .col.text-center
+        - if @product.image2.file.nil?
+          = image_tag "no_image.png", class: "pre-image"
+        - else
+          = image_tag @product.image2.url, class: "pre-image"
+        = f.label :image2, class: "btn btn-outline-dark"
+          | Select image 2
+        = f.file_field :image2, class: "d-none", data: {action: "change->product#preview_image_2"}
+      .col.text-center
+        - if @product.image3.file.nil?
+          = image_tag "no_image.png", class: "pre-image"
+        - else
+          = image_tag @product.image3.url, class: "pre-image"
+        = f.label :image3, class: "btn btn-outline-dark"
+          | Select image 3
+        = f.file_field :image3, class: "d-none", data: {action: "change->product#preview_image_3"}
+      .col.text-center
+        - if @product.image4.file.nil?
+          = image_tag "no_image.png", class: "pre-image"
+        - else
+          = image_tag @product.image4.url, class: "pre-image"
+        = f.label :image4, class: "btn btn-outline-dark"
+          | Select image 4
+        = f.file_field :image4, class: "d-none", data: {action: "change->product#preview_image_4"}
 
-  = f.label :images
-  = f.file_field :images, class: "form-control", multiple: true
+  .row.input-field
+    .col
+      strong = f.label :name
+      = f.text_field :name, class: "form-control", data: {"form-target": "input"}
+      = render "shared/error_message", object: f.object, type: :name
+    .col
+      strong = f.label :slug
+      = f.text_field :slug, class: "form-control", data: {"form-target": "input"}
+      = render "shared/error_message", object: f.object, type: :slug
+  .input-field
+    strong = f.label :description
+    = f.text_field :description, class: "form-control", data: {"form-target": "input"}
+    = render "shared/error_message", object: f.object, type: :description
+
+  .row.input-field
+    .col
+      strong = f.label :price
+      = f.text_field :price, class: "form-control", data: {"form-target": "input"}
+      = render "shared/error_message", object: f.object, type: :price
+    .col
+      strong = f.label :stock
+      = f.number_field :stock, class: "form-control", data: {"form-target": "input"}
+      = render "shared/error_message", object: f.object, type: :stock
+
+  .input-field
+    strong = f.label :category_id
+    = f.collection_radio_buttons(:category_id, Category.all, :id, :name) do |box|
+      = box.label class:"form-check" do
+        = box.radio_button(class: "form-check-input", checked: @product.category?(box.object))
+        = box.label class:"form-check-label"
+    = render "shared/error_message", object: f.object, type: :category
 
   = f.submit "Edit", class: "btn btn-dark form-control", style: "text-align: center;"
 = button_to "Delete", product_path(@product), method: :delete, class: "btn btn-outline-dark form-control"
