@@ -12,6 +12,6 @@ tr
     = link_to edit_admin_product_path(product.slug), class: "btn btn-outline-dark edit-button" 
       span
         i.fa-solid.fa-pen-to-square
-    = button_to admin_product_path(product.slug), method: :delete, class: "btn btn-outline-dark", form_class: "delete-form"
+    = button_to admin_product_path(product.slug), method: :delete, class: "btn btn-outline-dark", form:{class: "delete-form", id: "delete-#{index+1}"}, data: {controller: "product", action: "click->product#confirm_delete", "slide-index": index+1}
       span
-        i.fa-solid.fa-trash
+        i.fa-solid.fa-trash data-action="click->product#confirm_delete" data-slide-index="#{index+1}"

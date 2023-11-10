@@ -9,7 +9,6 @@ tr
     = link_to edit_admin_category_path(category.slug), class: "btn btn-outline-dark edit-button"
       span
         i.fa-solid.fa-pen-to-square
-    = button_to admin_category_path(category.slug), method: :delete, class: "btn btn-outline-dark", form_class: "delete-form"
+    = button_to admin_category_path(category.slug), method: :delete, class: "btn btn-outline-dark", form: {class: "delete-form", id: "delete-#{index+1}"}, data: {controller: "category", action: "click->category#confirm_delete", "slide-index": index+1}
       span
-        i.fa-solid.fa-trash
-
+        i.fa-solid.fa-trash data-action="click->category#confirm_delete" data-slide-index="#{index+1}"
