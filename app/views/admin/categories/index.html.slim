@@ -1,13 +1,55 @@
 .table-info
   h2 List categories
-  = link_to "New category", new_admin_category_path, class: "btn btn-dark create-button"
-  table
-    tr
-      th ID
-      th Category name
-      th Products
-      th Slug
-      th Action
-    - @categories.each_with_index do |category, index|
-      = render "admin/shared/edit_category", category: category, index: index
+
+  div
+    p style="display: inline-block"
+      = page_entries_info @categories
+    button.btn.btn-outline-dark.button-top[type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"]
+      i.fa-solid.fa-filter
+      strong  Filter
+    = link_to "New category", new_admin_category_path, class: "btn btn-dark button-top"
+    
+  #exampleModal.modal.fade[tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"]
+    .modal-dialog
+      .modal-content
+        .modal-header
+          p#exampleModalLabel.modal-title.fs-5
+            | Filter
+          button.btn-close[type="button" data-bs-dismiss="modal" aria-label="Close"]
+        .modal-body
+          = form_with(url: admin_filter_category_path, local: true) do |f|
+            .input-field
+              = f.label :name
+              = f.text_field :name, class: "form-control"
+            .input-field
+              = f.label :slug
+              = f.text_field :slug, class: "form-control"
+            .text-center
+              = f.submit "Filter", class: "btn btn-primary form-control"
+
+  .bg-light.shadow.rounded.column
+    table
+      tr
+        th ID
+        th Category name
+        th Products
+        th Slug
+        th Action
+      - @categories.each_with_index do |category, index|
+        = render "admin/shared/edit_category", category: category, index: index
+
+    / .col-md-3
+    /   .bg-light.shadow.rounded.column
+    /     p 
+    /       i.fa-solid.fa-filter
+    /       strong  Filter
+    /     = form_with(url: admin_filter_category_path, local: true) do |f|
+    /       .input-field
+    /         = f.label :name
+    /         = f.text_field :name, class: "form-control"
+    /       .input-field
+    /         = f.label :slug
+    /         = f.text_field :slug, class: "form-control"
+    /       .text-center
+    /         = f.submit "Filter", class: "btn btn-primary "
   = paginate @categories

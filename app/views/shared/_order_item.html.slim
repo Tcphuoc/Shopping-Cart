@@ -3,6 +3,7 @@ tr
     = index + 1
   td rowspan="#{order.order_items.count}"
     p = display_time(order.created_at)
+    |  
     p = display_date(order.created_at)
   td
     = image_tag order.order_items.first.product.image1.thumb_smaller.url, class: "image-item"

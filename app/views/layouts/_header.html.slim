@@ -17,7 +17,7 @@ header.navbar.navbar-expand-lg.shadow.sticky-top.bg-light
             = render "users/shared/header_user"
 
     - unless shop_signed_in?
-      = render "shared/search"
+      = render "shared/search", path: search_index_path
 
     button.btn.btn-dark.d-lg-none[type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResponsive" aria-controls="offcanvasResponsive"]
       i.fa-solid.fa-bars

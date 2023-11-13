@@ -11,10 +11,16 @@ class OrdersController < UsersController
 
   def new
     @order = Order.new
-    @order_creator = OrderCreator.new(current_user.cart, @order, cookies[:product_id], cookies[:quantity].to_i)
+    order_creator = OrderCreator.new(current_user.cart, @order, cookies[:product_id], cookies[:quantity].to_i)
     remove_cookies unless cookies[:product_id].nil? || cookies[:product_id].empty?
-    @cart_items = @order_creator.cart_items
-    @total_price = @order_creator.total_price
+
+    if order_creator.check_cart
+      @cart_items = order_creator.cart_items
+      @total_price = order_creator.total_price
+    else
+      flash[:alert] = 'Oops... Something was changed. Please checking again'
+      redirect_to carts_url
+    end
   end
 
   def create

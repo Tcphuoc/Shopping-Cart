@@ -58,10 +58,40 @@ class CartCreator
     false
   end
 
-  def update_cart
-    item = { product_id: @product.id, quantity: @quantity }
+  def check_cart
+    @cart.cart_items.each do |item|
+      product = find_product(item.product_id)
+      if product.stock.zero?
+        remove_item(item)
+      elsif product.stock <= item.quantity
+        item.update(quantity: product.stock)
+      end
+    end
+    update_total_price
+  end
 
-    @cart.update_cart_item(item) unless @buy_now
+  def update_cart
+    return if @buy_now
+
+    if @cart.include?(@product.id)
+      update_item(find_item(@product.id))
+      update_total_price
+    else
+      @cart.cart_items.create(product_id: @product.id, quantity: @quantity, price: @product.price)
+    end
+  end
+
+  def update_item(item)
+    item.update(quantity: @quantity + item.quantity)
+    @cart.remove_item(item) if item.quantity <= 0
+  end
+
+  def update_total_price
+    new_value = @cart.cart_items.reduce(0) do |total, item|
+      total += item.quantity * find_product(item.product_id).price
+      total
+    end
+    @cart.update(total_price: new_value)
   end
 
   def response

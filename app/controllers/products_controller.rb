@@ -9,13 +9,12 @@ class ProductsController < ApplicationController
   end
 
   def show
-    redirect_to root_url if @product.nil?
   end
 
   private
 
   def find_product
-    @product = Product.find_by(slug: params[:slug])
+    @product = Product.find_by!(slug: params[:slug])
   end
 
   def find_cart

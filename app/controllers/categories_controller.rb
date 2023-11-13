@@ -10,6 +10,6 @@ class CategoriesController < ApplicationController
   private
 
   def find_category
-    @category = Category.find_by(slug: params[:slug])
+    @category = Category.find_by!(slug: params[:slug])
   end
 end

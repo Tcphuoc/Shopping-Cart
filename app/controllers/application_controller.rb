@@ -7,6 +7,18 @@ class ApplicationController < ActionController::Base
   before_action :configure_sign_up_params, if: :devise_controller?
   before_action :check_url
 
+  rescue_from ActiveRecord::RecordNotFound, with: :render404
+
+  def route_not_found
+    render 'errors/404'
+  end
+
+  def render404
+    respond_to do |format|
+      format.html { render template: 'errors/404', status: 404, layout: 'application' }
+    end
+  end
+
   protected
 
   def configure_sign_up_params

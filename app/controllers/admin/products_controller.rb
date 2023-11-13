@@ -13,11 +13,12 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def create
-    @product = Product.new(product_params)
-    if @product.save
+    product_creator = ProductCreator.new(product_params)
+    if product_creator.save
       flash[:notice] = 'Create product success'
       redirect_to admin_products_url
     else
+      @product = product_creator.return_product
       flash.now[:alert] = 'Create product fail. Please try again'
       render 'new', status: :unprocessable_entity
     end
@@ -38,19 +39,30 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def destroy
-    @product.destroy
-    flash[:notice] = 'Delete product success'
-    redirect_to admin_products_url
+    if exist_in_order?(@product.id)
+      flash[:alert] = 'Delete product failed because product is being processed at an order'
+    else
+      @product.destroy
+      flash[:notice] = 'Delete product success'
+    end
+    redirect_to request.referrer || admin_products_url
   end
 
   private
 
   def find_product
-    @product = Product.find_by(slug: params[:slug])
+    @product = Product.find_by!(slug: params[:slug])
   end
 
   def find_by_old_slug
-    @product = Product.find_by(slug: params[:product][:old_slug])
+    @product = Product.find_by!(slug: params[:product][:old_slug])
+  end
+
+  def exist_in_order?(id)
+    Order.all.each do |order|
+      order.order_items.each { |item| return true if item.product_id == id }
+    end
+    false
   end
 
   def product_params

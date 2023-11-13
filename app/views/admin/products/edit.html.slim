@@ -1,5 +1,5 @@
 h2 Edit product
-= form_with(model: @product, url: admin_product_path(@product.slug), local: true, data: {controller: "product", controller: "form"}) do |f|
+= form_with(model: @product, url: admin_product_path(@product.slug), local: true, data: {controller: "product form"}) do |f|
   = f.hidden_field :old_slug, value: @product.slug
   
   .input-field
@@ -75,5 +75,5 @@ h2 Edit product
         = box.label class:"form-check-label"
     = render "shared/error_message", object: f.object, type: :category
 
-  = f.submit "Edit", class: "btn btn-dark form-control", style: "text-align: center;"
+  = f.submit "Update", class: "btn btn-dark form-control", style: "text-align: center;"
 = button_to "Delete", product_path(@product), method: :delete, class: "btn btn-outline-dark form-control"

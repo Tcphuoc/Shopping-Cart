@@ -1,14 +1,17 @@
 .table-info
-  h2 List orders
-  table
-    tr 
-      th ID 
-      th Time
-      th Products
-      th Quantity
-      th Total price
-      th Action
-    .row
-      - @orders.each_with_index do |order, index|
-        = render 'shared/order_item', order: order, index: index, user: find_user_by_id(order.user_id)
+  div
+    h2 List orders
+  p = page_entries_info @orders
+  .bg-light.shadow.rounded.column
+    table
+      tr 
+        th ID 
+        th Time
+        th Products
+        th Quantity
+        th Total price
+        th Action
+      .row
+        - @orders.each_with_index do |order, index|
+          = render 'shared/order_item', order: order, index: index, user: find_user_by_id(order.user_id)
   = paginate @orders

@@ -74,4 +74,14 @@ class OrderCreator
 
     @cart.total_price
   end
+
+  def check_cart
+    return @product.stock >= @quantity if @product
+
+    @cart.cart_items.each do |item|
+      product = find_product(item.product_id)
+      return false if product.stock < item.quantity || product.price != item.price
+    end
+    true
+  end
 end

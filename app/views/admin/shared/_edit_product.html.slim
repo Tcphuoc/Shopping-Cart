@@ -2,6 +2,7 @@ tr
   td = index + 1
   td = product.name
   td = product.description
+  td = product.slug
   td
     - if product.category 
       = product.category.name
@@ -9,9 +10,9 @@ tr
   td = product.stock
   td = image_tag product.image1.thumb_smaller.url
   td.action-column
-    = link_to edit_admin_product_path(product.slug), class: "btn btn-outline-dark edit-button" 
+    = link_to edit_admin_product_path(product.slug), class: "btn btn-dark edit-button" 
       span
         i.fa-solid.fa-pen-to-square
-    = button_to admin_product_path(product.slug), method: :delete, class: "btn btn-outline-dark", form:{class: "delete-form", id: "delete-#{index+1}"}, data: {controller: "product", action: "click->product#confirm_delete", "slide-index": index+1}
+    = button_to admin_product_path(product.slug), method: :delete, class: "btn btn-danger", form:{class: "delete-form", id: "delete-#{index+1}"}, data: {controller: "product", action: "click->product#confirm_delete", "slide-index": index+1}
       span
         i.fa-solid.fa-trash data-action="click->product#confirm_delete" data-slide-index="#{index+1}"

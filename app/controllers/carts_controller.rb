@@ -6,7 +6,8 @@ class CartsController < UsersController
   before_action :find_cart, only: [:index]
 
   def index
-    @cart.update_cart
+    cart_creator = CartCreator.new(nil, nil, @cart, false)
+    cart_creator.check_cart
   end
 
   def new

@@ -43,19 +43,23 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def destroy
-    @category.destroy
-    flash[:notice] = 'Delete category success'
+    if @category.products.empty?
+      @category.destroy
+      flash[:notice] = 'Delete category success'
+    else
+      flash[:alert] = 'Delete category fail because your category has products'
+    end
     redirect_to admin_categories_url
   end
 
   private
 
   def find_category
-    @category = Category.find_by(slug: params[:slug])
+    @category = Category.find_by!(slug: params[:slug])
   end
 
   def find_by_old_slug
-    @category = Category.find_by(slug: params[:category][:old_slug])
+    @category = Category.find_by!(slug: params[:category][:old_slug])
   end
 
   def category_params

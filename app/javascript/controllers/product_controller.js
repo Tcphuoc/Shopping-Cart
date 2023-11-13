@@ -14,6 +14,7 @@ export default class extends Controller {
   }
 
   preview_image_1(event){
+    console.log('hello')
     document.getElementsByClassName("pre-image")[0].src = this.preview(event)
   }
 

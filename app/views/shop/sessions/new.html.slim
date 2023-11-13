@@ -3,11 +3,11 @@
     h2
       | Log in shop
     = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-      .field
-        = f.label :email
+      .field.input-field
+        strong = f.label :email
         = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
-      .field
-        = f.label :password
+      .field.input-field
+        strong = f.label :password
         = f.password_field :password, autocomplete: "current-password", class: "form-control"
       .row
         - if devise_mapping.rememberable?

@@ -1,4 +1,4 @@
-= form_with(url: "/search", class: "d-flex search-box") do |f|
+= form_with(url: path, class: "d-flex search-box", method: :get) do |f|
   .input-group
     = f.text_field :search, class: "form-control", placeholder: "Search"
     = button_tag(type: "submit", class: "btn btn-light") do

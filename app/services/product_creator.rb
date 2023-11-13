@@ -1,34 +1,42 @@
 # frozen_string_literal: true
 
 class ProductCreator
-  def initialize(params, product)
+  def initialize(params)
     @params = params
-    @product = product
   end
 
-  def image_valid?
-    return true if @params[:images].count <= 5
+  def convert_slug
+    return if !@params[:slug].empty? || @params[:name].empty?
 
-    @product.errors.add(:images, "Images can't be greater than 4 images")
-    false
+    string = @params[:name].titleize.downcase
+    slug = string.parameterize(separator: '_')
+    while slug_exist?(slug)
+      temp = string.chars
+
+      if last_char_is_int?(slug)
+        temp[-1] = (temp[-1].to_i + 1).to_s
+      else
+        temp << '1' unless last_char_is_int?(slug)
+      end
+
+      string = temp.join
+      slug = string.parameterize(separator: '_')
+    end
+    @params[:slug] = slug
   end
 
-  def product_valid?
-    @product.name = @params[:name]
-    @product.slug = @params[:slug]
-    @product.description = @params[:description]
-    @product.price = @params[:price]
-    @product.stock = @params[:stock]
-    @product.category_id = @params[:category_id]
-    @product.images = @params[:images]
-    @product.valid?
+  def slug_exist?(slug)
+    products = Product.where('slug LIKE ?', slug)
+    !products.empty?
   end
 
-  def valid?
-    image_valid? && product_valid?
+  def last_char_is_int?(slug)
+    slug.last.to_i.to_s == slug.last
   end
 
   def save
+    convert_slug
+    @product = Product.new(@params)
     @product.save
   end
 

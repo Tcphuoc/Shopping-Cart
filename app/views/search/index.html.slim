@@ -1,6 +1,10 @@
 h2 Search results
 - if @products.empty?
   h5.text-danger Your search did not match any products. Please try again!
+  .row
+    - Product.all.each do |product|
+      .col-3.col-md-3
+        = render "shared/card_product", product: product
 .row
   - @products.each do |product|
     .col-3.col-md-3

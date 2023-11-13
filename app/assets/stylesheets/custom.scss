@@ -42,8 +42,12 @@ input::-webkit-inner-spin-button {
 }
 
 footer{
-  color: $white;
   margin-top: auto;
+  padding: 50px 0 !important;
+  color: $white;
+  p{
+    color: $white;
+  }
 }
 
 .content{
@@ -180,11 +184,13 @@ a.link-category{
     }
     margin-bottom: 10px;
   }
-  a.create-button{
+  .button-top{
     float: right;
-    margin-bottom: 20px;
+    margin-left: 5px;
+    margin-bottom: 10px;
   }
   a.edit-button{
+    width: 40px;
     margin-right: 5px;
   }
   a.category-detail{
@@ -196,6 +202,10 @@ a.link-category{
   }
   td.action-column{
     width: 10%;
+  }
+  div.column{
+    padding: 10px;
+    margin-bottom: 15px;
   }
 }
 
@@ -301,3 +311,14 @@ button.swal2-confirm{
     border-radius: 10px;
   }
 } 
+
+/* Error page */
+.error{
+  img{
+    margin: auto;
+    width: 300px;
+  }
+  p{
+    margin: 20px 0;
+  }
+}
