@@ -2,10 +2,15 @@
 
 class Admin::ProductsController < Admin::BaseController
   before_action :find_product, only: [:show, :edit, :destroy]
-  before_action :find_by_old_slug, only: [:update]
 
   def index
-    @products = Product.all.page(params[:page]).per(10)
+    if params[:filter]
+      filter = Filter.new(filter_params)
+      products = Kaminari.paginate_array(filter.products)
+    else
+      products = Product.all
+    end
+    @products = products.page(params[:page]).per(10)
   end
 
   def new
@@ -28,10 +33,12 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def update
-    if @product.update(product_params.except(:old_slug))
+    product_creator = ProductCreator.new(product_params)
+    if product_creator.update
       flash[:notice] = 'Update product success'
       redirect_to admin_products_url
     else
+      @product = product_creator.return_product
       @product.slug = product_params[:old_slug]
       flash.now[:alert] = 'Update product fail. Please try again'
       render 'edit', status: :unprocessable_entity
@@ -54,10 +61,6 @@ class Admin::ProductsController < Admin::BaseController
     @product = Product.find_by!(slug: params[:slug])
   end
 
-  def find_by_old_slug
-    @product = Product.find_by!(slug: params[:product][:old_slug])
-  end
-
   def exist_in_order?(id)
     Order.all.each do |order|
       order.order_items.each { |item| return true if item.product_id == id }
@@ -67,6 +70,10 @@ class Admin::ProductsController < Admin::BaseController
 
   def product_params
     params.require(:product).permit(:shop_id, :name, :description, :price, :stock, :slug, :old_slug, :category_id,
-                                    :image1, :image2, :image3, :image4)
+                                    :image1, :image2, :image3, :image4, :remove_image2, :remove_image3, :remove_image4)
+  end
+
+  def filter_params
+    params.permit(:name, :slug, :min_price, :max_price, :min_stock, :max_stock, :filter)
   end
 end

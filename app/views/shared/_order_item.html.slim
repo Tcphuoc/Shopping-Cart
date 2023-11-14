@@ -16,7 +16,7 @@ tr
     = display_price(order.total_price)
   - if shop_signed_in?
     td.action-column rowspan="#{order.order_items.count}"
-      button.btn.btn-outline-dark[type="button" data-bs-toggle="modal" data-bs-target="#exampleModal#{index}"]
+      button.btn.btn-dark[type="button" data-bs-toggle="modal" data-bs-target="#exampleModal#{index}"]
         i.fa-solid.fa-eye
       div id="exampleModal#{index}" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
         .modal-dialog

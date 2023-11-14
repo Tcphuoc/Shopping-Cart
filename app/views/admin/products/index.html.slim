@@ -18,7 +18,8 @@
             | Filter
           button.btn-close[type="button" data-bs-dismiss="modal" aria-label="Close"]
         .modal-body
-          = form_with(url: admin_filter_product_path, local: true) do |f|
+          = form_with(url: admin_products_path, local: true, method: :get) do |f|
+            = f.hidden_field :filter, value: true
             .input-field
               = f.label :name
               = f.text_field :name, class: "form-control"
@@ -44,20 +45,19 @@
             .text-center
               = f.submit "Filter", class: "btn btn-primary form-control"
 
-  .bg-light.shadow.rounded.column
-    table
-      tr
-        th ID
-        th Name
-        th Description
-        th Slug
-        th Category
-        th Price
-        th Stock
-        th Image
-        th Action
-      .row
-        - @products.each_with_index do |product, index|
-          = render "admin/shared/edit_product", product: product, index: index
+  table
+    tr
+      th ID
+      th Name
+      th Description
+      th Slug
+      th Category
+      th Price
+      th Stock
+      th Image
+      th Action
+    .row
+      - @products.each_with_index do |product, index|
+        = render "admin/shared/edit_product", product: product, index: index
 
 = paginate @products

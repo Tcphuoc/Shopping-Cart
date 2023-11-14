@@ -15,33 +15,49 @@ h2 Edit product
           = image_tag "no_image.png", class: "pre-image"
         - else
           = image_tag @product.image1.url, class: "pre-image"
-        = f.label :image1, class: "btn btn-outline-dark"
-          | Select image 1
-        = f.file_field :image1, class: "d-none", data: {action: "change->product#preview_image_1"}
+        = f.label :image1, class: "btn btn-dark"
+          | Select
+        = f.file_field :image1, class: "d-none image-uploaded", data: {action: "change->product#preview_image_1"}
+
       .col.text-center
         - if @product.image2.file.nil?
-          = image_tag "no_image.png", class: "pre-image"
+          = image_tag "no_image.png", class: "pre-image no-image"
+          = f.hidden_field :remove_image2, class: 'remove-image', value: true
         - else
           = image_tag @product.image2.url, class: "pre-image"
-        = f.label :image2, class: "btn btn-outline-dark"
-          | Select image 2
-        = f.file_field :image2, class: "d-none", data: {action: "change->product#preview_image_2"}
+          = f.hidden_field :remove_image2, class: 'remove-image', value: false
+        = f.label :image2, class: "btn btn-dark"
+          | Select
+        = f.file_field :image2, class: "d-none image-uploaded", data: {action: "change->product#preview_image_2"}
+        button.btn.btn-danger.delete-image type="button" style="margin-left: 5px" data-action="click->product#remove_image_2"
+          | Delete
+
       .col.text-center
         - if @product.image3.file.nil?
-          = image_tag "no_image.png", class: "pre-image"
+          = image_tag "no_image.png", class: "pre-image no-image"
+          = f.hidden_field :remove_image3, class: 'remove-image', value: true
         - else
           = image_tag @product.image3.url, class: "pre-image"
-        = f.label :image3, class: "btn btn-outline-dark"
-          | Select image 3
-        = f.file_field :image3, class: "d-none", data: {action: "change->product#preview_image_3"}
+          = f.hidden_field :remove_image3, class: 'remove-image', value: false
+        = f.label :image3, class: "btn btn-dark"
+          | Select
+        = f.file_field :image3, class: "d-none image-uploaded", data: {action: "change->product#preview_image_3"}
+        button.btn.btn-danger.delete-image type="button" style="margin-left: 5px" data-action="click->product#remove_image_3"
+          | Delete
+
       .col.text-center
         - if @product.image4.file.nil?
-          = image_tag "no_image.png", class: "pre-image"
+          = image_tag "no_image.png", class: "pre-image no-image"
+          = f.hidden_field :remove_image4, class: 'remove-image', value: true
         - else
           = image_tag @product.image4.url, class: "pre-image"
-        = f.label :image4, class: "btn btn-outline-dark"
-          | Select image 4
-        = f.file_field :image4, class: "d-none", data: {action: "change->product#preview_image_4"}
+          = f.hidden_field :remove_image4, class: 'remove-image', value: false
+        = f.label :image4, class: "btn btn-dark"
+          | Select
+        = f.file_field :image4, class: "d-none image-uploaded", data: {action: "change->product#preview_image_4"}
+        button.btn.btn-danger.delete-image type="button" style="margin-left: 5px" data-action="click->product#remove_image_4"
+          | Delete
+
 
   .row.input-field
     .col

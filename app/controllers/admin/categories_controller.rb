@@ -5,7 +5,13 @@ class Admin::CategoriesController < Admin::BaseController
   before_action :find_by_old_slug, only: [:update]
 
   def index
-    @categories = Category.all.page(params[:page]).per(5)
+    if params[:filter]
+      filter = Filter.new(filter_params)
+      categories = Kaminari.paginate_array(filter.categories)
+    else
+      categories = Category.all
+    end
+    @categories = categories.page(params[:page]).per(5)
   end
 
   def new
@@ -64,5 +70,9 @@ class Admin::CategoriesController < Admin::BaseController
 
   def category_params
     params.require(:category).permit(:name, :shop_id, :slug, :old_slug)
+  end
+
+  def filter_params
+    params.permit(:name, :slug, :filter)
   end
 end

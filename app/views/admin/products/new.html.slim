@@ -12,24 +12,33 @@ h2.text-center Create new product
     .row
       .col.text-center
         = image_tag "no_image.png", class: "pre-image"
-        = f.label :image1, class: "btn btn-outline-dark"
-          | Select image 1
+        = f.label :image1, class: "btn btn-dark"
+          | Select
         = f.file_field :image1, accept: 'image/png,image/jpg,image/jpeg', class: "d-none", data: {action: "change->product#preview_image_1"}
+
       .col.text-center
         = image_tag "no_image.png", class: "pre-image"
-        = f.label :image2, class: "btn btn-outline-dark"
-          | Select image 2
+        = f.label :image2, class: "btn btn-dark"
+          | Select
         = f.file_field :image2, accept: 'image/png,image/jpg,image/jpeg', class: "d-none", data: {action: "change->product#preview_image_2"}
+        button.btn.btn-danger.delete-image.d-none type="button" style="margin-left: 5px" data-action="click->product#remove_image_2"
+          | Delete
+
       .col.text-center
         = image_tag "no_image.png", class: "pre-image"
-        = f.label :image3, class: "btn btn-outline-dark"
-          | Select image 3
+        = f.label :image3, class: "btn btn-dark"
+          | Select
         = f.file_field :image3, accept: 'image/png,image/jpg,image/jpeg', class: "d-none", data: {action: "change->product#preview_image_3"}
+        button.btn.btn-danger.delete-image.d-none type="button" style="margin-left: 5px" data-action="click->product#remove_image_2"
+          | Delete
+
       .col.text-center
         = image_tag "no_image.png", class: "pre-image"
-        = f.label :image4, class: "btn btn-outline-dark"
-          | Select image 4
+        = f.label :image4, class: "btn btn-dark"
+          | Select
         = f.file_field :image4, accept: 'image/png,image/jpg,image/jpeg', class: "d-none", data: {action: "change->product#preview_image_4"}
+        button.btn.btn-danger.delete-image.d-none type="button" style="margin-left: 5px" data-action="click->product#remove_image_2"
+          | Delete
 
   .row
     .col.input-field

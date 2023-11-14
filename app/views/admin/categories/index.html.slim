@@ -17,7 +17,8 @@
             | Filter
           button.btn-close[type="button" data-bs-dismiss="modal" aria-label="Close"]
         .modal-body
-          = form_with(url: admin_filter_category_path, local: true) do |f|
+          = form_with(url: admin_categories_path, local: true, method: :get) do |f|
+            = f.hidden_field :filter, value: true
             .input-field
               = f.label :name
               = f.text_field :name, class: "form-control"
@@ -27,29 +28,14 @@
             .text-center
               = f.submit "Filter", class: "btn btn-primary form-control"
 
-  .bg-light.shadow.rounded.column
-    table
-      tr
-        th ID
-        th Category name
-        th Products
-        th Slug
-        th Action
-      - @categories.each_with_index do |category, index|
-        = render "admin/shared/edit_category", category: category, index: index
+  table
+    tr
+      th ID
+      th Category name
+      th Products
+      th Slug
+      th Action
+    - @categories.each_with_index do |category, index|
+      = render "admin/shared/edit_category", category: category, index: index
 
-    / .col-md-3
-    /   .bg-light.shadow.rounded.column
-    /     p 
-    /       i.fa-solid.fa-filter
-    /       strong  Filter
-    /     = form_with(url: admin_filter_category_path, local: true) do |f|
-    /       .input-field
-    /         = f.label :name
-    /         = f.text_field :name, class: "form-control"
-    /       .input-field
-    /         = f.label :slug
-    /         = f.text_field :slug, class: "form-control"
-    /       .text-center
-    /         = f.submit "Filter", class: "btn btn-primary "
   = paginate @categories

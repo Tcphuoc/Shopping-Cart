@@ -18,8 +18,8 @@ Rails.application.routes.draw do
     resources :products, param: :slug
     resources :categories, param: :slug
     resources :orders, only: [:index]
-    post '/filter/product', to: 'filter#filter_product'
-    post '/filter/category', to: 'filter#filter_category'
+    post '/products', to: 'products#filter'
+    post '/categories', to: 'categories#filter'
   end
 
   match '*unmatched', to: 'application#route_not_found', via: :all

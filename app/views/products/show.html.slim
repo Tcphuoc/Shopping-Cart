@@ -27,9 +27,9 @@
           = f.label :quantity, class: "form-label"
       = f.button type: "button", id: "btn-add", class: "btn btn-outline-dark", data: {action: "click->cart#add"}
         i.fas.fa-plus
-      = f.number_field :quantity, data: {"cart-target": "quantity"}, id: "input-quantity", class: "form-control", value: 1, disabled: true
-      = f.button type: "button", id: "btn-minus", class: "btn btn-outline-dark", data: {action: "click->cart#minus"}, disabled: true
+      = f.number_field :quantity, data: {"cart-target": "quantity"}, id: "input-quantity", class: "form-control", value: 1
+      = f.button type: "button", id: "btn-minus", class: "btn btn-outline-dark", data: {action: "click->cart#minus"}
         i.fas.fa-minus
 
-      = f.button "Buy now", type: "button", id: "btn-buy-now", class: "btn btn-dark form-control", data: {action: "click->cart#buy_now"}
-      = f.button "Add to cart", type: "button", id: "btn-add-to-cart", class: "btn btn-outline-dark form-control", data: {action: "click->cart#add_to_cart"}
+      = f.button "Buy now", type: "button", id: "btn-buy-now", class: "btn btn-dark form-control", data: {action: "click->cart#buy_now"}, disabled: shop_signed_in?
+      = f.button "Add to cart", type: "button", id: "btn-add-to-cart", class: "btn btn-outline-dark form-control", data: {action: "click->cart#add_to_cart"}, disabled: shop_signed_in?
