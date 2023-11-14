@@ -1,0 +1,40 @@
+header.navbar.navbar-expand-lg.shadow.sticky-top.bg-light
+  .container
+    a.navbar-brand.h1[href="/"]
+      = image_tag "logo.png", with: 40, height: 40, class: "logo"
+
+    .collapse.navbar-collapse#navbarSupportedContent
+      ul.navbar-nav.nav.nav-underline.me-auto.mb-2.mb-lg-0
+        li.nav-item = link_to "Home", root_path, class: "nav-link"
+        li.nav-item.dropdown
+          a.nav-link.dropdown-toggle[data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"]
+            | Category
+          ul.dropdown-menu
+            - categories.each do |category|
+              li = link_to category.name, category_path(category.slug), class: 'dropdown-item'
+        li.nav-item = link_to "Product", products_path, class: "nav-link"
+        li.nav-item.position-relative
+        - unless shop_signed_in?
+          = render "shared/search", path: search_index_path, class: "position-absolute top-0 start-50 translate-middle"
+    
+    div style="display: flex"
+      = link_to carts_path, class: "nav-link position-relative", style: "margin-top: 10px; margin-bottom: 10px"
+        i.fas.fa-shopping-basket.icon-cart
+        - if user_signed_in?
+          span.position-absolute.top-0.translate-middle.badge.rounded-pill.text-bg-danger#cart-items[data-controller="cart" style="translate: -10px"]
+            = display_cart_items
+
+      - if user_signed_in?
+        .dropdown
+          a.nav-link[href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="margin-top: 10px; margin-bottom: 10px"]
+            i.far.fa-user-circle.icon-account
+          ul.dropdown-menu style="translate: -110px"
+            li = link_to "Profile", edit_user_registration_path, class: "dropdown-item"
+            li
+              hr.dropdown-divider
+            li = button_to "Log out", destroy_user_session_path, class: "dropdown-item", method: :delete
+      - else
+        = link_to "Log in", new_user_session_path, class: "btn btn-dark", style: "height: 90%; margin: auto"
+
+      button.navbar-toggler [type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="padding: 0; margin-left: 10px"]
+        i.fa-solid.fa-bars.icon-header

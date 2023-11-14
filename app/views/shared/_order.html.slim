@@ -1,0 +1,11 @@
+hr
+.row 
+  .col
+    = display_time order.created_at
+  .col
+    = display_date order.created_at
+  .col
+    - order.order_items.each do |item|
+      p = item.name
+  .col
+    = display_price order.total_price

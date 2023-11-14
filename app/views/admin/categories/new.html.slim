@@ -1,0 +1,15 @@
+h2.text-center Create new category
+= form_with(model: @category, url: admin_categories_path, local: true, data: { controller: "form" }) do |f|
+  = f.hidden_field :shop_id, value: current_shop.id
+
+  .input-field
+    strong = f.label :name
+    = f.text_field :name, class: "form-control", data: {"form-target": "input"}
+    = render "shared/error_message", object: f.object, type: :name
+
+  .input-field
+    strong = f.label :slug
+    = f.text_field :slug, class: "form-control", data: {"form-target": "input"}
+    = render "shared/error_message", object: f.object, type: :slug
+
+  = f.submit "Create", class: "btn btn-dark form-control"

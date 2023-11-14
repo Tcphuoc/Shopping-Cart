@@ -1,0 +1,14 @@
+tr
+  td = index + 1
+  td 
+    = link_to category.name, admin_category_path(category.slug), class: "category-detail"
+  td 
+    = category.products.count
+  td = category.slug
+  td.action-column
+    = link_to edit_admin_category_path(category.slug), class: "btn btn-primary edit-button"
+      span
+        i.fa-solid.fa-pen-to-square
+    = button_to admin_category_path(category.slug), method: :delete, class: "btn btn-danger", form: {class: "delete-form", id: "delete-#{index+1}"}, data: {controller: "category", action: "click->category#confirm_delete", "slide-index": index+1}
+      span
+        i.fa-solid.fa-trash data-action="click->category#confirm_delete" data-slide-index="#{index+1}"

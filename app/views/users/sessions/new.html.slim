@@ -1,13 +1,13 @@
 .row.justify-content-md-center
   .col-md-6
-    h2
+    h2.text-center
       | Log in
     = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-      .field
-        = f.label :email
+      .field.input-field
+        strong = f.label :email
         = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
-      .field
-        = f.label :password
+      .field.input-field
+        strong = f.label :password
         = f.password_field :password, autocomplete: "current-password", class: "form-control"
       .row
         - if devise_mapping.rememberable?
@@ -18,6 +18,6 @@
         - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
           p.col = link_to "Forgot your password?", new_user_password_path, class: "info forget-password"
       .actions
-        = f.submit "Log in", class: "form-control btn btn-primary"
-        = link_to "Sign up", new_user_registration_path, class: "form-control btn btn-outline-primary"
+        = f.submit "Log in", class: "form-control btn btn-dark"
+        = link_to "Sign up", new_user_registration_path, class: "form-control btn btn-outline-dark"
         = link_to "Log in account shop", new_shop_session_path, class: "info"

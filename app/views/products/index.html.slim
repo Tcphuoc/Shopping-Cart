@@ -1,0 +1,6 @@
+h2.text-center All Products
+.row
+  - @products.each do |product|
+    .col-md-3
+      = render "shared/card_product", product: product
+= paginate @products

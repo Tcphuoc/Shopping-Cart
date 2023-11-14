@@ -1,33 +1,37 @@
 .row.justify-content-md-center
   .col-md-6
-    h2
+    h2.text-center
       | Sign up
-    = form_for(resource, url: registration_path(resource), data: { controller: "users" }, local: true) do |f|
-      = render "devise/shared/error_messages", resource: resource
-      .row
+    = form_for(resource, url: registration_path(resource), data: { controller: "form" }, local: true) do |f|
+      .row.input-field
         .field.col
-          = f.label :first_name
-          = f.text_field :first_name, data: {"users-target": "input"}, class: "form-control"
-          label data-user-target="error" style="color: red; display: none"
-            | Name missing
+          strong = f.label :first_name
+          = f.text_field :first_name, data: {"form-target": "input"}, class: "form-control"
+          = render "shared/error_message", object: resource, type: :first_name
         .field.col
-          = f.label :last_name
-          = f.text_field :last_name, data: {"users-target": "input"}, class: "form-control"
-      .field
-        = f.label :phone
-        = f.text_field :phone, data: {"users-target": "input"}, class: "form-control"
-      .field
-        = f.label :address
-        = f.text_field :address, data: {"users-target": "input"}, class: "form-control"
-      .field
-        = f.label :email
-        = f.email_field :email, data: {"users-target": "input"}, autofocus: true, autocomplete: "email", class: "form-control"
-      .field
-        = f.label :password
-        = f.password_field :password, data: {"users-target": "input"}, autocomplete: "new-password", class: "form-control"
-      .field
-        = f.label :password_confirmation
-        = f.password_field :password_confirmation, data: {"users-target": "input"}, autocomplete: "new-password", class: "form-control"
+          strong = f.label :last_name
+          = f.text_field :last_name, data: {"form-target": "input"}, class: "form-control"
+          = render "shared/error_message", object: resource, type: :last_name
+      .field.input-field
+        strong = f.label :phone
+        = f.text_field :phone, data: {"form-target": "input"}, class: "form-control"
+        = render "shared/error_message", object: resource, type: :phone
+      .field.input-field
+        strong = f.label :address
+        = f.text_field :address, data: {"form-target": "input"}, class: "form-control"
+        = render "shared/error_message", object: resource, type: :address
+      .field.input-field
+        strong = f.label :email
+        = f.email_field :email, data: {"form-target": "input"}, autofocus: true, autocomplete: "email", class: "form-control"
+        = render "shared/error_message", object: resource, type: :email
+      .field.input-field
+        strong = f.label :password
+        = f.password_field :password, data: {"form-target": "input"}, autocomplete: "new-password", class: "form-control"
+        = render "shared/error_message", object: resource, type: :password
+      .field.input-field
+        strong = f.label :password_confirmation
+        = f.password_field :password_confirmation, data: {"form-target": "input"}, autocomplete: "new-password", class: "form-control"
+        = render "shared/error_message", object: resource, type: :password_confirmation
       .actions
-        = f.submit "Sign up", class: "btn btn-primary form-control"
+        = f.submit "Sign up", class: "btn btn-dark form-control"
         = link_to "Already have an account?", new_user_session_path, class: "info"

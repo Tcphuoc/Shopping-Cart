@@ -1,0 +1,8 @@
+.card-product.text-center
+  = link_to product_path(product.slug), class: "link-product"
+    .card
+      = image_tag product.image1.url
+      .card-body
+        .card-title
+          strong = product.name
+          p = display_price(product.price)

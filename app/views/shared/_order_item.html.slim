@@ -1,0 +1,68 @@
+tr
+  td rowspan="#{order.order_items.count}"
+    = index + 1
+  td rowspan="#{order.order_items.count}"
+    p = display_time(order.created_at)
+    |  
+    p = display_date(order.created_at)
+  td
+    = image_tag order.order_items.first.product.image1.thumb_smaller.url, class: "image-item"
+    p = order.order_items.first.name
+    p = display_price(order.order_items.first.price)
+  td
+    = order.order_items.first.quantity
+
+  td rowspan="#{order.order_items.count}"
+    = display_price(order.total_price)
+  - if shop_signed_in?
+    td.action-column rowspan="#{order.order_items.count}"
+      button.btn.btn-dark[type="button" data-bs-toggle="modal" data-bs-target="#exampleModal#{index}"]
+        i.fa-solid.fa-eye
+      div id="exampleModal#{index}" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+        .modal-dialog
+          .modal-content
+            .modal-header
+              h1#exampleModalLabel.modal-title.fs-5
+                | Order detail
+            .modal-body
+              .row
+                .col
+                  p Customer
+                  = "#{user.first_name} #{user.last_name}"
+                .col
+                  p Order date
+                  = "#{display_date(order.created_at)} #{display_time(order.created_at)}"
+              .row
+                .col
+                  p Address
+                  = order.address
+                .col
+                  p Contact
+                  = order.phone
+              p Products
+              .bg-body-secondary
+                - order.order_items.each do |item|
+                  .row
+                    .col
+                      = "#{item.name} (Qty: #{item.quantity})"
+                    .col-md-4.text-end
+                      = display_price(item.price * item.quantity)
+                hr
+                .row
+                  .col
+                    strong Total price
+                  .col-md-4.text-end
+                    strong = display_price(order.total_price)
+            .modal-footer
+              button.btn.btn-secondary[type="button" data-bs-dismiss="modal"]
+                | Close
+
+- order.order_items.each do |item|
+  - next if item == order.order_items.first
+  tr
+    td
+      = image_tag item.product.image1.thumb_smaller.url, class: "image-item"
+      p = item.name 
+      p = display_price(item.price)
+    td
+      = item.quantity

@@ -1,0 +1,35 @@
+.row.product-detail
+  .col
+    p
+      a[href="javascript:;" data-fancybox-trigger="gallery" data-fancybox-index="0" data-controller="show_product" data-action="click->show_product#show"]
+        = image_tag @product.image1.thumb_larger.url
+    div
+      - all_images(@product).each do |image|
+        a[data-fancybox="gallery" data-src=url_for(image.url) data-controller="show_product" data-action="click->show_product#show"]
+          = image_tag image.thumb_smaller.url
+  .col-md-7
+    h3 = @product.name
+    h3 = display_price(@product.price)
+    p 
+      strong Stock: 
+      = @product.stock 
+      |  | 
+      strong Sold: 
+      = display_sold(@product.id)
+    strong Description
+    p = @product.description
+    = form_with(model: @cart, remote: true, data: {controller: "cart"}) do |f|
+      = f.hidden_field :stock, data: {"cart-target": "stock"}, value: @product.stock
+      = f.hidden_field :product_id, data: {"cart-target": "product_id"}, value: @product.id
+      
+      .row
+        strong style="width: 20px"
+          = f.label :quantity, class: "form-label"
+      = f.button type: "button", id: "btn-add", class: "btn btn-outline-dark", data: {action: "click->cart#add"}
+        i.fas.fa-plus
+      = f.number_field :quantity, data: {"cart-target": "quantity"}, id: "input-quantity", class: "form-control", value: 1
+      = f.button type: "button", id: "btn-minus", class: "btn btn-outline-dark", data: {action: "click->cart#minus"}
+        i.fas.fa-minus
+
+      = f.button "Buy now", type: "button", id: "btn-buy-now", class: "btn btn-dark form-control", data: {action: "click->cart#buy_now"}, disabled: shop_signed_in?
+      = f.button "Add to cart", type: "button", id: "btn-add-to-cart", class: "btn btn-outline-dark form-control", data: {action: "click->cart#add_to_cart"}, disabled: shop_signed_in?

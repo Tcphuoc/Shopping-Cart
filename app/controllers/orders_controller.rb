@@ -1,0 +1,48 @@
+# frozen_string_literal: true
+
+class OrdersController < UsersController
+  def index
+    if user_signed_in?
+      @orders = current_user.orders.page(params[:page]).per(5)
+    else
+      redirect_to root_url
+    end
+  end
+
+  def new
+    @order = Order.new
+    order_creator = OrderCreator.new(current_user.cart, @order, cookies[:product_id], cookies[:quantity].to_i)
+    remove_cookies unless cookies[:product_id].nil? || cookies[:product_id].empty?
+
+    if order_creator.check_cart
+      @cart_items = order_creator.cart_items
+      @total_price = order_creator.total_price
+    else
+      flash[:alert] = 'Oops... Your products were changed. Please checking again'
+      redirect_to carts_url
+    end
+  end
+
+  def create
+    @order = Order.new(order_params.except(:product_id, :quantity))
+    @order_creator = OrderCreator.new(current_user.cart, @order, params[:order][:product_id], params[:order][:quantity])
+    if @order_creator.save
+      flash[:notice] = 'Payment success. You can check your order in Order page'
+      redirect_to root_url
+    elsif !@order_creator.check_cart
+      flash[:alert] = 'Oops... Your products were changed. Please checking again'
+      redirect_to root_url
+    else
+      flash.now[:alert] = 'Payment fail. Please check your information'
+      @cart_items = @order_creator.cart_items
+      @total_price = @order_creator.total_price
+      render 'new', status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def order_params
+    params.require(:order).permit(:user_id, :shop_id, :address, :phone, :total_price, :product_id, :quantity)
+  end
+end

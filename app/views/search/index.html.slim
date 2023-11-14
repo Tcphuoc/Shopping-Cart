@@ -1,0 +1,8 @@
+h2 Search results
+- if @empty
+  .alert.alert-warning Your search did not match any products. Please try again!
+.row
+  - @products.each do |product|
+    .col-3.col-md-3
+      = render "shared/card_product", product: product
+= paginate @products

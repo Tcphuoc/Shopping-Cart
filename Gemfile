@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -48,12 +50,15 @@ gem 'bootsnap', require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem 'image_processing', '~> 1.2'
 
-gem 'bootstrap-kaminari-views'
+gem 'active_storage_validations'
+gem 'bootstrap5-kaminari-views'
 gem 'bootstrap-sass'
+gem 'carrierwave'
 gem 'devise'
 gem 'faker'
 gem 'jquery-ui-rails'
 gem 'kaminari'
+gem 'mini_magick'
 gem 'slim-rails'
 
 group :development, :test do

@@ -1,0 +1,10 @@
+.row.cart-item
+  .col-md-6
+    = image_tag item.product.image1.thumb_smaller.url, class: "image-item"
+    p = find_product(item.product_id).name
+    p = display_price(find_product(item.product_id).price)
+  .col-md-2.align-self-center
+    p = item.quantity
+  .col-md-2.align-self-center
+    p = display_price(find_product(item.product_id).price * item.quantity)
+hr
