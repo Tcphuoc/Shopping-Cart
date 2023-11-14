@@ -19,11 +19,12 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def create
-    @category = Category.new(category_params)
-    if @category.save
+    category_creator = CategoryCreator.new(category_params)
+    if category_creator.save
       flash[:notice] = 'Create category success'
       redirect_to admin_categories_url
     else
+      @category = category_creator.category
       flash.now[:alert] = 'Create category fail. Please try again'
       render 'new', status: :unprocessable_entity
     end

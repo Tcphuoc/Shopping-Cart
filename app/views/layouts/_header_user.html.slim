@@ -30,6 +30,8 @@ header.navbar.navbar-expand-lg.shadow.sticky-top.bg-light
             i.far.fa-user-circle.icon-account
           ul.dropdown-menu style="translate: -110px"
             li = link_to "Profile", edit_user_registration_path, class: "dropdown-item"
+            li
+              hr.dropdown-divider
             li = button_to "Log out", destroy_user_session_path, class: "dropdown-item", method: :delete
       - else
         = link_to "Log in", new_user_session_path, class: "btn btn-dark", style: "height: 90%; margin: auto"

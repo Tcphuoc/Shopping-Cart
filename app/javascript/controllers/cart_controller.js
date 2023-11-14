@@ -44,6 +44,7 @@ export default class extends Controller {
         self.sweet_alert('success', response.message)
       } else if(response.status == 'fail') {
         self.sweet_alert('error', response.message)
+        document.getElementById("btn-add").disabled = false
       }
     }).fail(function(xhr, status, error) {
       if(error == "Unauthorized"){

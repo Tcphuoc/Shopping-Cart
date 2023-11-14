@@ -7,7 +7,7 @@ class OrderCreator
     @shop = find_shop(order.shop_id)
     @user = find_user(order.user_id)
     @product = find_product(product_id)
-    @quantity = quantity
+    @quantity = quantity.to_i
   end
 
   def find_shop(id)
@@ -27,8 +27,7 @@ class OrderCreator
   end
 
   def save
-    if @quantity || cart_items_positve?
-      @order.save
+    if (@quantity || cart_items_positve?) && check_cart && @order.save
       create_items
       send_email
       return true

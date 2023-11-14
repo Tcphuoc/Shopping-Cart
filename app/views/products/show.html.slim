@@ -1,11 +1,11 @@
 .row.product-detail
   .col
     p
-      a[href="javascript:;" data-fancybox-trigger="gallery" data-fancybox-index="0" data-controller="product" data-action="click->product#show"]
+      a[href="javascript:;" data-fancybox-trigger="gallery" data-fancybox-index="0" data-controller="show_product" data-action="click->show_product#show"]
         = image_tag @product.image1.thumb_larger.url
     div
       - all_images(@product).each do |image|
-        a[data-fancybox="gallery" data-src=url_for(image.url) data-controller="product" data-action="click->product#show"]
+        a[data-fancybox="gallery" data-src=url_for(image.url) data-controller="show_product" data-action="click->show_product#show"]
           = image_tag image.thumb_smaller.url
   .col-md-7
     h3 = @product.name

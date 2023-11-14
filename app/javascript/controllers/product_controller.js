@@ -77,7 +77,7 @@ export default class extends Controller {
           field.value = true
           $('.pre-image')[index].src = '/assets/no_image.png'
           $('.delete-image')[index-1].classList.add('d-none')
-          $('.image-uploaded')[index].value = ''
+          $('.image-uploaded')[index-1].value = ''
         }
       });
     }

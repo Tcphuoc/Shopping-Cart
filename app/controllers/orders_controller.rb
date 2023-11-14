@@ -18,7 +18,7 @@ class OrdersController < UsersController
       @cart_items = order_creator.cart_items
       @total_price = order_creator.total_price
     else
-      flash[:alert] = 'Oops... Something was changed. Please checking again'
+      flash[:alert] = 'Oops... Your products were changed. Please checking again'
       redirect_to carts_url
     end
   end
@@ -28,6 +28,9 @@ class OrdersController < UsersController
     @order_creator = OrderCreator.new(current_user.cart, @order, params[:order][:product_id], params[:order][:quantity])
     if @order_creator.save
       flash[:notice] = 'Payment success. You can check your order in Order page'
+      redirect_to root_url
+    elsif !@order_creator.check_cart
+      flash[:alert] = 'Oops... Your products were changed. Please checking again'
       redirect_to root_url
     else
       flash.now[:alert] = 'Payment fail. Please check your information'

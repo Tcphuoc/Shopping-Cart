@@ -47,12 +47,12 @@ class Admin::ProductsController < Admin::BaseController
 
   def destroy
     if exist_in_order?(@product.id)
-      flash[:alert] = 'Delete product failed because product is being processed at an order'
+      flash.now[:alert] = 'Delete product failed because product is being processed at an order'
     else
       @product.destroy
       flash[:notice] = 'Delete product success'
     end
-    redirect_to request.referrer || admin_products_url
+    redirect_to admin_products_url
   end
 
   private

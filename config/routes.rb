@@ -21,8 +21,7 @@ Rails.application.routes.draw do
     post '/products', to: 'products#filter'
     post '/categories', to: 'categories#filter'
   end
-
-  match '*unmatched', to: 'application#route_not_found', via: :all
-
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
+
+  match '*unmatched', to: 'application#render404', via: :all
 end

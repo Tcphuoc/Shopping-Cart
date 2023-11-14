@@ -61,11 +61,9 @@ class CartCreator
   def check_cart
     @cart.cart_items.each do |item|
       product = find_product(item.product_id)
-      if product.stock.zero?
-        remove_item(item)
-      elsif product.stock <= item.quantity
-        item.update(quantity: product.stock)
-      end
+      remove_item(item) if product.stock.zero?
+      item.update(quantity: product.stock) if product.stock <= item.quantity
+      item.update(price: product.price) if product.price != item.price
     end
     update_total_price
   end
