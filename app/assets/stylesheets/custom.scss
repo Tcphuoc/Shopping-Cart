@@ -41,13 +41,29 @@ input::-webkit-inner-spin-button {
   text-align: center;
 }
 
+/* Header and Footer*/
+
+header{
+  i{
+    margin: 0 15px;
+    &.icon-cart{
+      font-size: 25px;
+    }
+    &.icon-account{
+      font-size: 28px;
+    }
+  }
+
+  span.badge-cart{
+    translate: 25px -5px;
+  }
+}
+
 footer{
   margin-top: auto;
   padding: 50px 0 !important;
-  color: $white;
-  p{
-    color: $white;
-  }
+  color: $black;
+  background-color: $light-gray;
 }
 
 .content{
@@ -249,10 +265,7 @@ form.search-box{
   input{
     background: transparent;
     height: 40px;
-    border-top: 0;
-    border-left: 0;
-    border-right: 0;
-    border-bottom: 1px solid $gray;
+    border: 0;
     border-radius: 0; 
     border-right: 0;
     margin-top: auto; 
@@ -261,6 +274,15 @@ form.search-box{
   }
   input:focus{
     box-shadow: none;
+    background: transparent;
+  }
+  .input-group{
+    background-color: $light-gray;
+    border-radius: 20px;
+    padding: 0 15px;
+  }
+  i{
+    margin: auto;
   }
 }
 

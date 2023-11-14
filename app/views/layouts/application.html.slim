@@ -17,7 +17,10 @@ html
     link[rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"]
     script[src="https://kit.fontawesome.com/04832e5604.js" crossorigin="anonymous"]
   body
-    = render "layouts/header"
+    - if shop_signed_in?
+      = render "layouts/header_shop"
+    - else
+      = render "layouts/header_user"
     .content
       .container
         = render "layouts/alert"
