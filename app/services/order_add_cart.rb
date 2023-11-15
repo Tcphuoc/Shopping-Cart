@@ -15,6 +15,8 @@ class OrderAddCart
   end
 
   def items_valid?
+    return false if items_empty? || @cart.total_price != total_price
+
     @cart.cart_items.each do |item|
       product = find_product(item.product_id)
       return false unless product.stock >= item.quantity && product.price == item.price && !product.nil?
@@ -23,6 +25,7 @@ class OrderAddCart
   end
 
   def items_empty?
+    reload_cart
     @cart.cart_items.empty?
   end
 
@@ -79,7 +82,6 @@ class OrderAddCart
   end
 
   def items
-    reload_cart
     @cart.cart_items
   end
 

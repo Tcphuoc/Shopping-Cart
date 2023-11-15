@@ -15,6 +15,8 @@ class OrderBuyNow
   end
 
   def items_valid?
+    return false if @product.nil?
+
     @product.stock >= @quantity
   end
 
@@ -53,7 +55,12 @@ class OrderBuyNow
     product.update_stock(-@quantity.to_i)
   end
 
+  def reload_product
+    @quantity = @product.stock if @quantity > @product.stock
+  end
+
   def total_price
+    reload_product
     @product.price * @quantity
   end
 

@@ -85,11 +85,12 @@ h2 Edit product
 
   .input-field
     strong = f.label :category_id
-    = f.collection_radio_buttons(:category_id, Category.all, :id, :name) do |box|
-      = box.label class:"form-check" do
-        = box.radio_button(class: "form-check-input", checked: @product.category?(box.object))
-        = box.label class:"form-check-label"
+    .radio-buttons 
+      = f.collection_radio_buttons(:category_id, Category.all, :id, :name) do |box|
+        = box.label class:"form-check" do
+          = box.radio_button(class: "form-check-input", checked: @product.category?(box.object))
+          = box.label class:"form-check-label"
     = render "shared/error_message", object: f.object, type: :category
 
   = f.submit "Update", class: "btn btn-dark form-control", style: "text-align: center;"
-= button_to "Delete", admin_product_path(@product.slug), method: :delete, class: "btn btn-outline-dark form-control"
+= button_to "Delete", admin_product_path(@product.slug), method: :delete, class: "btn btn-outline-dark form-control", form:{id: "delete-0"}, data: {controller: "product", action: "click->product#confirm_delete", "slide-index": 0}

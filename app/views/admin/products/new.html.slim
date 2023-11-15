@@ -75,6 +75,6 @@ h2.text-center Create new product
         = box.label class:"form-check" do
           = box.radio_button class: "form-check-input"
           = box.label class:"form-check-label"
-      = render "shared/error_message", object: f.object, type: :category
+    = render "shared/error_message", object: f.object, type: :category
 
   = f.submit "Create", class: "btn btn-dark form-control"
