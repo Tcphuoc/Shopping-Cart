@@ -70,10 +70,11 @@ h2.text-center Create new product
 
   .input-field
     strong = f.label :category_id
-    = f.collection_radio_buttons(:category_id, Category.all, :id, :name) do |box|
-      = box.label class:"form-check" do
-        = box.radio_button class: "form-check-input"
-        = box.label class:"form-check-label"
-    = render "shared/error_message", object: f.object, type: :category
+    .radio-buttons 
+      = f.collection_radio_buttons(:category_id, Category.all, :id, :name) do |box|
+        = box.label class:"form-check" do
+          = box.radio_button class: "form-check-input"
+          = box.label class:"form-check-label"
+      = render "shared/error_message", object: f.object, type: :category
 
   = f.submit "Create", class: "btn btn-dark form-control"

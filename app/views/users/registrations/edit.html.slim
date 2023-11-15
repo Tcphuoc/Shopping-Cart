@@ -1,7 +1,7 @@
 .row
   aside.col-md-2
     = render "users/shared/sidebar"
-  .col-md-10
+  .col-md-10[style="padding-left: 40px"]
     h2
       | Information
     = form_for(resource, as: resource_name, data: { controller: "users" }, url: registration_path(resource_name), html: { method: :put }, local: true, data: { controller: "form" }) do |f|

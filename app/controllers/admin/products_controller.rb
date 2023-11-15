@@ -23,7 +23,7 @@ class Admin::ProductsController < Admin::BaseController
       flash[:notice] = 'Create product success'
       redirect_to admin_products_url
     else
-      @product = product_creator.return_product
+      @product = product_creator.product
       flash.now[:alert] = 'Create product fail. Please try again'
       render 'new', status: :unprocessable_entity
     end

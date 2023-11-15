@@ -4,7 +4,6 @@ export default class extends Controller {
   static targets = ["product_id", "quantity", "stock", "id"]
 
   connect(){
-    console.log(`${this.product_idTarget.value} - ${this.stockTarget.value}`)
     if(parseInt(this.stockTarget.value) == 0){
       document.getElementById('btn-add').disabled = true
       document.getElementById('btn-minus').disabled = true

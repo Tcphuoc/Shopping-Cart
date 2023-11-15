@@ -134,11 +134,18 @@ aside{
       border-radius: 5px;
     }
   }
+  i{
+    width: 20px;
+    height: 18px;
+    margin: 0 10px 0 0;
+    text-align: center;
+  }
 }
 
 .gravatar{
   float: left;
   margin-right: 10px;
+  border-radius: 10px;
 }
 
 /* Category */
@@ -223,6 +230,12 @@ a.link-category{
     padding: 10px;
     margin-bottom: 15px;
   }
+}
+
+.radio-buttons{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 form.delete-form{
