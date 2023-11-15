@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class OrdersController < UsersController
+  before_action :initialize_for_new, only: [:new]
+  before_action :initialize_for_create, only: [:create]
+
   def index
     if user_signed_in?
       @orders = current_user.orders.page(params[:page]).per(5)
@@ -10,39 +13,70 @@ class OrdersController < UsersController
   end
 
   def new
-    @order = Order.new
-    order_creator = OrderCreator.new(current_user.cart, @order, cookies[:product_id], cookies[:quantity].to_i)
-    remove_cookies unless cookies[:product_id].nil? || cookies[:product_id].empty?
-
-    if order_creator.check_cart
-      @cart_items = order_creator.cart_items
-      @total_price = order_creator.total_price
+    if @order_creator.items_valid?
+      @cart_items = @order_creator.items
+      @total_price = @order_creator.total_price
+      @product = @order_creator.product
+      @quantity = @order_creator.quantity
     else
       flash[:alert] = 'Oops... Your products were changed. Please checking again'
-      redirect_to carts_url
+      redirect_to request.referrer || root_url
     end
   end
 
   def create
-    @order = Order.new(order_params.except(:product_id, :quantity))
-    @order_creator = OrderCreator.new(current_user.cart, @order, params[:order][:product_id], params[:order][:quantity])
     if @order_creator.save
       flash[:notice] = 'Payment success. You can check your order in Order page'
       redirect_to root_url
-    elsif !@order_creator.check_cart
+    elsif @order_creator.items_empty?
       flash[:alert] = 'Oops... Your products were changed. Please checking again'
       redirect_to root_url
     else
-      flash.now[:alert] = 'Payment fail. Please check your information'
-      @cart_items = @order_creator.cart_items
+      flash[:alert] = 'Oops... Something went wrong. Please checking your information and products'
+      @cart_items = @order_creator.items
       @total_price = @order_creator.total_price
+      @product = @order_creator.product
+      @quantity = @order_creator.quantity
       render 'new', status: :unprocessable_entity
     end
   end
 
   private
 
+  def create_order_creator(product_id, quantity)
+    input = {
+      cart: current_user.cart,
+      order: @order,
+      product_id: product_id,
+      quantity: quantity
+    }
+
+    if product_id.nil? || product_id.empty?
+      OrderAddCart.new(input)
+    else
+      OrderBuyNow.new(input)
+    end
+  end
+
+  def initialize_for_new
+    @order = Order.new
+    @order_creator = create_order_creator(cookies[:product_id], cookies[:quantity].to_i)
+    remove_cookies
+  end
+
+  def initialize_for_create
+    @order = Order.new(order_params.except(:product_id, :quantity))
+    @order_creator = create_order_creator(params[:order][:product_id], params[:order][:quantity].to_i)
+  end
+
   def order_params
     params.require(:order).permit(:user_id, :shop_id, :address, :phone, :total_price, :product_id, :quantity)
+  end
+
+  def remove_cookies
+    unless cookies[:product_id].nil? || cookies[:product_id].empty?
+      cookies[:product_id] = nil
+      cookies[:quantity] = nil
+    end
   end
 end

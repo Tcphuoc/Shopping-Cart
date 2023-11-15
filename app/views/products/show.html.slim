@@ -1,11 +1,11 @@
 .row.product-detail
   .col
     p
-      a[href="javascript:;" data-fancybox-trigger="gallery" data-fancybox-index="0" data-controller="show_product" data-action="click->show_product#show"]
+      a[href="javascript:;" data-fancybox-trigger="gallery" data-fancybox-index="0" data-controller="show" data-action="click->show#show"]
         = image_tag @product.image1.thumb_larger.url
     div
       - all_images(@product).each do |image|
-        a[data-fancybox="gallery" data-src=url_for(image.url) data-controller="show_product" data-action="click->show_product#show"]
+        a[data-fancybox="gallery" data-src=url_for(image.url) data-controller="show" data-action="click->show#show"]
           = image_tag image.thumb_smaller.url
   .col-md-7
     h3 = @product.name
@@ -28,7 +28,7 @@
       = f.button type: "button", id: "btn-add", class: "btn btn-outline-dark", data: {action: "click->cart#add"}
         i.fas.fa-plus
       = f.number_field :quantity, data: {"cart-target": "quantity"}, id: "input-quantity", class: "form-control", value: 1
-      = f.button type: "button", id: "btn-minus", class: "btn btn-outline-dark", data: {action: "click->cart#minus"}
+      = f.button type: "button", id: "btn-minus", class: "btn btn-outline-dark", data: {action: "click->cart#minus"}, disabled: true
         i.fas.fa-minus
 
       = f.button "Buy now", type: "button", id: "btn-buy-now", class: "btn btn-dark form-control", data: {action: "click->cart#buy_now"}, disabled: shop_signed_in?

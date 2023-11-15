@@ -47,7 +47,7 @@ class Admin::ProductsController < Admin::BaseController
 
   def destroy
     if exist_in_order?(@product.id)
-      flash.now[:alert] = 'Delete product failed because product is being processed at an order'
+      flash[:alert] = 'Delete product failed because product is being processed at an order'
     else
       @product.destroy
       flash[:notice] = 'Delete product success'
