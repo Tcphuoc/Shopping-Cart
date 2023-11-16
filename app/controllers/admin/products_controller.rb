@@ -5,7 +5,7 @@ class Admin::ProductsController < Admin::BaseController
 
   def index
     if params[:filter]
-      filter = Filter.new(filter_params)
+      filter = FilterService.new(filter_params)
       products = Kaminari.paginate_array(filter.products)
     else
       products = Product.all
@@ -18,7 +18,7 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def create
-    product_creator = ProductCreator.new(product_params)
+    product_creator = ProductCreatorService.new(product_params)
     if product_creator.save
       flash[:notice] = 'Create product success'
       redirect_to admin_products_url
@@ -33,7 +33,7 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def update
-    product_creator = ProductCreator.new(product_params)
+    product_creator = ProductCreatorService.new(product_params)
     if product_creator.update
       flash[:notice] = 'Update product success'
       redirect_to admin_products_url

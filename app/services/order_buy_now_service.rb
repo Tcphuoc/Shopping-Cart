@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class OrderBuyNow
+class OrderBuyNowService
   attr_reader :product, :quantity, :items
 
   def initialize(input)
@@ -69,5 +69,8 @@ class OrderBuyNow
     user = User.find_by(id: @order.user_id)
     OrderMailer.confirm_order(@order, user).deliver_now
     OrderMailer.notify_order(@order, shop, user).deliver_now
+  end
+
+  def reload_cart
   end
 end

@@ -93,7 +93,6 @@ export default class extends Controller {
         }
       }
     }).done(function (response) {
-      console.log(response)
       document.getElementById("cart-items").innerHTML = response.items
       document.getElementById("cart").innerHTML = response.html
     }).fail(function (xhr, status, error) {

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class OrderAddCart
+class OrderAddCartService
   attr_reader :product, :quantity
 
   def initialize(input)
@@ -15,7 +15,7 @@ class OrderAddCart
   end
 
   def items_valid?
-    return false if items_empty? || @cart.total_price != total_price
+    return false if @cart.total_price != total_price || items_empty?
 
     @cart.cart_items.each do |item|
       product = find_product(item.product_id)
@@ -25,7 +25,6 @@ class OrderAddCart
   end
 
   def items_empty?
-    reload_cart
     @cart.cart_items.empty?
   end
 
@@ -79,6 +78,7 @@ class OrderAddCart
       item.update(price: product.price) if item.price != product.price
       @cart.remove_item(item) if product.nil? || product.stock.zero?
     end
+    @cart.update(total_price: total_price)
   end
 
   def items

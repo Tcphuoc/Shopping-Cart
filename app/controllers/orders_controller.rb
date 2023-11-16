@@ -28,16 +28,19 @@ class OrdersController < UsersController
     if @order_creator.save
       flash[:notice] = 'Payment success. You can check your order in Order page'
       redirect_to root_url
-    elsif @order_creator.items_empty?
-      flash[:alert] = 'Oops... Your products were changed. Please checking again'
-      redirect_to root_url
     else
-      flash[:alert] = 'Oops... Something went wrong. Please checking your information and products'
-      @cart_items = @order_creator.items
-      @total_price = @order_creator.total_price
-      @product = @order_creator.product
-      @quantity = @order_creator.quantity
-      render 'new', status: :unprocessable_entity
+      @order_creator.reload_cart
+      if @order_creator.items_empty?
+        flash[:alert] = 'Oops... Your products were changed. Please checking again'
+        redirect_to root_url
+      else
+        flash[:alert] = 'Oops... Something went wrong. Please checking your information and products'
+        @cart_items = @order_creator.items
+        @total_price = @order_creator.total_price
+        @product = @order_creator.product
+        @quantity = @order_creator.quantity
+        render 'new', status: :unprocessable_entity
+      end
     end
   end
 
@@ -52,9 +55,9 @@ class OrdersController < UsersController
     }
 
     if product_id.nil? || product_id.empty?
-      OrderAddCart.new(input)
+      OrderAddCartService.new(input)
     else
-      OrderBuyNow.new(input)
+      OrderBuyNowService.new(input)
     end
   end
 

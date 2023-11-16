@@ -6,7 +6,7 @@ class CartsController < UsersController
   before_action :find_cart, only: [:index]
 
   def index
-    cart_creator = CartCreator.new(nil, nil, @cart, false)
+    cart_creator = CartCreatorService.new(nil, nil, @cart, false)
     cart_creator.check_cart
   end
 
@@ -47,6 +47,6 @@ class CartsController < UsersController
       buy_now = false
     end
 
-    @cart_creator = CartCreator.new(product_id, quantity, current_user.cart, buy_now)
+    @cart_creator = CartCreatorService.new(product_id, quantity, current_user.cart, buy_now)
   end
 end
