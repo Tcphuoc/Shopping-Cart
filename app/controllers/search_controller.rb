@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SearchController < ApplicationController
+class SearchController < UsersController
   def index
     temp = Product.where('name LIKE ?', "%#{params[:search]}%")
     if temp.empty?
