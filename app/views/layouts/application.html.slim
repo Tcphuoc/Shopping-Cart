@@ -21,8 +21,6 @@ html
       = render "layouts/header_shop"
     - else
       = render "layouts/header_user"
-    .content
-      .container
-        = render "layouts/alert"
-        = yield
+    = render "layouts/alert"
+    = yield
     = render "layouts/footer"

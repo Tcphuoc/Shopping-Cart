@@ -1,3 +1,7 @@
 - unless shop_signed_in?
-  - categories.each do |category|
-    = render "shared/category", category: category
+  .banner
+    .banner-cover
+      h1 Fashion For Men
+  .home-page
+    - categories.each do |category|
+      = render "shared/category", category: category

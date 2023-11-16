@@ -29,6 +29,10 @@ body{
   }
 }
 
+.content{
+  padding: 20px 70px;
+}
+
 /* Remove number stepper in number input*/
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -66,12 +70,17 @@ footer{
   background-color: $light-gray;
 }
 
-.content{
-  padding-top: 20px;
-  padding-bottom: 20px;
+/* Home */
+.home-page {
+  padding: 20px;
+  padding-bottom: 40px;
+  .row{
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
 }
 
-/* Home */
 a.navbar-brand{
   img.logo{
     margin-right: 10px;
@@ -81,6 +90,29 @@ a.navbar-brand{
   p{
     display: inline;
   }
+}
+
+.banner{
+  background-image: url('banner.jpg');
+  background-size: cover;
+  background-position: center center;
+  height: 100vh;
+  width: 100%;
+  margin-bottom: 40px;
+  .banner-cover{
+    background-color: rgba($color: #000000, $alpha: 0.5);
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+.banner h1{
+  color: $white;
 }
 
 /* Form */
@@ -119,6 +151,7 @@ form{
 
 /* Profile */
 aside{
+  width: 250px !important;
   section{
     margin-bottom: 10px;
   }
@@ -142,6 +175,13 @@ aside{
   }
 }
 
+.profile-info{
+  padding: 20px 0;
+  h2, form, .table-info{
+    padding: 0 20px;
+  }
+}
+
 .gravatar{
   float: left;
   margin-right: 10px;
@@ -150,7 +190,7 @@ aside{
 
 /* Category */
 a.link-category{
-  text-decoration: none;
+  text-decoration: underline;
   color: $black;
 }
 
@@ -193,6 +233,25 @@ a.link-category{
     margin: 0 10px; 
     text-align: center;
   }
+}
+
+.accordion{
+  margin-top: 40px;
+}
+
+button.accordion-button:focus{
+  box-shadow: none;
+  background-color: $black;
+  color: $white;
+}
+
+.accordion-button:not(.collapsed){
+  background-color: $black !important;
+  color: $white !important;
+}
+
+.accordion-button::after{
+  background-image: none !important;
 }
 
 /* Edit page */
@@ -250,6 +309,7 @@ img.pre-image{
 }
 
 /* Cart */
+
 img.image-item{
   float: left;
   margin-right: 10px;

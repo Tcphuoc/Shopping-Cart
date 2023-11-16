@@ -21,7 +21,7 @@ class OrderBuyNow
   end
 
   def items_empty?
-    @product.nil?
+    @product.nil? || @product.stock.zero?
   end
 
   def save

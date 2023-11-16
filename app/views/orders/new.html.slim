@@ -1,31 +1,32 @@
-h2 Payment
-.row
-  .col-md-8
-    h4 Your products
-    - if @product
-      = render 'shared/item_payment', product_id: @product.id, quantity: @quantity
-    - else
-      - @cart_items.each do |order_item|
-        = render 'shared/item_payment', product_id: order_item.product_id, quantity: order_item.quantity
-    .row
-      .col-md-8.align-self-center
-        strong Total price:
-      .col-md-2.align-self-center
-        = display_price(@total_price)
-  .col-md-4
-    h4 Your information
-    = form_with(model: @order, local: true) do |f|
-      = f.hidden_field :user_id, value: current_user.id
-      = f.hidden_field :shop_id, value: 1
+.content
+  h2 Payment
+  .row
+    .col-md-8
+      h4 Your products
       - if @product
-        = f.hidden_field :product_id, value: @product.id
-        = f.hidden_field :quantity, value: @quantity
-      = f.hidden_field :total_price, value: @total_price
+        = render 'shared/item_payment', product_id: @product.id, quantity: @quantity
+      - else
+        - @cart_items.each do |order_item|
+          = render 'shared/item_payment', product_id: order_item.product_id, quantity: order_item.quantity
+      .row
+        .col-md-8.align-self-center
+          strong Total price:
+        .col-md-2.align-self-center
+          = display_price(@total_price)
+    .col-md-4
+      h4 Your information
+      = form_with(model: @order, local: true) do |f|
+        = f.hidden_field :user_id, value: current_user.id
+        = f.hidden_field :shop_id, value: 1
+        - if @product
+          = f.hidden_field :product_id, value: @product.id
+          = f.hidden_field :quantity, value: @quantity
+        = f.hidden_field :total_price, value: @total_price
 
-      = f.label :address
-      = f.text_field :address, value: current_user.address, class: "form-control"
+        = f.label :address
+        = f.text_field :address, value: current_user.address, class: "form-control"
 
-      = f.label :phone
-      = f.text_field :phone, value: current_user.phone, class: "form-control"
+        = f.label :phone
+        = f.text_field :phone, value: current_user.phone, class: "form-control"
 
-      = f.submit "Payment", class: "btn btn-dark form-control"
+        = f.submit "Payment", class: "btn btn-dark form-control"

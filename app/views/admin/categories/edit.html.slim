@@ -1,17 +1,18 @@
-h2 Update category
-= form_with(model: @category, url: admin_category_path(@category.slug), local: true, data: { controller: "form" }) do |f|
-  = f.hidden_field :shop_id, value: current_shop.id
-  = f.hidden_field :old_slug, value: @category.slug
+.content
+  h2 Update category
+  = form_with(model: @category, url: admin_category_path(@category.slug), local: true, data: { controller: "form" }) do |f|
+    = f.hidden_field :shop_id, value: current_shop.id
+    = f.hidden_field :old_slug, value: @category.slug
 
-  .input-field
-    strong = f.label :name
-    = f.text_field :name, class: "form-control", data: {"form-target": "input"}
-    = render "shared/error_message", object: f.object, type: :name
+    .input-field
+      strong = f.label :name
+      = f.text_field :name, class: "form-control", data: {"form-target": "input"}
+      = render "shared/error_message", object: f.object, type: :name
 
-  .input-field
-    strong = f.label :slug
-    = f.text_field :slug, class: "form-control", data: {"form-target": "input"}
-    = render "shared/error_message", object: f.object, type: :slug
+    .input-field
+      strong = f.label :slug
+      = f.text_field :slug, class: "form-control", data: {"form-target": "input"}
+      = render "shared/error_message", object: f.object, type: :slug
 
-  = f.submit "Update", class: "btn btn-dark form-control"
-= button_to "Delete", admin_category_path(@category.slug), method: :delete, class: "btn btn-outline-dark form-control"
+    = f.submit "Update", class: "btn btn-dark form-control"
+  = button_to "Delete", admin_category_path(@category.slug), method: :delete, class: "btn btn-outline-dark form-control"

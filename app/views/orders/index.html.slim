@@ -1,17 +1,24 @@
-.row
-  aside.col-md-2
-    = render "users/shared/sidebar"
-  .col-md-10[style="padding-left: 40px"]
-    .table-info
+.content
+  .row
+    aside.col-md-2
+      = render "users/shared/sidebar"
+    .col.bg-light.shadow.rounded-3.profile-info
       h2 List orders
-      table
-        tr 
-          th ID 
-          th Time
-          th Products
-          th Quantity
-          th Total price
-        .row
-          - @orders.each_with_index do |order, index|
-            = render 'shared/order_item', order: order, index: index
-      = paginate @orders
+      .table-info
+        - if @orders.empty?
+          .text-center
+            = image_tag 'wallet.png', width: '150px'
+            h3 No Order History
+            = link_to "Go Shopping", root_path, class: "btn btn-dark"
+        - else 
+          table
+            tr 
+              th ID 
+              th Time
+              th Products
+              th Quantity
+              th Total price
+            .row
+              - @orders.each_with_index do |order, index|
+                = render 'shared/order_item', order: order, index: index
+          = paginate @orders
