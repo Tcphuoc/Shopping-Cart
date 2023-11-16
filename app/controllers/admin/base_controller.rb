@@ -7,6 +7,6 @@ class Admin::BaseController < ApplicationController
   private
 
   def allow_access
-    render 'errors/404' if user_signed_in?
+    render file: "#{Rails.root}/app/views/errors/404.html", layout: false if user_signed_in?
   end
 end

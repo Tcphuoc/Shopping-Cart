@@ -9,9 +9,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :render404
 
   def render404
-    respond_to do |format|
-      format.html { render template: 'errors/404', status: 404, layout: 'application' }
-    end
+    render file: "#{Rails.root}/app/views/errors/404.html", layout: false
   end
 
   protected

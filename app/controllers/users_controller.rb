@@ -7,6 +7,6 @@ class UsersController < ApplicationController
   private
 
   def allow_access
-    render 'errors/404' if shop_signed_in?
+    render file: "#{Rails.root}/app/views/errors/404.html", layout: false if shop_signed_in?
   end
 end
