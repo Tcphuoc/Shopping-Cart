@@ -93,7 +93,7 @@ class CartCreatorService
   end
 
   def response
-    return { status: 'redirect' } if @buy_now
+    return { status: 'redirect' } if @buy_now && add_cart_valid?
 
     { status: @status, message: @message, items: quantity_items }
   end
