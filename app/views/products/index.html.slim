@@ -1,5 +1,40 @@
 .content
-  h2.text-center All Products
+  h2.text-center[style="margin-bottom: 0"] All Products
+  div[style="text-align:right; margin-bottom: 10px"]
+    button.btn.btn-outline-dark.button-top[type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"]
+      i.fa-solid.fa-filter
+      strong  Filter
+  #exampleModal.modal.fade[tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"]
+    .modal-dialog
+      .modal-content
+        .modal-header
+          p#exampleModalLabel.modal-title.fs-5
+            | Filter
+          button.btn-close[type="button" data-bs-dismiss="modal" aria-label="Close"]
+        .modal-body
+          = form_with(url: products_path, local: true, method: :get) do |f|
+            = f.hidden_field :filter, value: true
+            .input-field
+              = f.label :name
+              = f.text_field :name, class: "form-control"
+            .input-field
+              .row
+                .col
+                  = f.label :min_price
+                  = f.number_field :min_price, class: "form-control"
+                .col
+                  = f.label :max_price
+                  = f.number_field :max_price, class: "form-control"
+            .input-field
+              .row
+                .col
+                  = f.label :min_stock
+                  = f.number_field :min_stock, class: "form-control"
+                .col
+                  = f.label :max_stock
+                  = f.number_field :max_stock, class: "form-control"
+            .text-center
+              = f.submit "Filter", class: "btn btn-primary form-control"
   .row
     - @products.each do |product|
       .col-md-3

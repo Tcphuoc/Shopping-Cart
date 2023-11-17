@@ -10,7 +10,7 @@ short_category = Category.create(name: 'Short', shop_id: 1, slug: 'short')
 
 def create_product(index, name, description, price, stock, slug, category)
   params = {
-    name: "#{name} #{index}",
+    name: "#{name} Special #{index}",
     description: description,
     price: price,
     stock: stock,
