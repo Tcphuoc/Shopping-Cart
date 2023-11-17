@@ -10,8 +10,8 @@ export default class extends Controller {
       this.quantityTarget.value = 0
       document.getElementById('btn-buy-now').disabled = true
       document.getElementById('btn-add-to-cart').disabled = true
-      document.getElementById("btn-buy-now").innerText = 'Sold out'
-      document.getElementById("btn-add-to-cart").innerText = 'Sold out'
+      document.getElementById("btn-buy-now").innerText = 'Out of stock'
+      document.getElementById("btn-add-to-cart").innerText = 'Out of stock'
     }
   }
 
