@@ -1,4 +1,4 @@
-#cart
+.content#cart
   - if @cart.cart_items.count > 0
     h2.text-center Your cart
     .row
@@ -22,7 +22,7 @@
           = link_to "Payment", new_order_path, class: "btn btn-dark", id: "btn-payment"
   - else
     .text-center
-      = image_tag 'empty.png', width: '280px'
+      = image_tag 'empty-cart.png', width: '200px'
       h3 Your Cart is Empty
       p Look like you haven't added anything to your cart yet
       = link_to "Go Shopping", root_path, class: "btn btn-dark"

@@ -33,6 +33,6 @@
       = f.hidden_field :quantity, data: {"cart-target": "quantity"}, value: -1
       = f.hidden_field :cart_id, data: {"cart-target": "id"}, value: current_user.cart.id
 
-      = f.button type: "button", class: "btn btn-outline-dark btn-minus", data: {action: "click->cart#update_cart"}
+      = f.button type: "button", class: "btn btn-outline-dark btn-minus", data: {action: "click->cart#update_cart"}, disabled: item.quantity == 1
         i.fas.fa-minus
 hr

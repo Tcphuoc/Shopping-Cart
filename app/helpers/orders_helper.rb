@@ -13,8 +13,10 @@ module OrdersHelper
     User.find_by(id: id)
   end
 
-  def remove_cookies
-    cookies[:product_id] = nil
-    cookies[:quantity] = nil
+  def display_revenues
+    Order.all.reduce(0) do |total, order|
+      total += order.total_price
+      total
+    end
   end
 end

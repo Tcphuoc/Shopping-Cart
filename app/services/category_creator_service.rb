@@ -1,14 +1,10 @@
 # frozen_string_literal: true
 
-class ProductCreator
-  attr_reader :product
+class CategoryCreatorService
+  attr_reader :category
 
   def initialize(params)
     @params = params
-  end
-
-  def find_product(slug)
-    @product = Product.find_by(slug: slug)
   end
 
   def convert_slug
@@ -32,8 +28,8 @@ class ProductCreator
   end
 
   def slug_exist?(slug)
-    products = Product.where('slug LIKE ?', slug)
-    !products.empty?
+    categories = Category.where('slug LIKE ?', slug)
+    !categories.empty?
   end
 
   def last_char_is_int?(slug)
@@ -42,15 +38,7 @@ class ProductCreator
 
   def save
     convert_slug
-    @product = Product.new(@params)
-    @product.save
-  end
-
-  def update
-    find_product(@params[:old_slug])
-    @product.remove_image2! if @params[:remove_image2] == 'true'
-    @product.remove_image3! if @params[:remove_image3] == 'true'
-    @product.remove_image4! if @params[:remove_image4] == 'true'
-    @product.update(@params.except(:remove_image2, :remove_image3, :remove_image4, :old_slug))
+    @category = Category.new(@params)
+    @category.save
   end
 end

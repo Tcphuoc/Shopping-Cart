@@ -3,6 +3,7 @@
     .card
       = image_tag product.image1.url
       .card-body
-        .card-title
-          strong = product.name
-          p = display_price(product.price)
+        .card-title[style="text-align: left"]
+          h4 = product.name
+          p= display_price(product.price)
+          = "Stock: #{product.stock}"

@@ -1,7 +1,8 @@
-.row
+.content
   h2.text-center
     = @category.name
-  - @products.each do |product|
-    .col-3.col-md-3
-      = render "shared/card_product", product: product
-= paginate @products
+  .row
+    - @products.each do |product|
+      .col-3.col-md-3
+        = render "shared/card_product", product: product
+  = paginate @products

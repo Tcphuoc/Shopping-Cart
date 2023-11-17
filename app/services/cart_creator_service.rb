@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CartCreator
+class CartCreatorService
   attr_reader :cart
 
   def initialize(id, quantity, cart, buy_now)
@@ -61,9 +61,9 @@ class CartCreator
   def check_cart
     @cart.cart_items.each do |item|
       product = find_product(item.product_id)
-      remove_item(item) if product.stock.zero?
       item.update(quantity: product.stock) if product.stock <= item.quantity
       item.update(price: product.price) if product.price != item.price
+      @cart.remove_item(item) if product.stock.zero? || product.nil?
     end
     update_total_price
   end
@@ -93,7 +93,7 @@ class CartCreator
   end
 
   def response
-    return { status: 'redirect' } if @buy_now
+    return { status: 'redirect' } if @buy_now && add_cart_valid?
 
     { status: @status, message: @message, items: quantity_items }
   end

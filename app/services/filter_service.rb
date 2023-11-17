@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Filter
+class FilterService
   def initialize(params)
     @name = convert_type(params[:name])
     @slug = convert_type(params[:slug])

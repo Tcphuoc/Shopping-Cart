@@ -1,12 +1,13 @@
-.row.justify-content-md-center
-  .col-md-4
-    h2
-      | Forgot your password?
-    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }, data: { controller: "form" }) do |f|
-      .field.input-field
-        strong = f.label :email
-        = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", data: {"form-target": "input"}
-        = render 'shared/error_message', object: resource, type: :email
-      .actions
-        = f.submit "Send instructions", class: "form-control btn btn-dark"
-        = link_to "Log in", new_user_session_path, class: "form-control btn btn-outline-dark"
+.content
+  .row.justify-content-md-center
+    .col-md-4
+      h2
+        | Forgot your password?
+      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }, data: { controller: "form" }) do |f|
+        .field.input-field
+          strong = f.label :email
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", data: {"form-target": "input"}
+          = render 'shared/error_message', object: resource, type: :email
+        .actions
+          = f.submit "Send instructions", class: "form-control btn btn-dark"
+          = link_to "Log in", new_user_session_path, class: "form-control btn btn-outline-dark"

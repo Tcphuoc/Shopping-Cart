@@ -1,16 +1,27 @@
-.table-info
-  div
-    h2 List orders
-  p = page_entries_info @orders
-  table
-    tr 
-      th ID 
-      th Time
-      th Products
-      th Quantity
-      th Total price
-      th Action
+.content
+  .table-info
     .row
-      - @orders.each_with_index do |order, index|
-        = render 'shared/order_item', order: order, index: index, user: find_user_by_id(order.user_id)
-  = paginate @orders
+      .col
+        h2 List orders
+      div[style="width: 350px"]
+        .row
+          .col.bg-body-secondary.rounded-3[style="margin-right: 15px"]
+            h4 Orders
+            p = Order.all.count
+          .col.bg-body-secondary.rounded-3[style="margin-right: 15px"]
+            h4 Revenues
+            p = display_price(display_revenues)
+
+    p = page_entries_info @orders
+    table
+      tr 
+        th ID 
+        th Time
+        th Products
+        th Quantity
+        th Total price
+        th Action
+      .row
+        - @orders.each_with_index do |order, index|
+          = render 'shared/order_item', order: order, index: index, user: find_user_by_id(order.user_id)
+    = paginate @orders

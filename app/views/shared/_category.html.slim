@@ -1,7 +1,6 @@
-h4 
-  = link_to category.name, category_path(category.slug), class: "link-category"
-hr
+h2.text-center
+  = link_to category.name, category_path(category.slug), class: "link-category link-offset-3"
 .row
   - category.products.first(4).each do |product|
-    .col
+    .col-md-3
       = render "shared/card_product", product: product

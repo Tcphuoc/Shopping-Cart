@@ -5,7 +5,7 @@ class Admin::ProductsController < Admin::BaseController
 
   def index
     if params[:filter]
-      filter = Filter.new(filter_params)
+      filter = FilterService.new(filter_params)
       products = Kaminari.paginate_array(filter.products)
     else
       products = Product.all
@@ -18,12 +18,12 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def create
-    product_creator = ProductCreator.new(product_params)
+    product_creator = ProductCreatorService.new(product_params)
     if product_creator.save
       flash[:notice] = 'Create product success'
       redirect_to admin_products_url
     else
-      @product = product_creator.return_product
+      @product = product_creator.product
       flash.now[:alert] = 'Create product fail. Please try again'
       render 'new', status: :unprocessable_entity
     end
@@ -33,12 +33,12 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def update
-    product_creator = ProductCreator.new(product_params)
+    product_creator = ProductCreatorService.new(product_params)
     if product_creator.update
       flash[:notice] = 'Update product success'
       redirect_to admin_products_url
     else
-      @product = product_creator.return_product
+      @product = product_creator.product
       @product.slug = product_params[:old_slug]
       flash.now[:alert] = 'Update product fail. Please try again'
       render 'edit', status: :unprocessable_entity
@@ -47,7 +47,7 @@ class Admin::ProductsController < Admin::BaseController
 
   def destroy
     if exist_in_order?(@product.id)
-      flash.now[:alert] = 'Delete product failed because product is being processed at an order'
+      flash[:alert] = 'Delete product failed because product is being processed at an order'
     else
       @product.destroy
       flash[:notice] = 'Delete product success'

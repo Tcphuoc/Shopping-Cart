@@ -5,8 +5,11 @@ Rails.application.routes.draw do
   devise_for :users,
              controllers: { sessions: 'users/sessions', registrations: 'users/registrations',
                             passwords: 'users/passwords' }
+  authenticated :shop do
+    root 'admin/products#index', as: :admin_root
+  end
+  
   get '/home', to: 'pages#home'
-  get 'pages/about'
   root 'pages#home'
   resources :products, param: :slug
   resources :carts, only: [:index, :new, :update]

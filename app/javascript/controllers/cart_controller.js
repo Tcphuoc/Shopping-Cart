@@ -4,15 +4,14 @@ export default class extends Controller {
   static targets = ["product_id", "quantity", "stock", "id"]
 
   connect(){
-    console.log(`${this.product_idTarget.value} - ${this.stockTarget.value}`)
     if(parseInt(this.stockTarget.value) == 0){
       document.getElementById('btn-add').disabled = true
       document.getElementById('btn-minus').disabled = true
       this.quantityTarget.value = 0
       document.getElementById('btn-buy-now').disabled = true
       document.getElementById('btn-add-to-cart').disabled = true
-      document.getElementById("btn-buy-now").innerText = 'Sold out'
-      document.getElementById("btn-add-to-cart").innerText = 'Sold out'
+      document.getElementById("btn-buy-now").innerText = 'Out of stock'
+      document.getElementById("btn-add-to-cart").innerText = 'Out of stock'
     }
   }
 
@@ -94,7 +93,6 @@ export default class extends Controller {
         }
       }
     }).done(function (response) {
-      console.log(response)
       document.getElementById("cart-items").innerHTML = response.items
       document.getElementById("cart").innerHTML = response.html
     }).fail(function (xhr, status, error) {

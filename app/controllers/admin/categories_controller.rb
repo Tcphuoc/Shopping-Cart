@@ -6,7 +6,7 @@ class Admin::CategoriesController < Admin::BaseController
 
   def index
     if params[:filter]
-      filter = Filter.new(filter_params)
+      filter = FilterService.new(filter_params)
       categories = Kaminari.paginate_array(filter.categories)
     else
       categories = Category.all
@@ -19,7 +19,7 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def create
-    category_creator = CategoryCreator.new(category_params)
+    category_creator = CategoryCreatorService.new(category_params)
     if category_creator.save
       flash[:notice] = 'Create category success'
       redirect_to admin_categories_url
