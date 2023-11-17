@@ -12,6 +12,9 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def allow_access
-    render file: "#{Rails.root}/app/views/errors/404.html", layout: false if shop_signed_in?
+    if shop_signed_in?
+      render file: "#{Rails.root}/app/views/errors/404.html", layout: false
+      flash.clear
+    end
   end
 end
