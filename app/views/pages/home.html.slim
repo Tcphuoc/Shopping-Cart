@@ -1,7 +1,19 @@
 - unless shop_signed_in?
-  .banner
-    .banner-cover
-      h1 Fashion For Men
+  #carouselExampleAutoplaying.carousel.slide[data-bs-ride="carousel"]
+    .carousel-inner
+      .carousel-item.active
+        = image_tag "banner.jpg", class: "d-block w-100"
+      .carousel-item
+        = image_tag "banner1.jpg", class: "d-block w-100"
+    button.carousel-control-prev[type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev"]
+      span.carousel-control-prev-icon[aria-hidden="true"]
+      span.visually-hidden
+        | Previous
+    button.carousel-control-next[type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next"]
+      span.carousel-control-next-icon[aria-hidden="true"]
+      span.visually-hidden
+        | Next
+
   .home-page
     - categories.each do |category|
       = render "shared/category", category: category
